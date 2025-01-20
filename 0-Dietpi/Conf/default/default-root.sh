@@ -46,7 +46,7 @@ chmod 755 /mnt/Cloud/Data/default-keys.sh
 
 systemctl restart dietpi-dashboard
 
-apt install acl
+apt install acl -y
 
 systemctl unmask systemd-logind
 apt install dbus
