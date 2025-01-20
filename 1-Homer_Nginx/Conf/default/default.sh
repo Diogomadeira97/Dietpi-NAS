@@ -1,4 +1,4 @@
-sudo apt install certbot python3-certbot-nginx python3-certbot-dns-cloudflare
+sudo apt install certbot python3-certbot-nginx python3-certbot-dns-cloudflare -y
 
 sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/cloudflare.ini /etc/letsencrypt
 sudo nano /etc/letsencrypt/cloudflare.ini
