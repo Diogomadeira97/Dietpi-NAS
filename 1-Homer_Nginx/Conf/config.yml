@@ -1,0 +1,149 @@
+# Homepage configuration
+title: "<SERVER NAME>"
+subtitle: "Dashboard"
+header: false
+footer: false
+
+stylesheet:
+- "assets/custom.css"
+
+columns: "4"
+# Optional theme customization
+theme: default
+
+# Optional theme customization (color overrrides)
+# overrrides can also be done using CSS vars 
+colors:
+  light:
+    highlight-primary: "#fff5f2"
+    highlight-secondary: "#fff5f2"
+    highlight-hover: "#bebebe"
+    background: "#12152B"
+    card-background: "rgba(255, 245, 242, 0.8)"
+    text: "#ffffff"
+    text-header: "#fafafa"
+    text-title: "#000000"
+    text-subtitle: "#111111"
+    card-shadow: rgba(0, 0, 0, 0.5)
+    link: "#3273dc"
+    link-hover: "#2e4053"
+    background-image: "../assets/wallpaper-light.jpeg" # Change wallpaper.jpeg to the name of your own custom wallpaper!
+  dark:
+    highlight-primary: "#181C3A"
+    highlight-secondary: "#181C3A"
+    highlight-hover: "#1F2347"
+    background: "#12152B"
+    card-background: "rgba(24, 28, 58, 0.8)"
+    text: "#eaeaea"
+    text-header: "#7C71DD"
+    text-title: "#fafafa"
+    text-subtitle: "#8B8D9C"
+    card-shadow: rgba(0, 0, 0, 0.5)
+    link: "#c1c1c1"
+    link-hover: "#fafafa"
+    background-image: "../assets/wallpaper.jpeg"
+
+# Optional navbar
+# links: [] # Allows for navbar (dark mode, layout, and search) without any links
+links: []
+
+# Services
+# First level array represent a group.
+# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+
+services:
+
+  - name: "Mídias"
+    icon: "fa-solid fa-photo-film"
+    items:
+
+      - name: "Jellyfin"
+        logo: "assets/icons/jellyfin.svg"
+        subtitle: "Reprodutor de filmes e séries."
+        url: "https://jellyfin.<DOMAIN>"
+        target: "_blank"
+
+      - name: "Kavita"
+        logo: "assets/icons/kavita.svg"
+        subtitle: "Leitor de E-Book."
+        url: "https://kavita.<DOMAIN>"
+        target: "_blank"
+
+      - name: "Immich"
+        logo: "assets/icons/immich.svg"
+        subtitle: "Galeria de Mídias."
+        url: "https://immich.<DOMAIN>"
+        target: "_blank"
+
+  - name: "Downloads"
+    icon: "fa-solid fa-download"
+    items:
+
+      - name: "Transmission"
+        logo: "assets/icons/transmission.svg"
+        subtitle: "Gestor de Downloads."
+        url: "https://transmission.<DOMAIN>"
+        target: "_blank"
+
+      - name: "Radarr"
+        logo: "assets/icons/radarr.svg"
+        subtitle: "Rastreador de Filmes."
+        url: "https://radarr.<DOMAIN>"
+        target: "_blank"
+
+      - name: "Sonarr"
+        logo: "assets/icons/sonarr.svg"
+        subtitle: "Rastreador de TV-Shows."
+        url: "https://sonarr.<DOMAIN>"
+        target: "_blank"
+
+      - name: "Readarr"
+        logo: "assets/icons/readarr.svg"
+        subtitle: "Rastreador de Livros."
+        url: "https://readarr.<DOMAIN>"
+        target: "_blank"
+
+
+      - name: "Prowlarr"
+        logo: "assets/icons/prowlarr.svg"
+        subtitle: "Rastreador de indexadores."
+        url: "https://radarr.<DOMAIN>"
+        target: "_blank"
+
+      - name: "Bazarr"
+        logo: "assets/icons/bazarr.svg"
+        subtitle: "Rastreador de Legendas."
+        url: "https://bazarr.<DOMAIN>"
+        target: "_blank"
+
+  - name: "Casa Inteligente"
+    icon: "fa-solid fa-home"
+    items:
+
+      - name: "Home Asssistant"
+        logo: "assets/icons/home-assistant.svg"
+        subtitle: "Automação Residencial."
+        url: "https://home-assistant.<DOMAIN>"
+        target: "_blank"
+
+  - name: "Gestão"
+    icon: "fa-solid fa-gear"
+    items:
+
+      - name: "AdGuard"
+        logo: "assets/icons/adguardhome.svg"
+        subtitle: "Servidor DNS."
+        url: "https://adguard.<DOMAIN>"
+        target: "_blank"
+
+      - name: "File Browser"
+        logo: "assets/icons/filebrowser.svg"
+        subtitle: "Explorador de Arquivos."
+        url: "https://filebrowser.<DOMAIN>"
+        target: "_blank"
+
+      - name: "Dietpi Dashboard"
+        logo: "assets/icons/dietpi-logo.svg"
+        subtitle: "Gestão do servidor."
+        url: "https://dietpi.<DOMAIN>"
+        target: "_blank"

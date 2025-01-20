@@ -1,0 +1,34 @@
+# /etc/nginx/sites-available/<DOMAIN>
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        listen 443 default_server;
+        listen [::]:443 default_server;
+        ssl_reject_handshake on;
+
+        server_name _;
+        return 444;
+}
+
+server{
+        listen 80;
+        listen [::]:80;
+        server_name <DOMAIN>;
+        return 301 https://$host$request_uri;
+}
+
+server {
+
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+
+        root /var/www/<DOMAIN>;
+
+        server_name <DOMAIN>;
+
+        ssl_certificate /etc/letsencrypt/live/<DOMAIN>/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/<DOMAIN>/privkey.pem;
+
+}
