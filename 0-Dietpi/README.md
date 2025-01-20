@@ -2,7 +2,7 @@
 
 • Login:
 
-    login: roo
+    login: root
 
     Password: dietpi
 
