@@ -49,5 +49,5 @@ systemctl restart dietpi-dashboard
 apt install acl -y
 
 systemctl unmask systemd-logind
-apt install dbus
+apt install dbus -y
 systemctl start dbus systemd-logind
