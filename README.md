@@ -66,8 +66,7 @@
 
 	mv configs /mnt/Cloud/Public
 
-	cd /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/default
-	sudo chmod g+x ./*
+	cd /mnt/Cloud/Data/Dietpi/Conf/default
 
 	bash default.sh <SERVER NAME> <GENERIC AND COUNTRY TOP-LEVEL DOMAIN> <IP> <CLOUDFLARE TOKEN>
 
