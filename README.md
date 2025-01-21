@@ -18,27 +18,37 @@ Collection of scripts to perform a complete installation of a NAS-Server running
 
 • Network Masking
 
-Another important goal is to be a practical installation so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation:
+Another important goal is to be a practical installation so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data:
 
 • [default.sh](Conf/default/default.sh).
 
 > Reconfigure folders to default permissions and default owners. (Use this with [default-user.sh](Conf/default/default-user.sh)).
 
+	bash /mnt/Cloud/Data/
+
 • [default-user.sh](Conf/default/default-user.sh).
 
 > Create Users with the default configuration to folders, permissions, groups, and Samba Share.
+
+	bash /mnt/Cloud/Data/
 
 • [default-Keys.sh](Conf/default/default-Keys.sh).
 
 > Create SSH Private keys to multiple devices (Need root login).
 
+	bash /mnt/Cloud/Data/
+
 • [subdomain.sh](Conf/default/subdomain.sh).
 
 > Create subdomain to a service in Nginx and Homer.
 
+	bash /mnt/Cloud/Data/
+
 • [subpath.sh](Conf/default/subpath.sh).
 
 > Create subpath to a service in Nginx and Homer.
+
+	bash /mnt/Cloud/Data/
 
 ## Requirements:
 
