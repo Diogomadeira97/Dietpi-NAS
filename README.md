@@ -102,13 +102,13 @@ Do the first login and follow the instructions.
 
 	dietpi-config:
 
-> Change timezone on 'Language/Regional Options'.
+> • Change timezone on 'Language/Regional Options'.
 
-> Change host name to on 'Security Options'.
+> • Change host name to on 'Security Options'.
 
-> Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
+> • Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
 
-> When ask about purge all WiFi related APT packages, mark 'yes'.
+> • When ask about purge all WiFi related APT packages, mark 'yes'.
 
 	dietpi-sync:
 
