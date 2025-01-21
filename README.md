@@ -49,27 +49,9 @@
     cd Dietpi-NAS/Conf/default
     chmod g+x ./*
 
-    bash default-root.sh <SERVER NAME> <ADMIN-NAS PASSWORD> <GUEST-NAS PASSWORD> <ADMIN-NAS SAMBA PASSWORD> <GUEST-NAS SAMBA PASSWORD> <DIETPI PASSWORD> <DB IMMICH PASSWORD>
+	nano default-variables.sh
 
-	cd /mnt/Cloud/Data
-
-	bash default-keys.sh <SERVER NAME> <DEVICE>
-
-    bash default-user.sh <SERVER NAME> <USER> <USER PASSWORD> <USER SAMBA PASSWORD>
-
-	pivpn add <DEVICE>
-
-	pivpn -qr <DEVICE>
-
-	mv configs /mnt/Cloud/Public
-
-	cd /mnt/Cloud/Data/Dietpi-NAS/Conf/default
-
-	bash default.sh <SERVER NAME> <GENERIC AND COUNTRY TOP-LEVEL DOMAIN> <IP> <CLOUDFLARE TOKEN>
-
-	rm -rf /mnt/Cloud/Data/Dietpi-NAS
-
-	reboot
+	bash default-variables.sh
 
 • On Windows:
 

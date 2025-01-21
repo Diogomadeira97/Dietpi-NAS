@@ -1,9 +1,22 @@
+#! /bin/bash
+
+#Go to .ssh folder to create SSH Keys.
 cd ~/.ssh
 
-ssh-keygen -f $2
+#Do it while have a Device.
+for i in $(seq 2 $D);
+do
 
-ssh-copy-id -i $2.pub admin-nas@$1
+    #Generate a Device SSH key.
+    ssh-keygen -f $i
 
-chmod 777 $2
+    #Copy Device SSH Key to default user.
+    ssh-copy-id -i $i.pub admin-nas@$1
 
-mv $2 /mnt/Cloud/Keys_SSH
+    #Change Device SSH key permissions.
+    chmod 777 $i
+
+    #Move Device SSH Key to /mnt/Cloud/Keys_SSH and easily export with Dietpi-Dashboard.
+    mv $i /mnt/Cloud/Data/Keys_SSH
+
+done
