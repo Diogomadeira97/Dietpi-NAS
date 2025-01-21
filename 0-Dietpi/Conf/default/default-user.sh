@@ -40,6 +40,8 @@ sudo chown -R readarr:$2_Cloud Livros
 sudo setfacl -R -m user:bazarr:rwx Filmes
 sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
-LINE='#User $1\n\n[Mídias]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1\n\n[Docs]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1'	
-FILE='/mnt/Cloud/Data/iptables_custom.sh'
-grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+sudo cat /etc/samba/smb.conf >> smb.conf
+echo -e "#User $1\n\n[Mídias]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1\n\n[Docs]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1" >> smb.conf
+sudo chown root:root smb.conf
+sudo chmod 644 smb.conf
+sudo mv smb.conf /etc/samba/smb.conf

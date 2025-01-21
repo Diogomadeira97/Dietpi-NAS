@@ -23,15 +23,12 @@ cd /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf
 mv sudoers /etc
 chmod 600 /etc/sudoers
 
-rm /etc/ssh/sshd_config.d/dietpi.conf
 mv dietpi.conf /etc/ssh/sshd_config.d
 chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
 
-rm /opt/dietpi-dashboard/config.toml
 mv config.toml /opt/dietpi-dashboard/
 chmod 644 /opt/dietpi-dashboard/config.toml
 
-rm /etc/samba/smb.conf
 mv Samba/smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
 

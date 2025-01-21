@@ -51,3 +51,5 @@ sudo docker compose up -d
 sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default/immich_cron.sh /etc/cron.daily
 
 sudo chmod 755 /etc/cron.daily/immich_cron.sh
+
+sudo rm -rf /mnt/Cloud/Data/Dietpi/0-Dietpi

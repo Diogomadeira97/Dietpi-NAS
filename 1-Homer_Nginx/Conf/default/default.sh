@@ -1,7 +1,15 @@
 sudo apt install certbot python3-certbot-nginx python3-certbot-dns-cloudflare -y
 
-sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/cloudflare.ini /etc/letsencrypt
-sudo nano /etc/letsencrypt/cloudflare.ini
+cd /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/
+sudo echo -e "server{\n	listen 80 default_server;\n	listen [::]:80 default_server;\n\n	listen 443 default_server;\n	listen [::]:443 default_server;\n	ssl_reject_handshake on;\n	server_name _;\n	return 444	\n}\n\nserver{\n	listen 80;\n	listen [::]:80;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name $1$2;\n	root /var/www/$1$2;\n\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n}" >> $1
+echo -e '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n    <link rel="icon" href="assets/icons/favicon.ico" />\n    <link rel="apple-touch-icon" href="assets/icons/logo.svg">\n    <link rel="mask-icon" href="assets/icons/logo.svg">\n    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">\n    <title>'"$1"'</title>\n    <script type="module" crossorigin src="./resources/index-BBtURoPU.js"></script>\n    <link rel="stylesheet" crossorigin href="./resources/index-D56_29fy.css">\n  <link rel="manifest" href="./assets/manifest.json" crossorigin="use-credentials"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>\n  <body>\n    <div id="app-mount"></div>\n  </body>\n</html>' >> index.html
+echo -e '{"name":"'"$1"'","short_name":"'"$1"'","start_url":"../","display":"standalone","background_color":"#ffffff","lang":"en","scope":"../","description":"'"$1"'","theme_color":"#3367D6","icons":[{"src":"./icons/logo.svg","type":"image/svg"}]}' >> manifest.json
+echo -e '# Homepage configuration\ntitle: "'"$1"'"\nsubtitle: "Dashboard"\nheader: false\nfooter: false\n\nstylesheet:\n- "assets/custom.css"\n\ncolumns: "4"\n# Optional theme customization\ntheme: default\n\n# Optional theme customization (color overrrides)\n# overrrides can also be done using CSS vars\ncolors:\n  light:\n    highlight-primary: "#fff5f2"\n    highlight-secondary: "#fff5f2"\n    highlight-hover: "#bebebe"\n    background: "#12152B"\n    card-background: "rgba(255, 245, 242, 0.8)"\n    text: "#ffffff"\n    text-header: "#fafafa"\n    text-title: "#000000"\n    text-subtitle: "#111111"\n    card-shadow: rgba(0, 0, 0, 0.5)\n    link: "#3273dc"\n    link-hover: "#2e4053"\n    background-image: "../assets/wallpaper-light.jpeg" # Change wallpaper.jpeg to the name of your own custom wallpaper!\n  dark:\n    highlight-primary: "#181C3A"\n    highlight-secondary: "#181C3A"\n    highlight-hover: "#1F2347"\n    background: "#12152B"\n    card-background: "rgba(24, 28, 58, 0.8)"\n    text: "#eaeaea"\n    text-header: "#7C71DD"\n    text-title: "#fafafa"\n    text-subtitle: "#8B8D9C"\n    card-shadow: rgba(0, 0, 0, 0.5)\n    link: "#c1c1c1"\n    link-hover: "#fafafa"\n    background-image: "../assets/wallpaper.jpeg"\n\n# Optional navbar\n# links: [] # Allows for navbar (dark mode, layout, and search) without any links\nlinks: []\n\n# Services\n# First level array represent a group.\n# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).\n\n' >> config.yml
+
+echo -e "#Cloudflare API token used by Certbot\ndns_cloudflare_api_token = $4" >> cloudflare.ini
+echo -e "#! /bin/bash" >> iptables_custom.sh
+
+sudo mv cloudflare.ini /etc/letsencrypt
 sudo chmod 600 /etc/letsencrypt/cloudflare.ini
 
 sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials cloudflare.ini -d *.$1$2 -d $1$2
@@ -16,33 +24,31 @@ sudo cp homer-theme-main/assets/wallpaper-light.jpeg /var/www/homer/assets/wallp
 sudo cp -R homer-theme-main/assets/fonts /var/www/homer/assets/
 rm -R homer-theme-main
 
+sudo chown root:root /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/*
+sudo chmod 644 /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/*
+
 cd /var/www/
 
 sudo rm index.nginx-debian.html
 
 sudo mkdir $1
+sudo chown root:root $1
+sudo chmod 755 $1
 sudo mv homer/* $1
 sudo rm -rf homer
 
 cd $1
 
 sudo rm logo.png
-sudo rm index.html
 sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/index.html .
-sudo nano index.html
 
 cd assets
 
 sudo rm config.yml.dist
 sudo rm config-demo.yml.dist
-sudo rm config.yml
-sudo rm manifest.json
 
 sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/config.yml .
-sudo nano config.yml
-
 sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/manifest.json .
-sudo nano manifest.json
 
 cd icons
 
@@ -60,7 +66,6 @@ cd /etc/nginx/sites-available
 sudo rm default
 
 sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/$1 .
-sudo nano $1
 
 cd ../sites-enabled
 
@@ -70,34 +75,67 @@ sudo ln -s /etc/nginx/sites-available/$1 .
 
 cd /mnt/Cloud/Data/Dietpi/2-Homer_Nginx
 
-sudo chmod g+x Conf/default/subdomain.sh
-sudo chmod g+x Conf/default/subpath.sh
+sudo chmod 700 Conf/default/*
+sudo mv subdomain.sh /mnt/Cloud/Data
+sudo mv subpath.sh /mnt/Cloud/Data
 
-sudo bash Conf/default/subdomain.sh $1 $2 adguard 8083 $3
+echo -e 'services:\n\n  - name: "Mídias"\n    icon: "fa-solid fa-photo-film"\n    items:\n\n' >> /var/www/$1/assets/config.yml
 
-sudo bash Conf/default/subdomain.sh $1 $2 transmission 9091 $3
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 jellyfin 8097 $3
 
-sudo bash Conf/default/subdomain.sh $1 $2 prowlarr 9696 $3
+echo -e '      - name: "Jellyfin"\n        logo: "assets/icons/jellyfin.svg"\n        subtitle: "Reprodutor de filmes e séries."\n        url: "https://jellyfin.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
-sudo bash Conf/default/subdomain.sh $1 $2 radarr 7878 $3
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 kavita 2036 $3
 
-sudo bash Conf/default/subdomain.sh $1 $2 sonarr 8989 $3
+echo -e '      - name: "Kavita"\n        logo: "assets/icons/kavita.svg"\n        subtitle: "Leitor de E-Book."\n        url: "https://kavita.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
-sudo bash Conf/default/subdomain.sh $1 $2 readarr 8787 $3
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 immich 2283 $3
 
-sudo bash Conf/default/subdomain.sh $1 $2 bazdarr 6767 $3
+echo -e '      - name: "Immich"        logo: "assets/icons/immich.svg"\n        subtitle: "Galeria de Mídias."\n        url: "https://immich.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
-sudo bash Conf/default/subdomain.sh $1 $2 jellyfin 8097 $3
+echo -e '  - name: "Downloads"\n    icon: "fa-solid fa-download"\n   items:\n\n' >> /var/www/$1/assets/config.yml
 
-sudo bash Conf/default/subdomain.sh $1 $2 kavita 2036 $3
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 transmission 9091 $3
 
-sudo bash Conf/default/subdomain.sh $1 $2 immich 2283 $3
+echo -e '      - name: "Transmission"\n        logo: "assets/icons/transmission.svg"\n        subtitle: "Gestor de Downloads."\n        url: "https://transmission.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 radarr 7878 $3
+
+echo -e '      - name: "Radarr"\n        logo: "assets/icons/radarr.svg"\n        subtitle: "Rastreador de Filmes."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 sonarr 8989 $3
+
+echo -e '      - name: "Sonarr"\n        logo: "assets/icons/sonarr.svg"\n        subtitle: "Rastreador de TV-Shows."\n        url: "https://sonarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 readarr 8787 $3
+
+echo -e '      - name: "Readarr"\n        logo: "assets/icons/readarr.svg"\n        subtitle: "Rastreador de Livros."\n        url: "https://readarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 prowlarr 9696 $3
+
+echo -e '      - name: "Prowlarr"\n        logo: "assets/icons/prowlarr.svg"\n        subtitle: "Rastreador de indexadores."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 bazarr 6767 $3
+
+echo -e '      - name: "Bazarr"\n        logo: "assets/icons/bazarr.svg"\n        subtitle: "Rastreador de Legendas."\n        url: "https://bazarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+echo -e '  - name: "Casa Inteligente"\n    icon: "fa-solid fa-home"\n    items:\n\n' >> config.yml
+
+echo -e '      - name: "Home Asssistant"\n        logo: "assets/icons/home-assistant.svg"\n        subtitle: "Automação Residencial."\n        url: "https://home-assistant.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+echo -e '  - name: "Gestão"\n    icon: "fa-solid fa-gear"\n    items:\n\n' >> config.yml
+
+sudo bash /mnt/Cloud/Data/subdomain.sh $1 $2 adguard 8083 $3
+
+echo -e '      - name: "AdGuard"\n        logo: "assets/icons/adguardhome.svg"\n        subtitle: "Servidor DNS."\n        url: "https://adguard.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+
+echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-logo.svg"\n        subtitle: "Gestão do servidor."\n        url: "'"$1$2"':5252"\n        target: "_blank"\n\n' >> config.yml
 
 sudo nginx -s reload
 
 sudo mv Conf/default/iptables_custom.sh /mnt/Cloud/Data
 
-sudo chmod 600 /mnt/Cloud/Data/iptables_custom.sh
+sudo chmod 700 /mnt/Cloud/Data/iptables_custom.sh
 
 sudo mv Conf/crontab.txt /mnt/Cloud/Data
 
