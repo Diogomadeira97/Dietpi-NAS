@@ -1,5 +1,7 @@
 # Dietpi-NAS
 
+## Index:
+
 ## Description:
 
 Collection of scripts to perform a complete installation of a NAS-Server running Dietpi. The goal is to have a home lab that runs very lightly and very safely, so the focus of this configuration is on:
@@ -94,8 +96,6 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 	bash /mnt/Cloud/Data/
 
-## Index:
-
 ## Notes:
 
 This installation is designed to be used only with a VPN, so the only port forwarding that is being performed is for the wireguard (UDP). It is not recommended to use this installation to expose your public IP directly on the Internet. If you want to do it is at your own risk.
@@ -128,7 +128,7 @@ This installation is designed to be used only with a VPN, so the only port forwa
 
 ## Tips:
 
-• Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. when the script opens in this part, use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
+Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. when the script opens in this part, use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
 
 ## Installation:
 
