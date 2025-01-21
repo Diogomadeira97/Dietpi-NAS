@@ -10,16 +10,16 @@
 
 • When answer about UART, mark 'no'.
 
-• Command dietpi-config
+• On dietpi-software install OpenSSH, uninstall Dropbear.
+
+• Select 0: Opt OUT and purge uploaded data.
+
+• Command dietpi-config:
 
 	• Change timezone on 'Language/Regional Options'.
 	• Change host name to on 'Security Options'.	
 	• Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
 	• When ask about purge all WiFi related APT packages, mark 'yes'.
-
-• On dietpi-software install OpenSSH, uninstall Dropbear.
-
-• Select 0: Opt OUT and purge uploaded data
 
 • Command dietpi-sync:
 
