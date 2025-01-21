@@ -22,7 +22,7 @@ gpasswd -M admin-nas $1_BAK
 
 mkdir /mnt/Cloud/Keys_SSH
 
-cd /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf
+cd /mnt/Cloud/Data/Dietpi/Conf
 
 mv sudoers /etc
 chmod 600 /etc/sudoers
@@ -103,7 +103,7 @@ docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart
 
 cd ../immich-app
 
-mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Immich/* /mnt/Cloud/Data/Docker/immich-app
+mv /mnt/Cloud/Data/Dietpi/Conf/Immich/* /mnt/Cloud/Data/Docker/immich-app
 
 echo -e "DB_PASSWORD=$7" >> .env
 
@@ -115,4 +115,4 @@ chmod 750 /etc/cron.daily/immich_cron.sh
 
 docker compose up -d
 
-rm -rf /mnt/Cloud/Data/Dietpi/0-Dietpi
+rm -rf /mnt/Cloud/Data/Dietpi
