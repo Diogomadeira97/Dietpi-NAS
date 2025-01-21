@@ -41,6 +41,13 @@ chmod 755 /mnt/Cloud/Data/default-user.sh
 mv default/default-keys.sh /mnt/Cloud/Data
 chmod 755 /mnt/Cloud/Data/default-keys.sh
 
+hash=$(echo -n "$2" | sha512sum | mawk '{print $1}')
+secret=$(openssl rand -hex 32)
+G_CONFIG_INJECT 'pass[[:blank:]]' 'pass = true' /opt/dietpi-dashboard/config.toml
+GCI_PASSWORD=1 G_CONFIG_INJECT 'hash[[:blank:]]' "hash = \"$hash\"" /opt/dietpi-dashboard/config.toml
+GCI_PASSWORD=1 G_CONFIG_INJECT 'secret[[:blank:]]' "secret = \"$secret\"" /opt/dietpi-dashboard/config.toml
+unset -v hash secret
+
 systemctl restart dietpi-dashboard
 
 apt install acl -y

@@ -93,15 +93,7 @@
     cd Dietpi/0-Dietpi/Conf/default
     chmod g+x ./*
 
-    bash default-root.sh <SERVER NAME>
-
-	hash=$(echo -n '<PASSWORD>' | sha512sum | mawk '{print $1}')
-    secret=$(openssl rand -hex 32)
-    G_CONFIG_INJECT 'pass[[:blank:]]' 'pass = true' /opt/dietpi-dashboard/config.toml
-    GCI_PASSWORD=1 G_CONFIG_INJECT 'hash[[:blank:]]' "hash = \"$hash\"" /opt/dietpi-dashboard/config.toml
-    GCI_PASSWORD=1 G_CONFIG_INJECT 'secret[[:blank:]]' "secret = \"$secret\"" /opt/dietpi-dashboard/config.toml
-    unset -v hash secret
-    systemctl restart dietpi-dashboard
+    bash default-root.sh <SERVER NAME> <DIETPI PASSWORD> 
 
 	bash /mnt/Cloud/Data/default-keys.sh <SERVER NAME> <DEVICE>
 
@@ -141,9 +133,13 @@
 
 Commands:
 
-	bash /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default/default-admin.sh <SERVER NAME>
+	bash /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default/default-admin.sh <SERVER NAME> <DB IMMICH PASSWORD>
 
     bash /mnt/Cloud/Data/default-user.sh <USER> <SERVER NAME>
+
+• Use Dietpi-Dashboard to:
+ 	
+	• Export /mnt/Cloud/Keys_SSH to D:\Keys.
 
 • AdGuard Home
 
@@ -182,7 +178,3 @@ Commands:
 • Immich
 
 	• On Immich Change user and password, after add Users and Libraries.
-
-• Use Dietpi-Dashboard to:
- 	
-	• Export /mnt/Cloud/Keys_SSH to D:\Keys.

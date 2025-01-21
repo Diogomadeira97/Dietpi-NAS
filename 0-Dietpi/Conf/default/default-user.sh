@@ -41,7 +41,11 @@ sudo setfacl -R -m user:bazarr:rwx Filmes
 sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
 sudo cat /etc/samba/smb.conf >> smb.conf
-echo -e "#User $1\n\n[Mídias]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1\n\n[Docs]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1" >> smb.conf
+sudo echo -e "#User $1\n\n[Mídias]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1\n\n[Docs]\n	comment = User $1\n	path = /mnt/Cloud/Users/$1/Docs\n	valid users = $1" >> smb.conf
 sudo chown root:root smb.conf
 sudo chmod 644 smb.conf
 sudo mv smb.conf /etc/samba/smb.conf
+
+cd /mnt/Cloud/Data/Docker/immich-app
+sudo echo -e "      - /mnt/Cloud/Users/$1/Midia/Midias-Anuais:/mnt/Cloud/Users/$1/Midia/Midias-Anuais:ro" >> docker-compose.yml
+sudo docker compose restart
