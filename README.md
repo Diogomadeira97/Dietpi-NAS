@@ -50,28 +50,35 @@ Do the first login and follow the instructions.
 
 • Select 0: Opt OUT and purge uploaded data.
 
-#### Command dietpi-config:
+	dietpi-config:
 
 > Change timezone on 'Language/Regional Options'.
+
 > Change host name to on 'Security Options'.
+
 > Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
+
 > When ask about purge all WiFi related APT packages, mark 'yes'.
 
-#### Command dietpi-sync:
+	dietpi-sync:
 
-    • Change the path to /mnt/Cloud and /mnt/BAK_Cloud
-    • Turn on Delete Mode.
-    • Turn on Daily Sync.
+>Change the path to /mnt/Cloud and /mnt/BAK_Cloud.
+
+>Turn on Delete Mode.
+
+>Turn on Daily Sync.
 
 ####  Command dietpi-backup
 
-    • Change the path to /mnt/Cloud/Data/dietpi-backup
-    • Turn on daily backup.
-    • Change the quantity to 3.
+>Change the path to /mnt/Cloud/Data/dietpi-backup.
 
-#### Command dietpi-cron
+>Turn on daily backup.
 
-    • If you want, change the time of daily backup.
+>Change the quantity to 3.
+
+	dietpi-cron
+
+>If you want, change the time of daily backup.
 
 • Commands
 
