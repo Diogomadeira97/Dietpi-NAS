@@ -1,6 +1,6 @@
 apt install certbot python3-certbot-nginx python3-certbot-dns-cloudflare -y
 
-cd /mnt/Cloud/Data/Dietpi/Conf/Nginx
+cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx
 
 echo -e "server{\n	listen 80 default_server;\n	listen [::]:80 default_server;\n\n	listen 443 default_server;\n	listen [::]:443 default_server;\n	ssl_reject_handshake on;\n	server_name _;\n	return 444	\n}\n\n" >> $1
 echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name $1$2;\n	root /var/www/$1$2;\n\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n}" >> $1
@@ -45,15 +45,15 @@ rm -rf homer
 cd $1
 
 rm logo.png
-mv /mnt/Cloud/Data/Dietpi/Conf/Nginx/index.html .
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/index.html .
 
 cd assets
 
 rm config.yml.dist
 rm config-demo.yml.dist
 
-mv /mnt/Cloud/Data/Dietpi/Conf/Nginx/config.yml .
-mv /mnt/Cloud/Data/Dietpi/Conf/Nginx/manifest.json .
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/config.yml .
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/manifest.json .
 
 cd icons
 
@@ -64,13 +64,13 @@ rm pwa-512x512.png
 rm pwa-192x192.png
 rm README.md
 
-mv mv /mnt/Cloud/Data/Dietpi/Icons/* .
+mv mv /mnt/Cloud/Data/Dietpi-NAS/Icons/* .
 
 cd /etc/nginx/sites-available
 
 rm default
 
-mv /mnt/Cloud/Data/Dietpi/Conf/Nginx/$1 .
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/$1 .
 chmod 544 $1
 
 cd ../sites-enabled
@@ -79,7 +79,7 @@ rm default
 
 ln -s /etc/nginx/sites-available/$1 .
 
-cd /mnt/Cloud/Data/Dietpi/Conf/default
+cd /mnt/Cloud/Data/Dietpi-NAS/Conf/default
 
 mv subdomain.sh /mnt/Cloud/Data
 mv subpath.sh /mnt/Cloud/Data
@@ -143,5 +143,3 @@ echo -e '      - name: "AdGuard"\n        logo: "assets/icons/adguardhome.svg"\n
 echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-logo.svg"\n        subtitle: "Gestão do servidor."\n        url: "'"$1$2"':5252"\n        target: "_blank"\n\n' >> config.yml
 
 nginx -s reload
-
-rm -rf /mnt/Cloud/Data/Dietpi
