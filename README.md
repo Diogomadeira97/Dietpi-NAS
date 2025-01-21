@@ -2,21 +2,21 @@
 
 ## Index:
 
-### [Description](#Description)
+• [Description](#Description)
 
-### [Notes](#Notes)
+• [Notes](#Notes)
 
-### [Requirements](#Requirements)
+• [Requirements](#Requirements)
 
-### [Recommendations](#Recommendations)
+• [Recommendations](#Recommendations)
 
-### [Tips](#Tips)
+• [Tips](#Tips)
 
-### [Installation](#Installation)
+• [Installation](#Installation)
 
-#### [First Steps](#First-Steps)
+>> [First Steps](#First-Steps)
 
-[Commands](#Commands)
+>> [Commands](#Commands)
 
 
 ## Description:
