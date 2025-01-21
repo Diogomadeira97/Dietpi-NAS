@@ -2,67 +2,72 @@
 
 ## Index:
 
+• [Description](#Description)
+
+
 ## Description:
 
 Collection of scripts to perform a complete installation of a NAS-Server running Dietpi. The goal is to have a home lab that runs very lightly and very safely, so the focus of this configuration is on:
 
-• Permissions
+• Permissions.
 
-• Private Keys
+• Private Keys.
 
-• Encryption
+• Encryption.
 
-• Variety of passwords
+• Variety of passwords.
 
-• Secure Remote Access
+• Secure Remote Access.
 
-• Virtual Private Networking (VPN)
+• Virtual Private Networking (VPN).
 
-• Network Masking
+• Network Masking.
 
 In addition to security, another fundamental objective is to be an environment where users have full control of their files, so services that use third-party servers are limited to cloudflare, to perform DNS pointing, and a DDNS server chosen by the user to point the Dynamic Public IP (see Recommendations). All other services running are self-hosted and free, so you don't need to pay nothing or subscribe to any paid subscription. The services running so far are:
 
-• Fail2Ban
+• [Fail2Ban](https://dietpi.com/docs/software/system_security/#fail2ban).
 
-• OpendSSH
+• [OpendSSH](https://dietpi.com/docs/software/ssh/#openssh).
 
-• Dietpi-Dashboard
+• [Dietpi-Dashboard](https://dietpi.com/docs/software/system_stats/#dietpi-dashboard).
 
-• Samba_server
+• [Samba Server](https://dietpi.com/docs/software/file_servers/#samba).
 
-• Docker Docker_Compose
+• [Docker](https://dietpi.com/docs/software/programming/#docker).
 
-• Transmission
+• [Docker_Compose](https://dietpi.com/docs/software/programming/#docker-compose).
 
-• Radarr
+• [Transmission](https://dietpi.com/docs/software/bittorrent/#transmission).
 
-• Sonarr
+• [Sonarr](https://dietpi.com/docs/software/bittorrent/#sonarr).
 
-• Prowlarr
+• [Radarr](https://dietpi.com/docs/software/bittorrent/#radarr).
 
-• Readarr
+• [Prowlarr](https://dietpi.com/docs/software/bittorrent/#prowlarr).
 
-• Bazarr
+• [Readarr](https://dietpi.com/docs/software/bittorrent/#readarr).
 
-• Jellyfin
+• [Bazarr](https://dietpi.com/docs/software/bittorrent/#bazarr).
 
-• Kavita
+• [Jellyfin](https://dietpi.com/docs/software/media/#jellyfin).
 
-• AdGuard Home
+• [Kavita](https://dietpi.com/docs/software/media/#kavita).
 
-• Unbound
+• [AdGuard Home](https://dietpi.com/docs/software/dns_servers/#adguard-home).
 
-• PiVPN(Wireguard)
+• [Unbound](https://dietpi.com/docs/software/dns_servers/#unbound).
 
-• Homer
+• [PiVPN(Wireguard)](https://dietpi.com/docs/software/vpn/#pivpn).
 
-• Nginx
+• [Homer](https://dietpi.com/docs/software/system_stats/#homer).
 
-• Certbot
+• [Nginx Web Server](https://dietpi.com/docs/software/webserver_stack/#nginx).
 
-• Flaresolver
+• [Certbot Let’s Encrypt](https://dietpi.com/docs/software/system_security/#lets-encrypt).
 
-• Immich
+• [Flaresolver](https://github.com/FlareSolverr/FlareSolverr).
+
+• [Immich](https://immich.app/).
 
 Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data:
 
@@ -110,7 +115,7 @@ This installation is designed to be used only with a VPN, so the only port forwa
 
 • Two Storage Devices.
 
-• A support device for Dietpi [Check available devices here](https://dietpi.com/).
+• A support device for Dietpi. Check available devices[here](https://dietpi.com/).
 
 ## Recommendations:
 
