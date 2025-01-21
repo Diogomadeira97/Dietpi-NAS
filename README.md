@@ -15,19 +15,32 @@
 ## Recommendations:
 
 • Put ONU in Bridge and connect router with PPPoE (IPv4 and IPv6).
+
 • A router with some kind of network protection.
+
 • The primary storage device should preferably be an SSD, and the backup one HD.
+
 • Some kind of cooling on the device running the server.
+
 • Offsite backups at least every month.
+
 • Different passwords for each variable in [Contribution guidelines for this project](Conf/default/default-variables.sh).
 
+## Installation:
 
+• Download the last image of Dietpi to your device [here](https://dietpi.com/).
 
-• Login:
+• If necessary, use [Rufus](https://rufus.ie/) to create a bootable USB drive.
 
-    login: root
+### First Steps:
 
-    Password: dietpi
+Do the first login and follow the instructions.
+
+**Login:**
+
+> login: root
+
+> Password: dietpi
 
 • Change Global and root Password.
 
@@ -37,26 +50,26 @@
 
 • Select 0: Opt OUT and purge uploaded data.
 
-• Command dietpi-config:
+#### Command dietpi-config:
 
-	• Change timezone on 'Language/Regional Options'.
-	• Change host name to on 'Security Options'.	
-	• Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
-	• When ask about purge all WiFi related APT packages, mark 'yes'.
+> Change timezone on 'Language/Regional Options'.
+> Change host name to on 'Security Options'.
+> Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
+> When ask about purge all WiFi related APT packages, mark 'yes'.
 
-• Command dietpi-sync:
+#### Command dietpi-sync:
 
     • Change the path to /mnt/Cloud and /mnt/BAK_Cloud
     • Turn on Delete Mode.
     • Turn on Daily Sync.
 
-• Command dietpi-backup
+####  Command dietpi-backup
 
     • Change the path to /mnt/Cloud/Data/dietpi-backup
     • Turn on daily backup.
     • Change the quantity to 3.
 
-• Command dietpi-cron
+#### Command dietpi-cron
 
     • If you want, change the time of daily backup.
 
