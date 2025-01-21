@@ -1,6 +1,6 @@
 #! /bin/bash
 
-#Install Fail2Ban Dietpi-Dashboard Samba_server Docker Docker_Compose Transmission Radarr Sonarr Prowlarr Readarr Bazarr Jellyfin Kavita AdGuard Home Unbound
+#Install Fail2Ban Dietpi-Dashboard Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita AdGuard_Home Unbound PiVPN(Wireguard) Homer Nginx Certbot.
 dietpi-software install 73 200 96 134 162 44 144 145 151 180 203 178 212 126 182 117 205 85 92
 
 umask 0022
