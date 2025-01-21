@@ -16,7 +16,7 @@
 
 #### [First Steps](#First-Steps)
 
-#### [Commands](#Commands)
+[Commands](#Commands)
 
 
 ## Description:
