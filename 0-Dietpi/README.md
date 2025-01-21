@@ -14,7 +14,7 @@
 
 • Change timezone on 'Language/Regional Options'.
 
-• Change host name to on security options
+• Change host name to on 'Security Options'.
 	
 • Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
 
