@@ -21,25 +21,45 @@ Collection of scripts to perform a complete installation of a NAS-Server running
 In addition to security, another fundamental objective is to be an environment where users have full control of their files, so services that use third-party servers are limited to cloudflare, to perform DNS pointing, and a DDNS server chosen by the user to point the Dynamic Public IP (see Recommendations). All other services running are self-hosted and free, so you don't need to pay nothing or subscribe to any paid subscription. The services running so far are:
 
 • Fail2Ban
+
 • OpendSSH
+
 • Dietpi-Dashboard
+
 • Samba_server
+
 • Docker Docker_Compose
+
 • Transmission
+
 • Radarr
+
 • Sonarr
+
 • Prowlarr
+
 • Readarr
+
 • Bazarr
+
 • Jellyfin
+
 • Kavita
+
 • AdGuard Home
+
 • Unbound
+
 • PiVPN(Wireguard)
+
 • Homer
+
 • Nginx
+
 • Certbot
+
 • Flaresolver
+
 • Immich
 
 Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data:
