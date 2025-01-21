@@ -18,7 +18,31 @@ Collection of scripts to perform a complete installation of a NAS-Server running
 
 • Network Masking
 
-Another important goal is to be a practical installation so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data:
+In addition to security, another fundamental objective is to be an environment where users have full control of their files, so services that use third-party servers are limited to cloudflare, to perform DNS pointing, and a DDNS server chosen by the user to point the Dynamic Public IP (see Recommendations). All other services running are self-hosted and free, so you don't need to pay nothing or subscribe to any paid subscription. The services running so far are:
+
+• Fail2Ban
+• OpendSSH
+• Dietpi-Dashboard
+• Samba_server
+• Docker Docker_Compose
+• Transmission
+• Radarr
+• Sonarr
+• Prowlarr
+• Readarr
+• Bazarr
+• Jellyfin
+• Kavita
+• AdGuard Home
+• Unbound
+• PiVPN(Wireguard)
+• Homer
+• Nginx
+• Certbot
+• Flaresolver
+• Immich
+
+Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data:
 
 • [default.sh](Conf/default/default.sh).
 
@@ -102,33 +126,33 @@ Do the first login and follow the instructions.
 
 	dietpi-config:
 
-> • Change timezone on 'Language/Regional Options'.
+• Change timezone on 'Language/Regional Options'.
 
-> • Change host name to on 'Security Options'.
+• Change host name to on 'Security Options'.
+	
+• Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
 
-> • Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
-
-> • When ask about purge all WiFi related APT packages, mark 'yes'.
+• When ask about purge all WiFi related APT packages, mark 'yes'.
 
 	dietpi-sync:
 
->Change the path to /mnt/Cloud and /mnt/BAK_Cloud.
+• Change the path to /mnt/Cloud and /mnt/BAK_Cloud.
 
->Turn on Delete Mode.
+• Turn on Delete Mode.
 
->Turn on Daily Sync.
+• Turn on Daily Sync.
 
 	dietpi-backup
 
->Change the path to /mnt/Cloud/Data/dietpi-backup.
+• Change the path to /mnt/Cloud/Data/dietpi-backup.
 
->Turn on daily backup.
+• Turn on daily backup.
 
->Change the quantity to 3.
+• Change the quantity to 3.
 
 	dietpi-cron
 
->If you want, change the time of daily backup.
+• If you want, change the time of daily backup.
 
 #### Commands:
 
@@ -150,29 +174,29 @@ Do the first login and follow the instructions.
 
 #### Dietpi-Dashboard to:
  	
-> Chose Nightly on Dietpi-Dashboard.
+• Chose Nightly on Dietpi-Dashboard.
 
-> Chose no to only backend on Dietpi-Dashboard.
+• Chose no to only backend on Dietpi-Dashboard.
 
-> Export /mnt/Cloud/Keys_SSH to D:\Keys.
+• Export /mnt/Cloud/Keys_SSH to D:\Keys.
 
 #### AdGuard Home
 
-> Set Unbound to the DNS resolver on the installation.
+• Set Unbound to the DNS resolver on the installation.
 
-> Set static ip if you don't.
+• Set static ip if you don't.
 
-> Go to web UI and enter with Username: admin Password: Global.
+• Go to web UI and enter with Username: admin Password: Global.
 
-> On General Settings enable AdGuard browsing security service.
+• On General Settings enable AdGuard browsing security service.
 
-> Set DNS Blocklists and Custom filtering rules on the web UI.
+• Set DNS Blocklists and Custom filtering rules on the web UI.
 
-> Set DNS on router and devices to the ip of the server.
+• Set DNS on router and devices to the ip of the server.
 
 #### FAil2Ban:
 
-> The status can be checked with these commands:
+• The status can be checked with these commands:
 
 	sudo fail2ban-client status sshd
 
@@ -182,71 +206,71 @@ Do the first login and follow the instructions.
 
 #### Transmission and Arrs
 
-> Login on Transmission and change the path to /mnt/Cloud/Public/Downloads.
+• Login on Transmission and change the path to /mnt/Cloud/Public/Downloads.
 
-> Login on Arrs to change user and password.
+• Login on Arrs to change user and password.
 
-> Add the Transmission torrent download client (without category).
+• Add the Transmission torrent download client (without category).
 
-> Add indexers, apps and FlareSolver on Prowlarr.
+• Add indexers, apps and FlareSolver on Prowlarr.
 
-> Create language profile on bazar, after add providers to turn on Sonarr and Bazarr.
+• Create language profile on bazar, after add providers to turn on Sonarr and Bazarr.
 
 #### Jellyfin and Kavita
 
-> To force first login on jellyfin use this link: http://<DOMAIN>:8097/web/index.html#/wizardstart.html
+• To force first login on jellyfin use this link: http://<DOMAIN>:8097/web/index.html#/wizardstart.html
 
-> Create Users and Libraries.
+• Create Users and Libraries.
 
-> Do the the first login on kavita and Users and Libraries.
+• Do the the first login on kavita and Users and Libraries.
 
 #### Immich
 
-> On Immich Change user and password, after add Users and Libraries.
+• On Immich Change user and password, after add Users and Libraries.
 
 #### Pivpn
 
-> Set wireguard and use the default options.
+• Set wireguard and use the default options.
 
-> Select DDNS and Put your domain.
+• Select DDNS and Put your domain.
 
-> Create a DDNS to your public IPv4.
+• Create a DDNS to your public IPv4.
 
-> Put ONU in Bridge and connect router with PPPoE (Optional).
+• Put ONU in Bridge and connect router with PPPoE (Optional).
 
-> Put router in Dynamic DHCP.
+• Put router in Dynamic DHCP.
 
-> On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set PPPoE on IPv4 put here too).
+• On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set PPPoE on IPv4 put here too).
 
-> Create a port forwarding using the IPv4 and IPv6 of raspberry pi with the port you chose.
+• Create a port forwarding using the IPv4 and IPv6 of raspberry pi with the port you chose.
 
-> Download wireguard on your device and use the QR code or the key to do the connection.
+• Download wireguard on your device and use the QR code or the key to do the connection.
 
-> Enable VPN permissions on device
+• Enable VPN permissions on device
 
-> On router, enable networking protection and isolate the devices (Optional).
+• On router, enable networking protection and isolate the devices (Optional).
 
-> Test if ipv6 and ipv4 is ok.
+• Test if ipv6 and ipv4 is ok.
 
 #### Nginx - Certbot
 
-> Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
+• Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
 
-> On AdGuarde rewrite DNS to your domain and wildcard, pointing to your server private ip.
+• On AdGuarde rewrite DNS to your domain and wildcard, pointing to your server private ip.
 
-> On Cloudflare create a token and put IPv4 and IPv6 to filter.
+• On Cloudflare create a token and put IPv4 and IPv6 to filter.
 
-> Put the token on cloudlfare.ini.
+• Put the token on cloudlfare.ini.
 
 ### Devices Configuration.
 
 #### On Windows:
 
-> Create a private key on PuTTYgen (.ppk extension), after delete the Keys from docs.
+• Create a private key on PuTTYgen (.ppk extension), after delete the Keys from docs.
 
-> Save Private Keys (Secret Folder).
+• Save Private Keys (Secret Folder).
 
-> On putty create a session with the private key.
+• On putty create a session with the private key.
 
 #### On termux
 
