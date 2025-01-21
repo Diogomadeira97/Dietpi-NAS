@@ -44,10 +44,12 @@ sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Immich/* /mnt/Cloud/Data/Docker/imm
 
 sudo echo -e "DB_PASSWORD=$2" >> .env
 
-sudo docker compose up -d
+sudo echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich_files/library/$1/*  /mnt/Cloud/Users/$1/Midias/Midias-Anuais/immich\n\nchown -R $1:$1 /mnt/Cloud/Users/$1/Midias/Midias-Anuais/immich" >> immich_cron.sh
 
-sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default/immich_cron.sh /etc/cron.daily
+sudo mv immich_cron.sh /etc/cron.daily
 
 sudo chmod 750 /etc/cron.daily/immich_cron.sh
+
+sudo docker compose up -d
 
 sudo rm -rf /mnt/Cloud/Data/Dietpi/0-Dietpi

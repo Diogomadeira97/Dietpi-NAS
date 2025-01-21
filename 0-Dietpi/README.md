@@ -93,11 +93,19 @@
     cd Dietpi/0-Dietpi/Conf/default
     chmod g+x ./*
 
-    bash default-root.sh <SERVER NAME> <DIETPI PASSWORD> 
+    bash default-root.sh <SERVER NAME> <DIETPI PASSWORD> <ADMIN-NAS PASSWORD> <GUEST-NAS PASSWORD> <ADMIN-NAS SAMBA PASSWORD> <GUEST-NAS SAMBA PASSWORD>
 
 	bash /mnt/Cloud/Data/default-keys.sh <SERVER NAME> <DEVICE>
 
-	reboot 
+	su admin-nas
+
+	cd /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default
+
+	bash default-admin.sh <SERVER NAME> <DB IMMICH PASSWORD>
+
+    bash default-user.sh <USER> <SERVER NAME> <USER PASSWORD> <USER SAMBA PASSWORD>
+
+	reboot
 
 • On Windows:
 
@@ -130,12 +138,6 @@
 	nano bash.bashrc
 
 		ssh admin-nas@<SERVER IP>
-
-Commands:
-
-	bash /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default/default-admin.sh <SERVER NAME> <DB IMMICH PASSWORD>
-
-    bash /mnt/Cloud/Data/default-user.sh <USER> <SERVER NAME>
 
 • Use Dietpi-Dashboard to:
  	

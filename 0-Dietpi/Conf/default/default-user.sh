@@ -1,8 +1,9 @@
 #! /bin/bash
 
-sudo adduser $1
+adduser --quiet --disabled-password --shell /bin/bash --home /home/guest-nas --gecos "User" "$1"
+echo "'$1':$3" | chpasswd
 
-sudo smbpasswd -a $1
+(echo '$4'; echo '$4') | smbpasswd -a -s $1
 
 sudo gpasswd -M $1 $2_Cloud
 

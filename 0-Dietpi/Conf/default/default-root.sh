@@ -1,12 +1,16 @@
 #! /bin/bash
 
+dietpi-software install 
+
 umask 0022
 
-adduser admin-nas
-adduser guest-nas
+adduser --quiet --disabled-password --shell /bin/bash --home /home/guest-nas --gecos "User" "admin-nas"
+adduser --quiet --disabled-password --shell /bin/bash --home /home/guest-nas --gecos "User" "guest-nas"
+echo "admin-nas:$3" | chpasswd
+echo "guest-nas:$4" | chpasswd
 
-smbpasswd -a admin-nas
-smbpasswd -a guest-nas
+(echo '$5'; echo '$5') | smbpasswd -a -s admin-nas
+(echo '$6'; echo '$6') | smbpasswd -a -s admin-nas
 
 pdbedit -x dietpi
 
