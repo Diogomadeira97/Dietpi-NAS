@@ -14,10 +14,33 @@
 
 • [Installation](#Installation)
 
->> [First Steps](#First-Steps)
+> • [First Steps](#First-Steps)
 
->> [Commands](#Commands)
+> • [Commands](#Commands)
 
+• [Services Configuration](#Services-Configuration)
+
+> • [Dietpi-Dashboard](#Dietpi-Dashboar)
+
+> • [AdGuard Home](#AdGuard-Home)
+
+> • [Fail2Ban](#Fail2Ban)
+
+> • [Transmission and Arrs](#Transmission-and-Arrs)
+
+> • [Jellyfin and Kavita](#Jellyfin-and-Kavita)
+
+> • [Immich](#Immich)
+
+> • [PiVPN](#PiVPN)
+
+> • [Nginx - Certbot](#Nginx-Certbot)
+
+• [Devices Configuration](#Devices-Configuration)
+
+> • [On Windows](#On-Windows)
+
+> • [On Termux](#On-Termux)
 
 ## Description:
 
@@ -221,7 +244,7 @@ Do the first login and follow the instructions.
 
 ### Services Configuration:
 
-#### Dietpi-Dashboard to:
+#### Dietpi-Dashboard:
  	
 • Chose Nightly on Dietpi-Dashboard.
 
@@ -229,7 +252,7 @@ Do the first login and follow the instructions.
 
 • Export /mnt/Cloud/Keys_SSH to D:\Keys.
 
-#### AdGuard Home
+#### AdGuard Home:
 
 • Set Unbound to the DNS resolver on the installation.
 
@@ -253,7 +276,7 @@ Do the first login and follow the instructions.
 
 	sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
 
-#### Transmission and Arrs
+#### Transmission and Arrs:
 
 • Login on Transmission and change the path to /mnt/Cloud/Public/Downloads.
 
@@ -265,7 +288,7 @@ Do the first login and follow the instructions.
 
 • Create language profile on bazar, after add providers to turn on Sonarr and Bazarr.
 
-#### Jellyfin and Kavita
+#### Jellyfin and Kavita:
 
 • To force first login on jellyfin use this link: http://<DOMAIN>:8097/web/index.html#/wizardstart.html
 
@@ -273,11 +296,11 @@ Do the first login and follow the instructions.
 
 • Do the the first login on kavita and Users and Libraries.
 
-#### Immich
+#### Immich:
 
 • On Immich Change user and password, after add Users and Libraries.
 
-#### Pivpn
+#### PiVPN:
 
 • Set wireguard and use the default options.
 
@@ -311,7 +334,7 @@ Do the first login and follow the instructions.
 
 • Put the token on cloudlfare.ini.
 
-### Devices Configuration.
+### Devices Configuration:
 
 #### On Windows:
 
@@ -321,7 +344,7 @@ Do the first login and follow the instructions.
 
 • On putty create a session with the private key.
 
-#### On termux
+#### On termux:
 
 	pkg install openssh
 
