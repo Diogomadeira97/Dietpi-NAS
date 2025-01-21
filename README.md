@@ -1,5 +1,22 @@
 # Dietpi-NAS
 
+## Requirements:
+
+	• Domain with DNS pointing to Cloudflare.
+	• Public IPv4 and IPv6 (Static or Dynamic).
+	• Prefix delegation and SLAAC+RDNSS (IPv6) on router.
+	• Two Storage Devices.
+	• A support device for Dietpi [Check available devices here](https://dietpi.com/).
+
+## Recommendations:
+
+	• Put ONU in Bridge and connect router with PPPoE (IPv4 and IPv6).
+	• A router with some kind of network protection.
+	• The primary storage device should preferably be an SSD, and the backup one HD.
+	• Some kind of cooling on the device running the server.
+	• Offsite backups at least every month.
+	• Different passwords for each variable in [Contribution guidelines for this project](Conf/default/default-variables.sh).
+
 • Login:
 
     login: root
@@ -111,11 +128,11 @@
 
 	• The status can be checked with these commands:
 
-		sudo fail2ban-client status sshd
+		> sudo fail2ban-client status sshd
 
-		sudo fail2ban-client status dropbear
+		> sudo fail2ban-client status dropbear
 
-		sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
+		> sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
 
 • Transmission and Arrs
 
@@ -149,9 +166,9 @@
 
 	Create a DDNS to your public IPv4.
 
-	Put ONU in Bridge and connect router with PPPoE.
+	Put ONU in Bridge and connect router with PPPoE (Optional).
 
-	On router, enable IPv6 PPPoE with IP auto, prefix delegation and SLAAC+RDNSS.
+	On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set PPPoE on IPv4 put here too).
 
 	Create a port forwarding using the IPv4 and IPv6 of raspberry pi with the port you chose.
 
@@ -159,15 +176,13 @@
 
 	Enable VPN permissions on device
 
-	On router, enable networking protection and isolate the devices.
+	On router, enable networking protection and isolate the devices (Optional).
 
 	Test if ipv6 and ipv4 is ok.
 
 • Nginx - Certbot
 
-	Buy a domain and point DNS server to Cloudflare.
-
-	Create a A record to the domain and a A record to the wildcard, point both to your server private ip.
+	Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
 
 	On AdGuarde rewrite DNS to your domain and wildcard, pointing to your server private ip.
 
