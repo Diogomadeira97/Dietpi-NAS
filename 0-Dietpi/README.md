@@ -22,47 +22,6 @@
 
 • On dietpi-software install OpenSSH, uninstall Dropbear.
 
-• Install:
-
-	Fail2Ban
-	OpenSSH
-	Dietpi-Dashboard
-	Samba server
-	Docker
-	Docker Compose
-	Transmission
-    Radarr
-	Sonarr
-	Prowlarr
-	Readarr
-	Bazarr
-	Jellyfin
-	Kavita
-	AdGuard Home
-	Unbound
-
-• AdGuard
-
-	when ask about unbound mark yes.
-
-	when ask about static IP mark skip.
-
-• Dietpi-Dashboard
-
-	Chose Nightly on Dietpi-Dashboard.
-
-	Chose no to only backend on Dietpi-Dashboard.
-
-• FAil2Ban:
-
-	• The status can be checked with these commands:
-
-		sudo fail2ban-client status sshd
-
-		sudo fail2ban-client status dropbear
-
-		sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
-
 • Select 0: Opt OUT and purge uploaded data
 
 • Command dietpi-sync:
@@ -93,7 +52,7 @@
     cd Dietpi/0-Dietpi/Conf/default
     chmod g+x ./*
 
-    bash default-root.sh <SERVER NAME> <DIETPI PASSWORD> <ADMIN-NAS PASSWORD> <GUEST-NAS PASSWORD> <ADMIN-NAS SAMBA PASSWORD> <GUEST-NAS SAMBA PASSWORD>
+    bash default-root.sh <SERVER NAME> <ADMIN-NAS PASSWORD> <GUEST-NAS PASSWORD> <ADMIN-NAS SAMBA PASSWORD> <GUEST-NAS SAMBA PASSWORD> <DIETPI PASSWORD> <DB IMMICH PASSWORD>
 
 	bash /mnt/Cloud/Data/default-keys.sh <SERVER NAME> <DEVICE>
 
@@ -101,9 +60,7 @@
 
 	cd /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default
 
-	bash default-admin.sh <SERVER NAME> <DB IMMICH PASSWORD>
-
-    bash default-user.sh <USER> <SERVER NAME> <USER PASSWORD> <USER SAMBA PASSWORD>
+    bash default-user.sh <SERVER NAME> <USER> <USER PASSWORD> <USER SAMBA PASSWORD>
 
 	reboot
 
@@ -141,6 +98,10 @@
 
 • Use Dietpi-Dashboard to:
  	
+	• Chose Nightly on Dietpi-Dashboard.
+
+	• Chose no to only backend on Dietpi-Dashboard.
+
 	• Export /mnt/Cloud/Keys_SSH to D:\Keys.
 
 • AdGuard Home
@@ -156,6 +117,16 @@
 	• Set DNS Blocklists and Custom filtering rules on the web UI.
 
 	• Set DNS on router and devices to the ip of the server.
+
+• FAil2Ban:
+
+	• The status can be checked with these commands:
+
+		sudo fail2ban-client status sshd
+
+		sudo fail2ban-client status dropbear
+
+		sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
 
 • Transmission and Arrs
 
