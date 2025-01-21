@@ -54,13 +54,22 @@
 
     bash default-root.sh <SERVER NAME> <ADMIN-NAS PASSWORD> <GUEST-NAS PASSWORD> <ADMIN-NAS SAMBA PASSWORD> <GUEST-NAS SAMBA PASSWORD> <DIETPI PASSWORD> <DB IMMICH PASSWORD>
 
-	bash /mnt/Cloud/Data/default-keys.sh <SERVER NAME> <DEVICE>
+	cd /mnt/Cloud/Data
 
-	su admin-nas
-
-	cd /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/default
+	bash default-keys.sh <SERVER NAME> <DEVICE>
 
     bash default-user.sh <SERVER NAME> <USER> <USER PASSWORD> <USER SAMBA PASSWORD>
+
+	pivpn add <DEVICE>
+
+	pivpn -qr <DEVICE>
+
+	mv configs /mnt/Cloud/Public
+
+	cd /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/default
+	sudo chmod g+x ./*
+
+	bash default.sh <SERVER NAME> <GENERIC AND COUNTRY TOP-LEVEL DOMAIN> <IP> <CLOUDFLARE TOKEN>
 
 	reboot
 
@@ -151,3 +160,37 @@
 • Immich
 
 	• On Immich Change user and password, after add Users and Libraries.
+
+• Pivpn
+
+	Set wireguard and use the default options.
+
+	Select DDNS and Put your domain.
+
+	Create a DDNS to your public IPv4.
+
+	Put ONU in Bridge and connect router with PPPoE.
+
+	On router, enable IPv6 PPPoE with IP auto, prefix delegation and SLAAC+RDNSS.
+
+	Create a port forwarding using the IPv4 and IPv6 of raspberry pi with the port you chose.
+
+	Download wireguard on your device and use the QR code or the key to do the connection.
+
+	Enable VPN permissions on device
+
+	On router, enable networking protection and isolate the devices.
+
+	Test if ipv6 and ipv4 is ok.
+
+• Nginx - Certbot
+
+	Buy a domain and point DNS server to Cloudflare.
+
+	Create a A record to the domain and a A record to the wildcard, point both to your server private ip.
+
+	On AdGuarde rewrite DNS to your domain and wildcard, pointing to your server private ip.
+
+	On Cloudflare create a token and put IPv4 and IPv6 to filter.
+
+	Put the token on cloudlfare.ini.

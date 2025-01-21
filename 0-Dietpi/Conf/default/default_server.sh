@@ -1,6 +1,6 @@
 sudo apt install certbot python3-certbot-nginx python3-certbot-dns-cloudflare -y
 
-cd /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/
+cd /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Nginx
 sudo echo -e "server{\n	listen 80 default_server;\n	listen [::]:80 default_server;\n\n	listen 443 default_server;\n	listen [::]:443 default_server;\n	ssl_reject_handshake on;\n	server_name _;\n	return 444	\n}\n\n" >> $1
 sudo echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name $1$2;\n	root /var/www/$1$2;\n\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n}" >> $1
 sudo echo -e        '<title>'"$1"'</title>' >> index.html
@@ -8,7 +8,6 @@ sudo echo -e index_temp.html >> index.html
 sudo echo -e '{"name":"'"$1"'","short_name":"'"$1"'","start_url":"../","display":"standalone","background_color":"#ffffff","lang":"en","scope":"../","description":"'"$1"'","theme_color":"#3367D6","icons":[{"src":"./icons/logo.svg","type":"image/svg"}]}' >> manifest.json
 sudo echo -e '# Homepage configuration\ntitle: "'"$1"'"' >> config.yml
 sudo echo -e config_temp.yml >> config.yml
-
 echo -e "#Cloudflare API token used by Certbot\ndns_cloudflare_api_token = $4" >> cloudflare.ini
 echo -e "#! /bin/bash" >> iptables_custom.sh
 
@@ -27,8 +26,8 @@ sudo cp homer-theme-main/assets/wallpaper-light.jpeg /var/www/homer/assets/wallp
 sudo cp -R homer-theme-main/assets/fonts /var/www/homer/assets/
 rm -R homer-theme-main
 
-sudo chown root:root /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/*
-sudo chmod 644 /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/*
+sudo chown root:root /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Nginx/*
+sudo chmod 644 /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Nginx/*
 
 cd /var/www/
 
@@ -43,15 +42,15 @@ sudo rm -rf homer
 cd $1
 
 sudo rm logo.png
-sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/index.html .
+sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Nginx/index.html .
 
 cd assets
 
 sudo rm config.yml.dist
 sudo rm config-demo.yml.dist
 
-sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/config.yml .
-sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/manifest.json .
+sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Nginx/config.yml .
+sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/Nginx/manifest.json .
 
 cd icons
 
@@ -62,13 +61,13 @@ sudo rm pwa-512x512.png
 sudo rm pwa-192x192.png
 sudo rm README.md
 
-sudo mv sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Icons/* .
+sudo mv sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Icons/* .
 
 cd /etc/nginx/sites-available
 
 sudo rm default
 
-sudo mv /mnt/Cloud/Data/Dietpi/2-Homer_Nginx/Conf/$1 .
+sudo mv /mnt/Cloud/Data/Dietpi/0-Dietpi/Conf/$1 .
 
 cd ../sites-enabled
 
@@ -76,7 +75,7 @@ sudo rm default
 
 sudo ln -s /etc/nginx/sites-available/$1 .
 
-cd /mnt/Cloud/Data/Dietpi/2-Homer_Nginx
+cd /mnt/Cloud/Data/Dietpi/0-Dietpi
 
 sudo chmod 700 Conf/default/*
 sudo mv subdomain.sh /mnt/Cloud/Data
@@ -146,4 +145,4 @@ sudo chmod 600 /mnt/Cloud/Data/crontab
 
 sudo crontab /mnt/Cloud/Data/crontab
 
-sudo rm -rf /mnt/Cloud/Data/Dietpi/2-Homer_Nginx
+sudo rm -rf /mnt/Cloud/Data/Dietpi/0-Dietpi

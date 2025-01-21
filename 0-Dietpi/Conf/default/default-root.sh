@@ -1,6 +1,6 @@
 #! /bin/bash
 
-dietpi-software install 73 200 96 134 162 44 144 145 151 180 203 178 212 126 182
+dietpi-software install 73 200 96 134 162 44 144 145 151 180 203 178 212 126 182 117 205 85 92
 
 umask 0022
 
