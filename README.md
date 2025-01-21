@@ -4,19 +4,41 @@
 
 Collection of scripts to perform a complete installation of a NAS-Server running Dietpi. The goal is to have a home lab that runs very lightly and very safely, so the focus of this configuration is on:
 
-> Permissions
+• Permissions
 
-> Private Keys
+• Private Keys
 
-> Encryption
+• Encryption
 
-> Variety of passwords
+• Variety of passwords
 
-> Secure Remote Access
+• Secure Remote Access
 
-> Network Masking
+• Virtual Private Networking (VPN)
 
-> 
+• Network Masking
+
+Another important goal is to be a practical installation so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation:
+
+• [default.sh](Conf/default/default.sh).
+
+> Reconfigure folders to default permissions and default owners. (Use this with [default-user.sh](Conf/default/default-user.sh)).
+
+• [default-user.sh](Conf/default/default-user.sh).
+
+> Create Users with the default configuration to folders, permissions, groups, and Samba Share.
+
+• [default-Keys.sh](Conf/default/default-Keys.sh).
+
+> Create SSH Private keys to multiple devices (Need root login).
+
+• [subdomain.sh](Conf/default/subdomain.sh).
+
+> Create subdomain to a service in Nginx and Homer.
+
+• [subpath.sh](Conf/default/subpath.sh).
+
+> Create subpath to a service in Nginx and Homer.
 
 ## Requirements:
 
@@ -42,7 +64,7 @@ Collection of scripts to perform a complete installation of a NAS-Server running
 
 • Offsite backups at least every month.
 
-• Different passwords for each variable in [Contribution guidelines for this project](Conf/default/default-variables.sh).
+• Different passwords for each variable in [default-variables.sh](Conf/default/default-variables.sh).
 
 ## Installation:
 
