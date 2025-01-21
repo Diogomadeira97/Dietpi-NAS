@@ -2,17 +2,17 @@
 
 #Default variables.
 SERVER_NAME=
-ADMIN-NAS_PASSWORD=
-GUEST-NAS_PASSWORD=
-ADMIN-NAS_SAMBA_PASSWORD=
-GUEST-NAS_SAMBA_PASSWORD=
-DIETPI_PASSWORD=
-DB_IMMICH_PASSWORD=
+ADMIN-NAS_PASSWORD=''
+GUEST-NAS_PASSWORD=''
+ADMIN-NAS_SAMBA_PASSWORD=''
+GUEST-NAS_SAMBA_PASSWORD=''
+DIETPI_PASSWORD=''
+DB_IMMICH_PASSWORD=''
 
 #User variables.
 USER=
-USER_PASSWORD=
-USER_SAMBA_PASSWORD=
+USER_PASSWORD=''
+USER_SAMBA_PASSWORD=''
 #Put the Number of Users.      
 #        .
 #        .
@@ -36,28 +36,28 @@ GENERIC_AND_COUNTRY_TOP-LEVEL_DOMAIN=
 #IPv4 static IP.
 IP=
 #Create this token once you have a domain pointing to Clouflare
-CLOUDFLARE_TOKEN=
+CLOUDFLARE_TOKEN=''
 
 #Add Default configs.
 bash default-root.sh $SERVER_NAME $ADMIN-NAS_PASSWORD $GUEST-NAS_PASSWORD $ADMIN-NAS_SAMBA_PASSWORD $GUEST-NAS_SAMBA_PASSWORD $DIETPI_PASSWORD $DB_IMMICH_PASSWORD
 
 #Add users with default configs.
+#EDIT!!!
 bash default-user.sh $SERVER_NAME $USER $USER_PASSWORD $USER_SAMBA_PASSWORD ... $USERx $USER_PASSWORDx $USER_SAMBA_PASSWORDx
 
 #Add SSH Keys to Devices.
 #Can easily export with Dietpi-Dashboard.
-bash default-keys.sh $SERVER_NAME $DEVICE ... $DEVICEx
+#EDIT!!!
+bash default-keys.sh $SERVER_NAME $DEVICE ... $DEVICEx 
 
 #Go to /mnt/Cloud/DataAdd and create Wireguard Key to Devices.
 #Can easily export with Dietpi-Dashboard.
 cd /mnt/Cloud/Data
 
-pivpn add $DEVICE
-#Put the Number of Devices.    
-#        .
-#        .
-#        .
-#pivpn add $DEVICEx
+#Add Wireguard Keys to Devices.
+#Put the Number of Devices.
+#EDIT!!!
+pivpn add $DEVICE ... $DEVICEx
 
 #To create a wireguard Qr code.
 pivpn -qr $DEVICE
