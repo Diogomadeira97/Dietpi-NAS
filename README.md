@@ -48,8 +48,8 @@
     mkdir /mnt/BAK_Cloud
     mount /dev/sda1 /mnt/BAK_Cloud
     cd /mnt/Cloud/Data
-    git clone https://github.com/Diogomadeira97/Dietpi
-    cd Dietpi/Conf/default
+    git clone https://github.com/Diogomadeira97/Dietpi-NAS
+    cd Dietpi-NAS/Conf/default
     chmod g+x ./*
 
     bash default-root.sh <SERVER NAME> <ADMIN-NAS PASSWORD> <GUEST-NAS PASSWORD> <ADMIN-NAS SAMBA PASSWORD> <GUEST-NAS SAMBA PASSWORD> <DIETPI PASSWORD> <DB IMMICH PASSWORD>
@@ -66,9 +66,11 @@
 
 	mv configs /mnt/Cloud/Public
 
-	cd /mnt/Cloud/Data/Dietpi/Conf/default
+	cd /mnt/Cloud/Data/Dietpi-NAS/Conf/default
 
 	bash default.sh <SERVER NAME> <GENERIC AND COUNTRY TOP-LEVEL DOMAIN> <IP> <CLOUDFLARE TOKEN>
+
+	rm -rf /mnt/Cloud/Data/Dietpi-NAS
 
 	reboot
 
