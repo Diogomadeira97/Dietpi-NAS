@@ -1,5 +1,23 @@
 # Dietpi-NAS
 
+## Description:
+
+Collection of scripts to perform a complete installation of a NAS-Server running Dietpi. The goal is to have a home lab that runs very lightly and very safely, so the focus of this configuration is on:
+
+> Permissions
+
+> Private Keys
+
+> Encryption
+
+> Variety of passwords
+
+> Secure Remote Access
+
+> Network Masking
+
+> 
+
 ## Requirements:
 
 • Domain with DNS pointing to Cloudflare.
@@ -68,7 +86,7 @@ Do the first login and follow the instructions.
 
 >Turn on Daily Sync.
 
-####  Command dietpi-backup
+	dietpi-backup
 
 >Change the path to /mnt/Cloud/Data/dietpi-backup.
 
@@ -80,7 +98,7 @@ Do the first login and follow the instructions.
 
 >If you want, change the time of daily backup.
 
-• Commands
+#### Commands:
 
 	apt install git -y
 	mkdir /mnt/Cloud
@@ -96,15 +114,109 @@ Do the first login and follow the instructions.
 
 	bash default-variables.sh
 
-• On Windows:
+### Services Configuration:
 
-    • Create a private key on PuTTYgen (.ppk extension), after delete the Keys from docs.
+#### Dietpi-Dashboard to:
+ 	
+> Chose Nightly on Dietpi-Dashboard.
 
-    • Save Private Keys (Secret Folder).
+> Chose no to only backend on Dietpi-Dashboard.
 
-    • On putty create a session with the private key.
+> Export /mnt/Cloud/Keys_SSH to D:\Keys.
 
-• On termux
+#### AdGuard Home
+
+> Set Unbound to the DNS resolver on the installation.
+
+> Set static ip if you don't.
+
+> Go to web UI and enter with Username: admin Password: Global.
+
+> On General Settings enable AdGuard browsing security service.
+
+> Set DNS Blocklists and Custom filtering rules on the web UI.
+
+> Set DNS on router and devices to the ip of the server.
+
+#### FAil2Ban:
+
+> The status can be checked with these commands:
+
+	sudo fail2ban-client status sshd
+
+	sudo fail2ban-client status dropbear
+
+	sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
+
+#### Transmission and Arrs
+
+> Login on Transmission and change the path to /mnt/Cloud/Public/Downloads.
+
+> Login on Arrs to change user and password.
+
+> Add the Transmission torrent download client (without category).
+
+> Add indexers, apps and FlareSolver on Prowlarr.
+
+> Create language profile on bazar, after add providers to turn on Sonarr and Bazarr.
+
+#### Jellyfin and Kavita
+
+> To force first login on jellyfin use this link: http://<DOMAIN>:8097/web/index.html#/wizardstart.html
+
+> Create Users and Libraries.
+
+> Do the the first login on kavita and Users and Libraries.
+
+#### Immich
+
+> On Immich Change user and password, after add Users and Libraries.
+
+#### Pivpn
+
+> Set wireguard and use the default options.
+
+> Select DDNS and Put your domain.
+
+> Create a DDNS to your public IPv4.
+
+> Put ONU in Bridge and connect router with PPPoE (Optional).
+
+> Put router in Dynamic DHCP.
+
+> On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set PPPoE on IPv4 put here too).
+
+> Create a port forwarding using the IPv4 and IPv6 of raspberry pi with the port you chose.
+
+> Download wireguard on your device and use the QR code or the key to do the connection.
+
+> Enable VPN permissions on device
+
+> On router, enable networking protection and isolate the devices (Optional).
+
+> Test if ipv6 and ipv4 is ok.
+
+#### Nginx - Certbot
+
+> Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
+
+> On AdGuarde rewrite DNS to your domain and wildcard, pointing to your server private ip.
+
+> On Cloudflare create a token and put IPv4 and IPv6 to filter.
+
+> Put the token on cloudlfare.ini.
+
+### Devices Configuration.
+
+#### On Windows:
+
+> Create a private key on PuTTYgen (.ppk extension), after delete the Keys from docs.
+
+> Save Private Keys (Secret Folder).
+
+> On putty create a session with the private key.
+
+#### On termux
 
 	pkg install openssh
 
@@ -119,99 +231,11 @@ Do the first login and follow the instructions.
 	nano config
 
 		Host <SERVER IP>
-  		AddKeysToAgent yes
-  		IdentityFile ~/.ssh/<DEVICE>"
+		AddKeysToAgent yes
+		IdentityFile ~/.ssh/<DEVICE>"
 
 	cd ../../usr/etc	
-	
+
 	nano bash.bashrc
 
 		ssh admin-nas@<SERVER IP>
-
-• Use Dietpi-Dashboard to:
- 	
-	• Chose Nightly on Dietpi-Dashboard.
-
-	• Chose no to only backend on Dietpi-Dashboard.
-
-	• Export /mnt/Cloud/Keys_SSH to D:\Keys.
-
-• AdGuard Home
-
-	• Set Unbound to the DNS resolver on the installation.
-
-	• Set static ip if you don't.
-
-	• Go to web UI and enter with Username: admin Password: Global.
-
-	• On General Settings enable AdGuard browsing security service.
-
-	• Set DNS Blocklists and Custom filtering rules on the web UI.
-
-	• Set DNS on router and devices to the ip of the server.
-
-• FAil2Ban:
-
-	• The status can be checked with these commands:
-
-		> sudo fail2ban-client status sshd
-
-		> sudo fail2ban-client status dropbear
-
-		> sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
-
-• Transmission and Arrs
-
-	• Login on Transmission and change the path to /mnt/Cloud/Public/Downloads.
-
-	• Login on Arrs to change user and password.
-
-	• Add the Transmission torrent download client (without category).
-
-	• Add indexers, apps and FlareSolver on Prowlarr.
-
-	• Create language profile on bazar, after add providers to turn on Sonarr and Bazarr.
-
-• Jellyfin and Kavita
-
-	• To force first login on jellyfin use this link: http://<DOMAIN>:8097/web/index.html#/wizardstart.html
-
-	• Create Users and Libraries.
-
-	• Do the the first login on kavita and Users and Libraries.
-
-• Immich
-
-	• On Immich Change user and password, after add Users and Libraries.
-
-• Pivpn
-
-	Set wireguard and use the default options.
-
-	Select DDNS and Put your domain.
-
-	Create a DDNS to your public IPv4.
-
-	Put ONU in Bridge and connect router with PPPoE (Optional).
-
-	On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set PPPoE on IPv4 put here too).
-
-	Create a port forwarding using the IPv4 and IPv6 of raspberry pi with the port you chose.
-
-	Download wireguard on your device and use the QR code or the key to do the connection.
-
-	Enable VPN permissions on device
-
-	On router, enable networking protection and isolate the devices (Optional).
-
-	Test if ipv6 and ipv4 is ok.
-
-• Nginx - Certbot
-
-	Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
-
-	On AdGuarde rewrite DNS to your domain and wildcard, pointing to your server private ip.
-
-	On Cloudflare create a token and put IPv4 and IPv6 to filter.
-
-	Put the token on cloudlfare.ini.
