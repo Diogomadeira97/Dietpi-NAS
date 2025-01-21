@@ -3,9 +3,13 @@
 ## Requirements:
 
 • Domain with DNS pointing to Cloudflare.
+
 • Public IPv4 and IPv6 (Static or Dynamic).
+
 • Prefix delegation and SLAAC+RDNSS (IPv6) on router.
+
 • Two Storage Devices.
+
 • A support device for Dietpi [Check available devices here](https://dietpi.com/).
 
 ## Recommendations:
