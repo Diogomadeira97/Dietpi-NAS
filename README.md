@@ -2,20 +2,22 @@
 
 ## Requirements:
 
-	• Domain with DNS pointing to Cloudflare.
-	• Public IPv4 and IPv6 (Static or Dynamic).
-	• Prefix delegation and SLAAC+RDNSS (IPv6) on router.
-	• Two Storage Devices.
-	• A support device for Dietpi [Check available devices here](https://dietpi.com/).
+• Domain with DNS pointing to Cloudflare.
+• Public IPv4 and IPv6 (Static or Dynamic).
+• Prefix delegation and SLAAC+RDNSS (IPv6) on router.
+• Two Storage Devices.
+• A support device for Dietpi [Check available devices here](https://dietpi.com/).
 
 ## Recommendations:
 
-	• Put ONU in Bridge and connect router with PPPoE (IPv4 and IPv6).
-	• A router with some kind of network protection.
-	• The primary storage device should preferably be an SSD, and the backup one HD.
-	• Some kind of cooling on the device running the server.
-	• Offsite backups at least every month.
-	• Different passwords for each variable in [Contribution guidelines for this project](Conf/default/default-variables.sh).
+• Put ONU in Bridge and connect router with PPPoE (IPv4 and IPv6).
+• A router with some kind of network protection.
+• The primary storage device should preferably be an SSD, and the backup one HD.
+• Some kind of cooling on the device running the server.
+• Offsite backups at least every month.
+• Different passwords for each variable in [Contribution guidelines for this project](Conf/default/default-variables.sh).
+
+
 
 • Login:
 
