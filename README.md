@@ -172,7 +172,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 ## Tips:
 
-Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. when the script opens in this [part](#default-variables), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
+Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. when run "nano default-variables.sh" on [commands](#Commands), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
 
 ## Installation:
 
@@ -243,7 +243,6 @@ Do the first login and follow the instructions.
 	nano default-variables.sh
 
 	bash default-variables.sh	
-<a name="default-variables"></a>
 
 ### Services Configuration:
 
