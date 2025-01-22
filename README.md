@@ -198,13 +198,13 @@ Do the first login and follow the instructions.
 
 • When ask about UART, mark 'no'.
 
-	dietpi-software:
+	dietpi-software
 
 • install OpenSSH, uninstall Dropbear.
 
 • Select 0: Opt OUT and purge uploaded data mark no.
 
-	dietpi-config:
+	dietpi-config
 
 • Change timezone on 'Language/Regional Options'.
 
@@ -214,7 +214,7 @@ Do the first login and follow the instructions.
 
 • When ask about purge all WiFi related APT packages, mark 'yes', as stated in the [LAN](#LAN) recommendation.
 
-	dietpi-sync:
+	dietpi-sync
 
 • Change the path to /mnt/Cloud and /mnt/BAK_Cloud.
 
