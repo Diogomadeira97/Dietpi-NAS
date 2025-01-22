@@ -110,7 +110,7 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 • [default.sh](Conf/default/default.sh).
 
-> Reconfigure folders to default permissions and default owners. (Use this with [default-user.sh](Conf/default/default-user.sh)).
+> Reconfigure folders to default permissions and default owners.
 
 	bash /mnt/Cloud/Data/default.sh
 
