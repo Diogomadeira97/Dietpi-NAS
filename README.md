@@ -202,7 +202,7 @@ Do the first login and follow the instructions.
 
 • install OpenSSH, uninstall Dropbear.
 
-• Select 0: Opt OUT and purge uploaded data.
+• Select 0: Opt OUT and purge uploaded data mark no.
 
 	dietpi-config:
 
