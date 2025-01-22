@@ -169,6 +169,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 • Different passwords for each variable in [default-variables.sh](Conf/default/default-variables.sh).
 
 <a name="DDNS">• </a>It is recommended that your public IP be dynamic, so that there is one more layer of network protection. However, it is necessary to use a DDNS service such as [Duck DNS](https://www.duckdns.org/) or [No IP](https://www.noip.com/) for example.
+
 ## Tips:
 
 Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. when the script opens in this [part](#default-variables), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
