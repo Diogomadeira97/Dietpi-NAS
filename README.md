@@ -168,7 +168,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • Different passwords for each variable in [default-variables.sh](Conf/default/default-variables.sh).
 
-<a name="• "></a>
+<a name="DDNS">• </a>
 
 ## Tips:
 
