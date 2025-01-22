@@ -240,9 +240,10 @@ Do the first login and follow the instructions.
     cd Dietpi-NAS/Conf/default
     chmod g+x ./*
 
-	<a name="default-variables">nano default-variables.sh</a>
+	nano default-variables.sh
 
-	bash default-variables.sh
+	bash default-variables.sh	
+<a name="default-variables"></a>
 
 ### Services Configuration:
 
