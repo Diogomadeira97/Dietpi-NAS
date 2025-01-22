@@ -156,9 +156,13 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 ## Recommendations:
 
-• Put ONU in Bridge and connect router with PPPoE (IPv4 and IPv6).
+• Put ONT or ONU in Bridge and connect router with <a name="PPPoE">PPPoE</a>. This will greatly increase the speed and stability of the network by preventing a double NAT. If You have a router that is also an ONT or ONU, you can skip that part.
+
+• It is recommended that your public IP IPv4 be dynamic, so that there is one more layer of network protection. However, it is necessary to use a <a name="DDNS">DDNS</a> service such as [Duck DNS](https://www.duckdns.org/) or [No IP](https://www.noip.com/) for example.
 
 • A router with some kind of network protection.
+
+• Connect the server only on <a name="LAN">LAN</a> and purge all WiFi related APT packages. This will improve network stability and device security.
 
 • The primary storage device should preferably be an SSD, and the backup one HD.
 
@@ -168,7 +172,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • Different passwords for each variable in [default-variables.sh](Conf/default/default-variables.sh).
 
-• It is recommended that your public IP be dynamic, so that there is one more layer of network protection. However, it is necessary to use a <a name="DDNS">DDNS</a> service such as [Duck DNS](https://www.duckdns.org/) or [No IP](https://www.noip.com/) for example.
+• Protect your private keys very well, because with it anyone can access your server.
 
 ## Tips:
 
@@ -204,11 +208,11 @@ Do the first login and follow the instructions.
 
 • Change timezone on 'Language/Regional Options'.
 
-• Change host name to on 'Security Options'.
+• Change host name on 'Security Options'.
 	
 • Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
 
-• When ask about purge all WiFi related APT packages, mark 'yes'.
+• When ask about purge all WiFi related APT packages, mark 'yes', as stated in the [LAN](#LAN) recommendation.
 
 	dietpi-sync:
 
@@ -252,9 +256,9 @@ Do the first login and follow the instructions.
  	
 • Chose Nightly on Dietpi-Dashboard.
 
-• Chose no to only backend on Dietpi-Dashboard.
+• Chose no to "only backend".
 
-• Export /mnt/Cloud/Keys_SSH to D:\Keys.
+• Export /mnt/Cloud/Keys_SSH to the chosen device.
 
 #### AdGuard Home:
 
@@ -262,7 +266,11 @@ Do the first login and follow the instructions.
 
 • Set static ip if you don't.
 
-• Go to web UI and enter with Username: admin Password: Global.
+• Login on web UI with: 
+
+> Username: admin
+
+> Password: Global.
 
 • On General Settings enable AdGuard browsing security service.
 
@@ -280,13 +288,21 @@ Do the first login and follow the instructions.
 
 	sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
 
-#### Transmission and Arrs:
+#### Transmission:
 
-• Login on Transmission and change the path to /mnt/Cloud/Public/Downloads.
+• Login on web UI with: 
 
-• Login on Arrs to change user and password.
+> Username: root
 
-• Add the Transmission torrent download client (without category).
+> Password: Global.
+
+• Change the path to /mnt/Cloud/Public/Downloads.
+
+ #### Arrs:
+
+• Login on Arrs to change users and passwords.
+
+• Add the Transmission to download client (without category).
 
 • Add indexers, apps and FlareSolver on Prowlarr.
 
@@ -294,37 +310,33 @@ Do the first login and follow the instructions.
 
 #### Jellyfin and Kavita:
 
-• To force first login on jellyfin use this link: http://<DOMAIN>:8097/web/index.html#/wizardstart.html
+• To force first login on jellyfin use this link "https://jellyfin.<DOMAIN>/web/index.html#/wizardstart".html.
 
 • Create Users and Libraries.
 
-• Do the the first login on kavita and Users and Libraries.
+• Do the the first login on kavita and crate Users and Libraries.
 
 #### Immich:
 
-• On Immich Change user and password, after add Users and Libraries.
+• On Immich Change user and password
+
+• Create Users and Libraries.
 
 #### PiVPN:
 
 • Set wireguard and use the default options.
 
-• Select DDNS and Put your domain.
-
-• Create a DDNS to your public IPv4.
-
-• Put ONU in Bridge and connect router with PPPoE (Optional).
+• If you do the [DDNS](#DDNS) recomendation, chose DDNS and put your domain.
 
 • Put router in Dynamic DHCP.
 
-• On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set PPPoE on IPv4 put here too).
+• On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set [PPPoE](#PPPoE) on IPv4 put here too).
 
-• Create a port forwarding using the IPv4 and IPv6 of raspberry pi with the port you chose.
+• Create a port forwarding, using the IPv4 and IPv6 of the server, with the port you chose.
 
 • Download wireguard on your device and use the QR code or the key to do the connection.
 
 • Enable VPN permissions on device
-
-• On router, enable networking protection and isolate the devices (Optional).
 
 • Test if ipv6 and ipv4 is ok.
 
