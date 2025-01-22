@@ -196,7 +196,7 @@ Do the first login and follow the instructions.
 
 • Change Global and root Password.
 
-• When ansk about UART, mark 'no'.
+• When ask about UART, mark 'no'.
 
 	dietpi-software:
 
