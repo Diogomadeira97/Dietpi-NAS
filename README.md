@@ -60,7 +60,7 @@ Collection of scripts to perform a complete installation of a NAS-Server running
 
 • Network Masking.
 
-In addition to security, another fundamental objective is to be an environment where users have full control of their files, so services that use third-party servers are limited to cloudflare, to perform DNS pointing, and a DDNS server chosen by the user to point the Dynamic Public IP (see Recommendations). All other services running are self-hosted and free, so you don't need to pay nothing or subscribe to any paid subscription. The services running so far are:
+In addition to security, another fundamental objective is to be an environment where users have full control of their files, so services that use third-party servers are limited to cloudflare, to perform DNS pointing, and a DDNS server chosen by the user to point the Dynamic Public IP ([see Recommendations](#DDNS)). All other services running are self-hosted and free, so you don't need to pay nothing or subscribe to any paid subscription. The services running so far are:
 
 • [Fail2Ban](https://dietpi.com/docs/software/system_security/#fail2ban).
 
@@ -112,35 +112,35 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 > Reconfigure folders to default permissions and default owners. (Use this with [default-user.sh](Conf/default/default-user.sh)).
 
-	bash /mnt/Cloud/Data/
+	bash /mnt/Cloud/Data/default.sh
 
 • [default-user.sh](Conf/default/default-user.sh).
 
 > Create Users with the default configuration to folders, permissions, groups, and Samba Share.
 
-	bash /mnt/Cloud/Data/
+	bash /mnt/Cloud/Data/default-user.sh
 
 • [default-Keys.sh](Conf/default/default-Keys.sh).
 
 > Create SSH Private keys to multiple devices (Need root login).
 
-	bash /mnt/Cloud/Data/
+	bash /mnt/Cloud/Data/default-Keys.sh
 
 • [subdomain.sh](Conf/default/subdomain.sh).
 
 > Create subdomain to a service in Nginx and Homer.
 
-	bash /mnt/Cloud/Data/
+	bash /mnt/Cloud/Data/subdomain.sh
 
 • [subpath.sh](Conf/default/subpath.sh).
 
 > Create subpath to a service in Nginx and Homer.
 
-	bash /mnt/Cloud/Data/
+	bash /mnt/Cloud/Data/subpath.sh
 
 ## Notes:
 
-This installation is designed to be used only with a VPN, so the only port forwarding that is being performed is for the wireguard (UDP). It is not recommended to use this installation to expose your public IP directly on the Internet. If you want to do it is at your own risk.
+The remote used of this installation is designed to be only with a VPN, so the only port forwarding that is being performed is for the Wireguard (UDP). It is not recommended to use this installation to expose your public IP directly on the Internet. If you want to do it, is at your own risk.
 
 ## Requirements:
 
@@ -152,7 +152,7 @@ This installation is designed to be used only with a VPN, so the only port forwa
 
 • Two Storage Devices.
 
-• A support device for Dietpi. Check available devices[here](https://dietpi.com/).
+• A support device for Dietpi. Check available devices [here](https://dietpi.com/).
 
 ## Recommendations:
 
@@ -166,11 +166,13 @@ This installation is designed to be used only with a VPN, so the only port forwa
 
 • Offsite backups at least every month.
 
-• Different passwords for each variable in [default-variables.sh](Conf/default/default-variables.sh) ().
+• Different passwords for each variable in [default-variables.sh](Conf/default/default-variables.sh).
+
+<a name="• "></a>
 
 ## Tips:
 
-Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. when the script opens in this part, use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
+Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. when the script opens in this [part](#default-variables), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
 
 ## Installation:
 
@@ -238,7 +240,7 @@ Do the first login and follow the instructions.
     cd Dietpi-NAS/Conf/default
     chmod g+x ./*
 
-	nano default-variables.sh
+	<a name="default-variables">nano default-variables.sh</a>
 
 	bash default-variables.sh
 
