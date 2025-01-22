@@ -194,7 +194,9 @@ Do the first login and follow the instructions.
 
 • When answer about UART, mark 'no'.
 
-• On dietpi-software install OpenSSH, uninstall Dropbear.
+	dietpi-software:
+
+• install OpenSSH, uninstall Dropbear.
 
 • Select 0: Opt OUT and purge uploaded data.
 
