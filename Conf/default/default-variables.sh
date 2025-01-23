@@ -2,17 +2,17 @@
 
 #Default variables.
 SERVER_NAME=
-ADMIN-NAS_PASSWORD=''
-GUEST-NAS_PASSWORD=''
-ADMIN-NAS_SAMBA_PASSWORD=''
-GUEST-NAS_SAMBA_PASSWORD=''
-DIETPI_PASSWORD=''
-DB_IMMICH_PASSWORD=''
+ADMIN-NAS_PASSWORD=X="$(echo '')"
+GUEST-NAS_PASSWORD="$(echo '')"
+ADMIN-NAS_SAMBA_PASSWORD="$(echo '')"
+GUEST-NAS_SAMBA_PASSWORD="$(echo '')"
+DIETPI_PASSWORD="$(echo '')"
+DB_IMMICH_PASSWORD="$(echo '')"
 
 #User variables.
 USER=
-USER_PASSWORD=''
-USER_SAMBA_PASSWORD=''
+USER_PASSWORD="$(echo '')"
+USER_SAMBA_PASSWORD="$(echo '')"
 #Put the Number of Users.      
 #        .
 #        .
