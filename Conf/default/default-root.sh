@@ -3,13 +3,10 @@
 #Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
 /boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
 
-mkdir /mnt/Cloud
+mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/BAK_Cloud
 mount /dev/sdb /mnt/Cloud
-mkdir /mnt/BAK_Cloud
 mount /dev/sda1 /mnt/BAK_Cloud
 mv Dietpi-NAS /mnt/Cloud/Data
-
-cd /mnt/Cloud/Data
 
 umask 0022
 
@@ -95,7 +92,7 @@ rm -rf ftp_client nfs_client samba
 
 #Go to Cloud and create the default directories.
 cd Cloud
-mkdir Data Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
+mkdir Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
 
 #Set Cloud default permissions.
 setfacl -R -b Cloud
