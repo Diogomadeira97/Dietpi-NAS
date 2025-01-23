@@ -1,5 +1,8 @@
 #! /bin/bash
 
+#Install Homer Nginx Certbot.
+/boot/dietpi/dietpi-software install 205 85 92
+
 #Install Certboot extensions.
 apt install python3-certbot-nginx python3-certbot-dns-cloudflare -y
 

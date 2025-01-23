@@ -1,7 +1,7 @@
 #! /bin/bash
 
-#Install Fail2Ban Dietpi-Dashboard Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita AdGuard_Home Unbound Homer Nginx Certbot.
-/boot/dietpi/dietpi-software install 73 200 96 134 162 44 144 145 151 180 203 178 212 126 182 205 85 92
+#Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
+/boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
 
 mkdir /mnt/Cloud
 mount /dev/sdb /mnt/Cloud
