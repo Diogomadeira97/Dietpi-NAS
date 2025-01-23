@@ -13,7 +13,7 @@ DBIMMICHPW="$(echo '')"
 USER=
 USERPW="$(echo '')"
 USERSMBPW="$(echo '')"
-#Put the Number of Users.      
+#Put the Number of Users.
 #        .
 #        .
 #        .
@@ -23,7 +23,7 @@ USERSMBPW="$(echo '')"
 
 #Device variables.
 DEVICE=
-#Put the Number of Devices.    
+#Put the Number of Devices.
 #        .
 #        .
 #        .
@@ -55,5 +55,5 @@ bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS
 
-#Reboot the system and use SSH key to login with admin-nas. 
+#Reboot the system and use SSH key to login with admin-nas.
 reboot

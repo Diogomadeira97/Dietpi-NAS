@@ -8,7 +8,8 @@ apt-get update && upgrade -y
 mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/BAK_Cloud
 mount /dev/sdb /mnt/Cloud
 mount /dev/sda1 /mnt/BAK_Cloud
-mv Dietpi-NAS /mnt/Cloud/Data
+cd /mnt/Cloud
+mv /root/Dietpi-NAS /mnt/Cloud/Data
 
 umask 0022
 

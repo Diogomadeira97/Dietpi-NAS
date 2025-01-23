@@ -252,6 +252,7 @@ Do the first login and follow the instructions.
 	
 	apt install git -y
     git clone https://github.com/Diogomadeira97/Dietpi-NAS
+	cd Dietpi-NAS/Conf/default
     chmod +x ./*
 	nano default-variables.sh
 	bash default-variables.sh
