@@ -18,10 +18,10 @@ do
 
     #Add user.
     sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/$a --gecos "User" "$a"
-    echo "$a:$b" | sudo chpasswd
+    echo "$a:"$(echo "$b")"" | sudo chpasswd
 
     #Add Samba password.
-    (echo '$c'; echo '$c') | sudo smbpasswd -a -s $a
+    (echo "$(echo "$c")"; echo "$(echo "$c")") | sudo smbpasswd -a -s $a
 
     #Put user in the default group.
     sudo gpasswd -M $a $1_Cloud

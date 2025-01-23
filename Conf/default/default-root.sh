@@ -13,14 +13,14 @@ mv Dietpi-NAS /mnt/Cloud/Data
 umask 0022
 
 #Add default users.
-adduser --quiet --disabled-password --shell /bin/bash --home /home/guest-nas --gecos "User" "admin-nas"
+adduser --quiet --disabled-password --shell /bin/bash --home /home/admin-nas --gecos "User" "admin-nas"
 adduser --quiet --disabled-password --shell /bin/bash --home /home/guest-nas --gecos "User" "guest-nas"
-echo "admin-nas:$2" | chpasswd
-echo "guest-nas:$3" | chpasswd
+echo "admin-nas:"$(echo "$2")"" | chpasswd
+echo "guest-nas:"$(echo "$3")"" | chpasswd
 
 #Add default users Samba password.
-(echo '$4'; echo '$4') | smbpasswd -a -s admin-nas
-(echo '$5'; echo '$5') | smbpasswd -a -s admin-nas
+(echo "$(echo "$4")"; echo "$(echo "$4")") | smbpasswd -a -s admin-nas
+(echo "$(echo "$5")"; echo "$(echo "$5")") | smbpasswd -a -s guest-nas
 
 #Exclude dietpi user from Samba.
 pdbedit -x dietpi
