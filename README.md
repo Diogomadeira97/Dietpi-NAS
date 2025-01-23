@@ -228,7 +228,9 @@ Do the first login and follow the instructions.
 
 	dietpi-sync
 
-• Change the path to /mnt/Cloud and /mnt/BAK_Cloud.
+• Change Source Location to /mnt/Cloud.
+
+• Change Target Location to /mnt/BAK_Cloud.
 
 • Turn on Delete Mode.
 
@@ -236,7 +238,7 @@ Do the first login and follow the instructions.
 
 	dietpi-backup
 
-• Change the path to /mnt/Cloud/Data/dietpi-backup.
+• Change the location path to /mnt/Cloud/Data/dietpi-backup.
 
 • Turn on daily backup.
 
@@ -263,11 +265,9 @@ Do the first login and follow the instructions.
 
 #### PiVPN:
 
-• Check if your IP and Getway are right.
+• Chose admin-nas to user.
 
 • Set wireguard and use the default options.
-
-• Chose admin-nas to user.
 
 • Choose a port based on the (forwarding)[#forwarding] you made in the pre-installation.
 
@@ -275,13 +275,9 @@ Do the first login and follow the instructions.
 
 • If the [DDNS](#DDNS) recommendation is being made, chose DDNS and put your domain.
 
-• When ask about "Unattended Upgrades", mark yes.
-
-• When ask about "reboot", mark no.
-
 • Download wireguard on your device and use the QR code or the key to do the connection.
 
-• Enable VPN permissions on device
+• Enable VPN permissions on device.
 
 • Test if ipv6 and ipv4 is ok.
 
