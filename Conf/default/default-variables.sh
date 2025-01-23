@@ -45,12 +45,8 @@ bash default-root.sh $SERVERNAME $ADMINPW $GUESTPW $ADMINSMBPW $GUESTSMBPW $DIET
 #EDIT!!!
 bash default-user.sh $SERVERNAME $USER $USERPW $USERSMBPW ... $USERx $USERPWx $USERSMBPWx
 
-#Install PiVPN(Wireguard).
-/boot/dietpi/dietpi-software install 117
-
-#Add SSH Keys to Devices.
+#Add SSH_Keys and VPN_Keys to Devices.
 #Can easily export with Dietpi-Dashboard.
-#EDIT!!!
 bash default-keys.sh $SERVERNAME $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.

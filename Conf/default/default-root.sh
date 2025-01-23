@@ -23,6 +23,9 @@ echo "guest-nas:$3" | chpasswd
 (echo '$4'; echo '$4') | smbpasswd -a -s admin-nas
 (echo '$5'; echo '$5') | smbpasswd -a -s admin-nas
 
+#Install PiVPN(Wireguard) to admin-nas.
+/boot/dietpi/dietpi-software install 117
+
 #Exclude dietpi user from Samba.
 pdbedit -x dietpi
 
