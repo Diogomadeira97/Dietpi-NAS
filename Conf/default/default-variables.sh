@@ -1,25 +1,25 @@
 #! /bin/bash
 
 #Default variables.
-SERVER_NAME=
-ADMIN-NAS_PASSWORD=X="$(echo '')"
-GUEST-NAS_PASSWORD="$(echo '')"
-ADMIN-NAS_SAMBA_PASSWORD="$(echo '')"
-GUEST-NAS_SAMBA_PASSWORD="$(echo '')"
-DIETPI_PASSWORD="$(echo '')"
-DB_IMMICH_PASSWORD="$(echo '')"
+SERVERNAME=
+ADMINPW="$(echo '')"
+GUESTPW="$(echo '')"
+ADMINSMBPW="$(echo '')"
+GUESTSMBPW="$(echo '')"
+DIETPIPW="$(echo '')"
+DBIMMICHPW="$(echo '')"
 
 #User variables.
 USER=
-USER_PASSWORD="$(echo '')"
-USER_SAMBA_PASSWORD="$(echo '')"
+USERPW="$(echo '')"
+USERSMBPW="$(echo '')"
 #Put the Number of Users.      
 #        .
 #        .
 #        .
 #USERx=
-#USER_PASSWORDx=
-#USER_SAMBA_PASSWORDx=
+#USERPWx=
+#USERSMBPWx=
 
 #Device variables.
 DEVICE=
@@ -32,38 +32,29 @@ DEVICE=
 #Domain name.
 DOMAIN=
 #Examples: .com .pt .com.br
-GENERIC_AND_COUNTRY_TOP-LEVEL_DOMAIN=
+TPDOMAIN=
 #IPv4 static IP.
 IP=
 #Create this token once you have a domain pointing to Clouflare
-CLOUDFLARE_TOKEN=''
+CLOUDFLARETOKEN=''
 
 #Add Default configs.
-bash default-root.sh $SERVER_NAME $ADMIN-NAS_PASSWORD $GUEST-NAS_PASSWORD $ADMIN-NAS_SAMBA_PASSWORD $GUEST-NAS_SAMBA_PASSWORD $DIETPI_PASSWORD $DB_IMMICH_PASSWORD
+bash default-root.sh $SERVERNAME $ADMINPW $GUESTPW $ADMINSMBPW $GUESTSMBPW $DIETPIPW
 
 #Add users with default configs.
 #EDIT!!!
-bash default-user.sh $SERVER_NAME $USER $USER_PASSWORD $USER_SAMBA_PASSWORD ... $USERx $USER_PASSWORDx $USER_SAMBA_PASSWORDx
+bash default-user.sh $SERVERNAME $USER $USERPW $USERSMBPW ... $USERx $USERPWx $USERSMBPWx
+
+#Install PiVPN(Wireguard).
+/boot/dietpi/dietpi-software install 117
 
 #Add SSH Keys to Devices.
 #Can easily export with Dietpi-Dashboard.
 #EDIT!!!
-bash default-keys.sh $SERVER_NAME $DEVICE ... $DEVICEx 
-
-#Go to /mnt/Cloud/DataAdd and create Wireguard Key to Devices.
-#Can easily export with Dietpi-Dashboard.
-cd /mnt/Cloud/Data
-
-#Add Wireguard Keys to Devices.
-#Put the Number of Devices.
-#EDIT!!!
-pivpn add $DEVICE ... $DEVICEx
-
-#To create a wireguard Qr code.
-pivpn -qr $DEVICE
+bash default-keys.sh $SERVERNAME $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $GENERIC_AND_COUNTRY_TOP-LEVEL_DOMAIN $IP $CLOUDFLARE_TOKEN
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS

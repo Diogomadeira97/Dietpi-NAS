@@ -176,7 +176,19 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 ## Tips:
 
-Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. When run "nano default-variables.sh" on [commands](#Commands), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
+• Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. When run "nano default-variables.sh" on [commands](#Commands), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
+
+•  The private keys of Samba Server and Wireguard will be create on /mnt/Cloud/Data/Keys_SSH and /mnt/Cloud/Data/Keys_VPN consecutively and use Samba or Diet-Dashboard to easily export. Use one key per device and store them very well, you don't want them to fall into the wrong hands.
+
+## Pre-Installation:
+
+• Put router in Dynamic DHCP.
+
+• On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set [PPPoE](#PPPoE) on IPv4 put here too).
+
+• Create a port <a name="forwarding">forwarding</a> (UDP), using the IPv4 and IPv6 of the server, with the port you chose (default is 51820).
+
+• If you are going to make the [DDNS](#DDNS) recommendation, create a domain.
 
 ## Installation:
 
@@ -210,7 +222,7 @@ Do the first login and follow the instructions.
 
 • Change host name on 'Security Options'.
 	
-• Change the networking to static and enable ipv6 on 'Network Options: Adapters'.
+• Change the networking to **STATIC** and enable IPv6 on 'Network Options: Adapters'.
 
 • When ask about purge all WiFi related APT packages, mark 'yes', as stated in the [LAN](#LAN) recommendation.
 
@@ -235,22 +247,13 @@ Do the first login and follow the instructions.
 • If you want, change the time of daily backup.
 
 #### Commands:
-
+	
 	apt install git -y
-	mkdir /mnt/Cloud
-    mount /dev/sdb /mnt/Cloud
-    mkdir /mnt/BAK_Cloud
-    mount /dev/sda1 /mnt/BAK_Cloud
-    cd /mnt/Cloud/Data
     git clone https://github.com/Diogomadeira97/Dietpi-NAS
     cd Dietpi-NAS/Conf/default
-    chmod g+x ./*
-
+    chmod +x ./*
 	nano default-variables.sh
-
-	bash default-variables.sh	
-
-### Services Configuration:
+	bash default-variables.sh
 
 #### Dietpi-Dashboard:
  	
@@ -258,7 +261,31 @@ Do the first login and follow the instructions.
 
 • Chose no to "only backend".
 
-• Export /mnt/Cloud/Keys_SSH to the chosen device.
+#### PiVPN:
+
+• Check if your IP and Getway are right.
+
+• Set wireguard and use the default options.
+
+• Chose admin-nas to user.
+
+• Choose a port based on the (forwarding)[#forwarding] you made in the pre-installation.
+
+• Set the DNS provider to "PiVPN-is-local-DNS".
+
+• If the [DDNS](#DDNS) recommendation is being made, chose DDNS and put your domain.
+
+• When ask about "Unattended Upgrades", mark yes.
+
+• When ask about "reboot", mark no.
+
+• Download wireguard on your device and use the QR code or the key to do the connection.
+
+• Enable VPN permissions on device
+
+• Test if ipv6 and ipv4 is ok.
+
+### Services Configuration:
 
 #### AdGuard Home:
 
@@ -321,24 +348,6 @@ Do the first login and follow the instructions.
 • On Immich Change user and password
 
 • Create Users and Libraries.
-
-#### PiVPN:
-
-• Set wireguard and use the default options.
-
-• If you do the [DDNS](#DDNS) recomendation, chose DDNS and put your domain.
-
-• Put router in Dynamic DHCP.
-
-• On router, enable IPv6 with IP auto, prefix delegation and SLAAC+RDNSS (If is set [PPPoE](#PPPoE) on IPv4 put here too).
-
-• Create a port forwarding, using the IPv4 and IPv6 of the server, with the port you chose.
-
-• Download wireguard on your device and use the QR code or the key to do the connection.
-
-• Enable VPN permissions on device
-
-• Test if ipv6 and ipv4 is ok.
 
 #### Nginx - Certbot
 

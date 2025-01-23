@@ -1,7 +1,15 @@
 #! /bin/bash
 
-#Install Fail2Ban Dietpi-Dashboard Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita AdGuard_Home Unbound PiVPN(Wireguard) Homer Nginx Certbot.
-dietpi-software install 73 200 96 134 162 44 144 145 151 180 203 178 212 126 182 117 205 85 92
+#Install Fail2Ban Dietpi-Dashboard Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita AdGuard_Home Unbound Homer Nginx Certbot.
+/boot/dietpi/dietpi-software install 73 200 96 134 162 44 144 145 151 180 203 178 212 126 182 205 85 92
+
+mkdir /mnt/Cloud
+mount /dev/sdb /mnt/Cloud
+mkdir /mnt/BAK_Cloud
+mount /dev/sda1 /mnt/BAK_Cloud
+mv Dietpi-NAS /mnt/Cloud/Data
+
+cd /mnt/Cloud/Data
 
 umask 0022
 
@@ -25,9 +33,6 @@ groupadd $1_BAK
 #Add default users to default groups.
 gpasswd -M admin-nas,guest-nas $1_Cloud
 gpasswd -M admin-nas $1_BAK
-
-#Create a directory to export ssh keys.
-mkdir /mnt/Cloud/Data/Keys_SSH
 
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf
 
@@ -85,8 +90,9 @@ systemctl start dbus systemd-logind
 cd /mnt
 rm -rf ftp_client nfs_client samba
 
-#Create the default directories.
-mkdir Cloud/Data/Docker Cloud/Data/Docker/flaresolver Cloud/Data/Docker/immich-app Cloud/Data/Jellyfin Cloud/Public Cloud/Public/Downloads Cloud/Users
+#Go to Cloud and create the default directories.
+cd Cloud
+mkdir Data Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
 
 #Set Cloud default permissions.
 setfacl -R -b Cloud
