@@ -1,5 +1,7 @@
 #! /bin/bash
 
+apt-get update && upgrade -y
+
 #Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
 /boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
 
@@ -20,11 +22,11 @@ echo "guest-nas:$3" | chpasswd
 (echo '$4'; echo '$4') | smbpasswd -a -s admin-nas
 (echo '$5'; echo '$5') | smbpasswd -a -s admin-nas
 
-#Install PiVPN(Wireguard) to admin-nas.
-/boot/dietpi/dietpi-software install 117
-
 #Exclude dietpi user from Samba.
 pdbedit -x dietpi
+
+#Install PiVPN(Wireguard) to admin-nas.
+/boot/dietpi/dietpi-software install 117
 
 #Add default groups.
 groupadd $1_Cloud
@@ -68,7 +70,7 @@ chown admin-nas:root /mnt/Cloud/Data/default-Keys.sh
 chmod 750 /mnt/Cloud/Data/default-keys.sh
 
 #Change Dietpi-Dashboard password.
-hash=$(echo -n "$6" | sha512sum | mawk '{print $1}')
+hash=$(echo -n "$(echo "$6")" | sha512sum | mawk '{print $1}')
 secret=$(openssl rand -hex 32)
 G_CONFIG_INJECT 'pass[[:blank:]]' 'pass = true' /opt/dietpi-dashboard/config.toml
 GCI_PASSWORD=1 G_CONFIG_INJECT 'hash[[:blank:]]' "hash = \"$hash\"" /opt/dietpi-dashboard/config.toml
