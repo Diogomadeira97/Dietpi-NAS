@@ -9,7 +9,7 @@ apt-get update && upgrade -y
 mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/BAK_Cloud
 mount /dev/sdb /mnt/Cloud
 mount /dev/sda1 /mnt/BAK_Cloud
-mv /root/Dietpi-NAS /mnt/Cloud/Data
+mv ../../../Dietpi-NAS /mnt/Cloud/Data
 
 #Define Umask.
 umask 0022
