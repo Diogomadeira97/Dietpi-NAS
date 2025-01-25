@@ -1,31 +1,40 @@
 #! /bin/bash
 
+#Go to mount drives.
 cd /mnt
 
-sudo setfacl -R -b Cloud
-sudo chmod -R 775 Cloud
-sudo chown -R admin-nas:$1_Cloud Cloud
-sudo setfacl -R -d -m u::rwx Cloud
-sudo setfacl -R -d -m g::rwx Cloud
-sudo setfacl -R -d -m o::r-x Cloud
-sudo chmod -R g+s Cloud
+#Set Cloud default permissions.
+setfacl -R -b Cloud
+chmod -R 775 Cloud
+chown -R admin-nas:$1_Cloud Cloud
+setfacl -R -d -m u::rwx Cloud
+setfacl -R -d -m g::rwx Cloud
+setfacl -R -d -m o::r-x Cloud
+chmod -R g+s Cloud
 
-sudo chmod 750 BAK_Cloud
-sudo chown admin-nas:$1_BAK BAK_Cloud
-sudo setfacl -d -m u::rwx BAK_Cloud
-sudo setfacl -d -m g::r-x BAK_Cloud
-sudo setfacl -d -m o::--- BAK_Cloud
-sudo chmod g+s Cloud BAK_Cloud
+#Set BAK_Cloud default permissions.
+chmod 750 BAK_Cloud
+chown admin-nas:$1_BAK BAK_Cloud
+setfacl -d -m u::rwx BAK_Cloud
+setfacl -d -m g::r-x BAK_Cloud
+setfacl -d -m o::--- BAK_Cloud
+chmod g+s Cloud BAK_Cloud
 
+#Set Data default permissions.
 cd Cloud
+chmod -R 750 Data
+setfacl -R -d -m u::rwx Data
+setfacl -R -d -m g::r-x Data
+setfacl -R -d -m o::--- Data
 
-sudo chmod -R 750 Data
-sudo setfacl -R -d -m u::rwx Data
-sudo setfacl -R -d -m g::r-x Data
-sudo setfacl -R -d -m o::--- Data
+#Turn admin-nas the owner of Folder.
+chown -R admin-nas:$1_Cloud Data/Commands
 
-sudo chown -R jellyfin:$1_Cloud Data/Jellyfin
+#Turn debian-transmission the owner of Folder.
+chown -R jellyfin:$1_Cloud Data/Jellyfin
 
-sudo chown -R debian-transmission:$1_Cloud Public/Downloads
+#Turn debian-transmission the owner of Public Downloads Folder.
+chown -R debian-transmission:$1_Cloud Public/Downloads
 
-sudo service samba restart
+#Restart Samba_server.
+service samba restart

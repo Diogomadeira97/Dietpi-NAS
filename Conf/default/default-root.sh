@@ -8,7 +8,6 @@ apt-get update && upgrade -y
 mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/BAK_Cloud
 mount /dev/sdb /mnt/Cloud
 mount /dev/sda1 /mnt/BAK_Cloud
-cd /mnt/Cloud
 mv /root/Dietpi-NAS /mnt/Cloud/Data
 
 umask 0022
@@ -87,9 +86,8 @@ systemctl start dbus systemd-logind
 cd /mnt
 rm -rf ftp_client nfs_client samba
 
-#Go to Cloud and create the default directories.
-cd Cloud
-mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
+#Create default directories.
+mkdir Cloud/Data/Commands Cloud/Data/Keys_SSH Data/Keys_VPN Data/Docker Cloud/Data/Docker/flaresolver Cloud/Data/Docker/immich-app Cloud/Data/Jellyfin Cloud/Public Cloud/Public/Downloads Cloud/Users
 
 #Set Cloud default permissions.
 setfacl -R -b Cloud
@@ -115,7 +113,10 @@ setfacl -R -d -m u::rwx Data
 setfacl -R -d -m g::r-x Data
 setfacl -R -d -m o::--- Data
 
-#Create Jellyfin directory.
+#Turn admin-nas the owner of Folder.
+chown -R admin-nas:$1_Cloud Data/Commands
+
+#Turn debian-transmission the owner of Folder.
 chown -R jellyfin:$1_Cloud Data/Jellyfin
 
 #Turn debian-transmission the owner of Public Downloads Folder.

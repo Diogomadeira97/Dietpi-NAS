@@ -54,15 +54,16 @@ rm -rf homer
 cd $1
 rm logo.png
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/index.html .
+
+#Go to assets folder and set the default files.
 cd assets
-rm config.yml
 rm config.yml.dist
 rm config-demo.yml.dist
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/config.yml .
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/manifest.json .
+
+#Go to icons folder and set the default files.
 cd icons
-rm favicon.ico
-rm logo.svg
 rm apple-touch-icon.png
 rm pwa-512x512.png
 rm pwa-192x192.png
@@ -83,17 +84,18 @@ ln -s /etc/nginx/sites-available/$1 .
 #Move Scripts to /mnt/Cloud/Data.
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf/default
 #Use /mnt/Cloud/Data/subdomain.sh to add some subdomain.
-mv subdomain.sh /mnt/Cloud/Data
+mv subdomain.sh /mnt/Cloud/Data/Commands
 #Use /mnt/Cloud/Data/subdomain.sh to add some subpath.
-mv subpath.sh /mnt/Cloud/Data
+mv subpath.sh /mnt/Cloud/Data/Commands
+#Use /mnt/Cloud/Data/iptables_custom.sh to add iptables.
+mv iptables_custom.sh /mnt/Cloud/Data/Commands
 
 #Create crontab to custom iptables.
-mv ../crontab /mnt/Cloud/Data
-mv iptables_custom.sh /mnt/Cloud/Data
-crontab /mnt/Cloud/Data/crontab
+crontab ../crontab
+rm ../crontab
 
 #Add Services with default configs.
-cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx
+cd /mnt/Cloud/Data/Commands
 
 #Start.
 echo -e 'services:\n\n' >> /var/www/$1/assets/config.yml
@@ -122,52 +124,49 @@ echo -e '  - name: "Downloads"\n    icon: "fa-solid fa-download"\n   items:\n\n'
 #Transmission.
 bash subdomain.sh $1 $2 transmission 9091 $3
 
-echo -e '      - name: "Transmission"\n        logo: "assets/icons/transmission.svg"\n        subtitle: "Gestor de Downloads."\n        url: "https://transmission.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "Transmission"\n        logo: "assets/icons/transmission.svg"\n        subtitle: "Gestor de Downloads."\n        url: "https://transmission.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Radarr.
 bash subdomain.sh $1 $2 radarr 7878 $3
 
-echo -e '      - name: "Radarr"\n        logo: "assets/icons/radarr.svg"\n        subtitle: "Rastreador de Filmes."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "Radarr"\n        logo: "assets/icons/radarr.svg"\n        subtitle: "Rastreador de Filmes."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Sonarr.
 bash subdomain.sh $1 $2 sonarr 8989 $3
 
-echo -e '      - name: "Sonarr"\n        logo: "assets/icons/sonarr.svg"\n        subtitle: "Rastreador de TV-Shows."\n        url: "https://sonarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "Sonarr"\n        logo: "assets/icons/sonarr.svg"\n        subtitle: "Rastreador de TV-Shows."\n        url: "https://sonarr.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Readarr.
 bash subdomain.sh $1 $2 readarr 8787 $3
 
-echo -e '      - name: "Readarr"\n        logo: "assets/icons/readarr.svg"\n        subtitle: "Rastreador de Livros."\n        url: "https://readarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "Readarr"\n        logo: "assets/icons/readarr.svg"\n        subtitle: "Rastreador de Livros."\n        url: "https://readarr.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Prowlarr.
 bash subdomain.sh $1 $2 prowlarr 9696 $3
 
-echo -e '      - name: "Prowlarr"\n        logo: "assets/icons/prowlarr.svg"\n        subtitle: "Rastreador de indexadores."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "Prowlarr"\n        logo: "assets/icons/prowlarr.svg"\n        subtitle: "Rastreador de indexadores."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Bazarr.
 bash subdomain.sh $1 $2 bazarr 6767 $3
 
-echo -e '      - name: "Bazarr"\n        logo: "assets/icons/bazarr.svg"\n        subtitle: "Rastreador de Legendas."\n        url: "https://bazarr.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "Bazarr"\n        logo: "assets/icons/bazarr.svg"\n        subtitle: "Rastreador de Legendas."\n        url: "https://bazarr.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Smart Home section.
-echo -e '  - name: "Casa Inteligente"\n    icon: "fa-solid fa-home"\n    items:\n\n' >> config.yml
+echo -e '  - name: "Casa Inteligente"\n    icon: "fa-solid fa-home"\n    items:\n\n' >> /var/www/$1/assets/config.yml
 
 #Home Assistant.
-echo -e '      - name: "Home Asssistant"\n        logo: "assets/icons/home-assistant.svg"\n        subtitle: "Automação Residencial."\n        url: "https://home-assistant.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "Home Asssistant"\n        logo: "assets/icons/home-assistant.svg"\n        subtitle: "Automação Residencial."\n        url: "https://home-assistant.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Server management section.
-echo -e '  - name: "Gestão"\n    icon: "fa-solid fa-gear"\n    items:\n\n' >> config.yml
+echo -e '  - name: "Gestão"\n    icon: "fa-solid fa-gear"\n    items:\n\n' >> /var/www/$1/assets/config.yml
 
 #AdGuard Home
 bash subdomain.sh $1 $2 adguard 8083 $3
 
-echo -e '      - name: "AdGuard"\n        logo: "assets/icons/adguardhome.svg"\n        subtitle: "Servidor DNS."\n        url: "https://adguard.'"$1$2"'"\n        target: "_blank"\n\n' >> config.yml
+echo -e '      - name: "AdGuard"\n        logo: "assets/icons/adguardhome.svg"\n        subtitle: "Servidor DNS."\n        url: "https://adguard.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Dietpi-Dashboard
-echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-logo.svg"\n        subtitle: "Gestão do servidor."\n        url: "'"$1$2"':5252"\n        target: "_blank"\n\n' >> config.yml
-
-#Move the file created to assets folder.
-mv config.yml /var/www/$1/assets
+echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-logo.svg"\n        subtitle: "Gestão do servidor."\n        url: "'"$1$2"':5252"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Reload Nginx Server
 nginx -s reload
