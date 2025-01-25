@@ -173,6 +173,3 @@ echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA
 
 #Run Immich on Docker.
 docker compose up -d
-
-#Go to Commands folder.
-cd /mnt/Cloud/Data/Commands
