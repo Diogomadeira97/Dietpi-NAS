@@ -27,8 +27,8 @@ mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker /Data/Docker/flareso
 #Define Umask.
 umask 0022
 
-#Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
-/boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
+#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
+/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 44 144 145 151 180 203 178 212
 
 #Add default users.
 adduser --quiet --disabled-password --shell /bin/bash --home /home/admin-nas --gecos "User" "admin-nas"
@@ -107,8 +107,9 @@ echo -e "#! /bin/bash" >> iptables_custom.sh
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
 
 #Create crontab to custom iptables.
-crontab ../crontab
-rm ../crontab
+crontab ../crontab.txt
+rm ../crontab.txt
+nano teste
 
 #Install Access Control List.
 apt install acl -y
@@ -162,7 +163,8 @@ cd Data/Docker/flaresolver
 docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart unless-stopped   ghcr.io/flaresolverr/flaresolverr:latest
 
 #Go to Immich Docker directory.
-cd ../immich-app
+cd Data/Docker/immich-app
+nano teste
 
 #Import default files.
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/* /mnt/Cloud/Data/Docker/immich-app
@@ -173,8 +175,7 @@ echo -e "DB_PASSWORD=$7" >> .env
 #Run Immich on Docker.
 docker compose up -d
 
-#Install PiVPN(Wireguard) to admin-nas.
-/boot/dietpi/dietpi-software install 117
-
 #Go to Commands folder.
 cd /mnt/Cloud/Data/Commands
+
+nano teste
