@@ -200,7 +200,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 Do the first login and follow the instructions.
 
-**Login:**
+#### Login:
 
 > login: root
 
@@ -210,7 +210,7 @@ Do the first login and follow the instructions.
 
 • When ask about UART, mark 'no'.
 
-	dietpi-software
+#### dietpi-software:
 
 • install OpenSSH, uninstall Dropbear.
 
@@ -225,7 +225,7 @@ Do the first login and follow the instructions.
 	nano default-variables.sh
 	bash default-variables.sh
 
-#### dietpi-config
+#### dietpi-config:
 
 • Change timezone on 'Language/Regional Options'.
 
@@ -235,7 +235,7 @@ Do the first login and follow the instructions.
 
 • When ask about purge all WiFi related APT packages, mark 'yes', as stated in the [LAN](#LAN) recommendation.
 
-#### dietpi-sync
+#### dietpi-sync:
 
 • Change Source Location to /mnt/Cloud.
 
@@ -245,7 +245,7 @@ Do the first login and follow the instructions.
 
 • Turn on Daily Sync.
 
-#### dietpi-backup
+#### dietpi-backup:
 
 • Change the location path to /mnt/Cloud/Data/dietpi-backup.
 
@@ -253,7 +253,7 @@ Do the first login and follow the instructions.
 
 • Change the quantity to 3.
 
-#### dietpi-drive_manager
+#### dietpi-drive_manager:
 
 • Mount faster drive to /mnt/Cloud. 
 
