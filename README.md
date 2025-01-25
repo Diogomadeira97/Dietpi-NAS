@@ -253,6 +253,13 @@ Do the first login and follow the instructions.
 
 • Change the quantity to 3.
 
+#### dietpi-drive_manager
+
+• Mount faster drive to /mnt/Cloud. 
+
+• Mount the other drive to /mnt/BAK_Cloud.
+
+• Teste drive speed if necessary.
 
 #### Dietpi-Dashboard:
  	

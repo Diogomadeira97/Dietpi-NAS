@@ -12,17 +12,23 @@ apt-get update && upgrade -y
 #dietpi-backup
 /boot/dietpi/dietpi-backup
 
-#Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
-/boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
+#dietpi-drive_manager
+/boot/dietpi/dietpi-drive_manager
 
-#Create directories, mount drives and move Dietpi-NAS folder.
-mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/Cloud/Data/Commands /mnt/Cloud/Data/Keys_SSH /mnt/Cloud/Data/Keys_VPN /mnt/BAK_Cloud
-mount /dev/sdb /mnt/Cloud
-mount /dev/sda1 /mnt/BAK_Cloud
-mv ../../../Dietpi-NAS /mnt/Cloud/Data
+#Create directory and move Dietpi-NAS folder.
+cd ../../../
+mkdir /mnt/Cloud/Data
+mv Dietpi-NAS /mnt/Cloud/Data
+
+#Go to Cloud and create default folders.
+cd /mnt/Cloud
+mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker /Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
 
 #Define Umask.
 umask 0022
+
+#Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
+/boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
 
 #Add default users.
 adduser --quiet --disabled-password --shell /bin/bash --home /home/admin-nas --gecos "User" "admin-nas"
@@ -36,9 +42,6 @@ echo "guest-nas:"$(echo "$3")"" | chpasswd
 
 #Exclude dietpi user from Samba.
 pdbedit -x dietpi
-
-#Install PiVPN(Wireguard) to admin-nas.
-/boot/dietpi/dietpi-software install 117
 
 #Add default groups.
 groupadd $1_Cloud
@@ -62,6 +65,7 @@ chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
 #Create default Samba share folders.
 mv Samba/smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
+service samba restart
 
 #Change terminal user of Dietpi-Dashboard to admin-nas.
 mv config.toml /opt/dietpi-dashboard/
@@ -118,9 +122,6 @@ systemctl start dbus systemd-logind
 cd /mnt
 rm -rf ftp_client nfs_client samba
 
-#Create default directories.
-mkdir Cloud/Data/Docker Cloud/Data/Docker/flaresolver Cloud/Data/Docker/immich-app Cloud/Data/Jellyfin Cloud/Public Cloud/Public/Downloads Cloud/Users
-
 #Set Cloud default permissions.
 setfacl -R -b Cloud
 chmod -R 775 Cloud
@@ -154,9 +155,6 @@ chown -R jellyfin:$1_Cloud Data/Jellyfin
 #Turn debian-transmission the owner of Public Downloads Folder.
 chown -R debian-transmission:$1_Cloud Public/Downloads
 
-#Restart Samba_server.
-service samba restart
-
 #Create Flaresolver Docker directory.
 cd Data/Docker/flaresolver
 
@@ -174,6 +172,9 @@ echo -e "DB_PASSWORD=$7" >> .env
 
 #Run Immich on Docker.
 docker compose up -d
+
+#Install PiVPN(Wireguard) to admin-nas.
+/boot/dietpi/dietpi-software install 117
 
 #Go to Commands folder.
 cd /mnt/Cloud/Data/Commands
