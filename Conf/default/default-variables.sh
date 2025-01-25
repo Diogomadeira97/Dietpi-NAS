@@ -43,12 +43,12 @@ bash default-root.sh $SERVERNAME $ADMINPW $GUESTPW $ADMINSMBPW $GUESTSMBPW $DIET
 
 #Add users with default configs.
 #EDIT!!!
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-user.sh $SERVERNAME $USER $USERPW $USERSMBPW ... $USERx $USERPWx $USERSMBPWx
+bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $USER $USERPW $USERSMBPW ... $USERx $USERPWx $USERSMBPWx
 
 #Add SSH_Keys and VPN_Keys to Devices.
 #Can easily export with Dietpi-Dashboard or Samba.
 #EDIT!!!
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-keys.sh $SERVERNAME $DEVICE ... $DEVICEx
+bash /mnt/Cloud/Data/Commands/default-keys.sh $SERVERNAME $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN
