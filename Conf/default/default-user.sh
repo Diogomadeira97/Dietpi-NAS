@@ -1,20 +1,17 @@
 #! /bin/bash
 
-#Create variables to count number of users to add.
-X=$(($# - 1))
-Y=$(($X / 3))
-Z=$(($Y - 2))
-a=-1
-
-#Do it while have a User.
-for i in $(seq -1 $Z);
+for (( i=2; i<=$#; i = i + 3)); 
 do
+
+    x=$(($i + 1))
+    y=$(($i + 2))
+
     #User.
-    a=$(($i + 3))
+    a=${!i}
     #User Password.
-    b=$(($a + 1))
+    b=${!x}
     #User Samba Password.
-    c=$(($b + 1))
+    c=${!y}
 
     #Add user.
     sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/$a --gecos "User" "$a"
@@ -67,12 +64,12 @@ do
 
     #Add user folders to immich.
     cd /mnt/Cloud/Data/Docker/immich-app
-    sudo echo -e "      - /mnt/Cloud/Users/$a/Midia/Midias-Anuais:/mnt/Cloud/Users/$a/Midia/Midias-Anuais:ro" >> docker-compose.yml
+    sudo echo -e "      - /mnt/Cloud/Users/$a/Midia/Midias-Anuais:/mnt/Cloud/Users/$a/Midia/Midias-Anuais:ro\n" >> docker-compose.yml
     sudo docker compose restart
 
     #Create a crontab to sync Immich with user folder.
     echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich_files/library/$a/*  /mnt/Cloud/Users/$a/Midias/Midias-Anuais/immich\n\nchown -R $a:$a /mnt/Cloud/Users/$a/Midias/Midias-Anuais/immich" >> immich_cron_$a.sh
     mv immich_cron_$a.sh /etc/cron.daily
-    chmod 750 /etc/cron.daily/immich_cron.sh
+    chmod 750 /etc/cron.daily/immich_cron_$a.sh
 
 done

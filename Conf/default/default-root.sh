@@ -54,10 +54,6 @@ gpasswd -M admin-nas $1_BAK
 #Go to Conf folder.
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf
 
-#Create crontab to custom iptables.
-crontab crontab
-rm crontab
-
 #Turn admin-nas in SU without password.
 mv sudoers /etc
 chmod 600 /etc/sudoers
@@ -76,7 +72,7 @@ mv config.toml /opt/dietpi-dashboard/
 chmod 644 /opt/dietpi-dashboard/config.toml
 
 #Change Dietpi-Dashboard password.
-hash=$(echo -n "$(echo "teste")" | sha512sum | mawk '{print $1}')
+hash=$(echo -n "$(echo "$6")" | sha512sum | mawk '{print $1}')
 secret=$(openssl rand -hex 32)
 echo -e "pass = true" >> /opt/dietpi-dashboard/config.toml
 echo -e 'hash="'$hash'"' >> /opt/dietpi-dashboard/config.toml
@@ -109,6 +105,11 @@ echo -e "#! /bin/bash" >> iptables_custom.sh
 
 #Use /mnt/Cloud/Data/iptables_custom.sh to add iptables.
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
+
+#Create crontab to custom iptables.
+echo -e "@reboot sleep 10 && /mnt/Cloud/Data/Commands/iptables_custom.sh" >> crontab
+crontab crontab
+rm crontab
 
 #Install Access Control List.
 apt install acl -y
