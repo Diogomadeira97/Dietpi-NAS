@@ -5,11 +5,13 @@ apt-get update && upgrade -y
 #Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
 /boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
 
+#Create directories, mount drives and move Dietpi-NAS folder.
 mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/BAK_Cloud
 mount /dev/sdb /mnt/Cloud
 mount /dev/sda1 /mnt/BAK_Cloud
 mv /root/Dietpi-NAS /mnt/Cloud/Data
 
+#Define Umask.
 umask 0022
 
 #Add default users.
@@ -36,6 +38,7 @@ groupadd $1_BAK
 gpasswd -M admin-nas,guest-nas $1_Cloud
 gpasswd -M admin-nas $1_BAK
 
+#Go to Conf folder.
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf
 
 #Turn admin-nas in SU without password.
@@ -143,4 +146,5 @@ echo -e "DB_PASSWORD=$7" >> .env
 #Run Immich on Docker.
 docker compose up -d
 
+#Go to Commands folder.
 cd /mnt/Cloud/Data/Commands
