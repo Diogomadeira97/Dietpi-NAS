@@ -56,11 +56,11 @@ mv config.toml /opt/dietpi-dashboard/
 chmod 644 /opt/dietpi-dashboard/config.toml
 
 #Change Dietpi-Dashboard password.
-hash=$(echo -n "$(echo "$6")" | sha512sum | mawk '{print $1}')
+hash=$(echo -n "$(echo "teste")" | sha512sum | mawk '{print $1}')
 secret=$(openssl rand -hex 32)
 echo -e "pass = true" >> /opt/dietpi-dashboard/config.toml
-echo -e "hash="$hash"" >> /opt/dietpi-dashboard/config.toml
-echo -e "hash="$secret"" >> /opt/dietpi-dashboard/config.toml
+echo -e 'hash="'$hash'"' >> /opt/dietpi-dashboard/config.toml
+echo -e 'secret="'$secret'"' >> /opt/dietpi-dashboard/config.toml
 unset -v hash secret
 
 #Restart Dietpi-Dashboard.
