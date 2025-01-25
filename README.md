@@ -223,10 +223,11 @@ Do the first login and follow the instructions.
 
 #### dietpi-software:
 
-• install OpenSSH, uninstall Dropbear.
+• Change Dropbear to OpenSSH.
 
 • Select 0: Opt OUT and purge uploaded data mark no.
 
+• Install.
 
 #### Commands:
 	
@@ -248,6 +249,7 @@ Do the first login and follow the instructions.
 
 • When ask about purge all WiFi related APT packages, mark 'yes', as stated in the [LAN](#LAN) recommendation.
 
+• Exit.
 
 #### dietpi-sync:
 
@@ -259,6 +261,7 @@ Do the first login and follow the instructions.
 
 • Turn on Daily Sync.
 
+• Exit.
 
 #### dietpi-backup:
 
@@ -268,6 +271,7 @@ Do the first login and follow the instructions.
 
 • Change the quantity to 3.
 
+• Exit.
 
 #### dietpi-drive_manager:
 
@@ -275,8 +279,9 @@ Do the first login and follow the instructions.
 
 • Mount the other drive to /mnt/BAK_Cloud.
 
-• Teste drive speed if necessary.
+• Do benchmark to test if necessary.
 
+• Exit.
 
 #### Dietpi-Dashboard:
  	
