@@ -1,6 +1,16 @@
 #! /bin/bash
 
+#Update and Upgrade.
 apt-get update && upgrade -y
+
+#dietpi-config
+/boot/dietpi/dietpi-config
+
+#dietpi-sync
+/boot/dietpi/dietpi-sync
+
+#dietpi-backup
+/boot/dietpi/dietpi-backup
 
 #Install Fail2Ban Dietpi-Dashboard Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
 /boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212

@@ -216,7 +216,16 @@ Do the first login and follow the instructions.
 
 • Select 0: Opt OUT and purge uploaded data mark no.
 
-	dietpi-config
+#### Commands:
+	
+	apt install git -y
+    git clone https://github.com/Diogomadeira97/Dietpi-NAS
+	cd Dietpi-NAS/Conf/default
+    chmod +x ./*
+	nano default-variables.sh
+	bash default-variables.sh
+
+#### dietpi-config
 
 • Change timezone on 'Language/Regional Options'.
 
@@ -226,7 +235,7 @@ Do the first login and follow the instructions.
 
 • When ask about purge all WiFi related APT packages, mark 'yes', as stated in the [LAN](#LAN) recommendation.
 
-	dietpi-sync
+#### dietpi-sync
 
 • Change Source Location to /mnt/Cloud.
 
@@ -236,7 +245,7 @@ Do the first login and follow the instructions.
 
 • Turn on Daily Sync.
 
-	dietpi-backup
+#### dietpi-backup
 
 • Change the location path to /mnt/Cloud/Data/dietpi-backup.
 
@@ -244,18 +253,6 @@ Do the first login and follow the instructions.
 
 • Change the quantity to 3.
 
-	dietpi-cron
-
-• If you want, change the time of daily backup.
-
-#### Commands:
-	
-	apt install git -y
-    git clone https://github.com/Diogomadeira97/Dietpi-NAS
-	cd Dietpi-NAS/Conf/default
-    chmod +x ./*
-	nano default-variables.sh
-	bash default-variables.sh
 
 #### Dietpi-Dashboard:
  	
