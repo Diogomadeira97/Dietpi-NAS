@@ -22,7 +22,7 @@ mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
-mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker /Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
+mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
 
 #Define Umask.
 umask 0022
