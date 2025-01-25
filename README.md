@@ -1,5 +1,6 @@
 # Dietpi-NAS
 
+
 ## Index:
 
 • [Description](#Description)
@@ -41,6 +42,7 @@
 > • [On Windows](#On-Windows)
 
 > • [On Termux](#On-Termux)
+
 
 ## Description:
 
@@ -138,9 +140,11 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 	bash /mnt/Cloud/Data/Commands/subpath.sh
 
+
 ## Notes:
 
 The remote used of this installation is designed to be only with a VPN, so the only port forwarding that is being performed is for the Wireguard (UDP). It is not recommended to use this installation to expose your public IP directly on the Internet. If you want to do it, is at your own risk.
+
 
 ## Requirements:
 
@@ -153,6 +157,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 • Two Storage Devices.
 
 • A support device for Dietpi. Check available devices [here](https://dietpi.com/).
+
 
 ## Recommendations:
 
@@ -174,11 +179,13 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • Protect your private keys very well, because with it anyone can access your server.
 
+
 ## Tips:
 
 • Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. When run "nano default-variables.sh" on [commands](#Commands), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
 
 •  The private keys of Samba Server and Wireguard will be create on /mnt/Cloud/Data/Keys_SSH and /mnt/Cloud/Data/Keys_VPN consecutively and use Samba or Diet-Dashboard to easily export. Use one key per device and store them very well, you don't want them to fall into the wrong hands.
+
 
 ## Pre-Installation:
 
@@ -190,15 +197,18 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • If you are going to make the [DDNS](#DDNS) recommendation, create a domain.
 
+
 ## Installation:
 
 • Download the last image of Dietpi to your device [here](https://dietpi.com/).
 
 • If necessary, use [Rufus](https://rufus.ie/) to create a bootable USB drive.
 
+
 ### First Steps:
 
 Do the first login and follow the instructions.
+
 
 #### Login:
 
@@ -210,11 +220,13 @@ Do the first login and follow the instructions.
 
 • When ask about UART, mark 'no'.
 
+
 #### dietpi-software:
 
 • install OpenSSH, uninstall Dropbear.
 
 • Select 0: Opt OUT and purge uploaded data mark no.
+
 
 #### Commands:
 	
@@ -224,6 +236,7 @@ Do the first login and follow the instructions.
     chmod +x ./*
 	nano default-variables.sh
 	bash default-variables.sh
+
 
 #### dietpi-config:
 
@@ -235,6 +248,7 @@ Do the first login and follow the instructions.
 
 • When ask about purge all WiFi related APT packages, mark 'yes', as stated in the [LAN](#LAN) recommendation.
 
+
 #### dietpi-sync:
 
 • Change Source Location to /mnt/Cloud.
@@ -245,6 +259,7 @@ Do the first login and follow the instructions.
 
 • Turn on Daily Sync.
 
+
 #### dietpi-backup:
 
 • Change the location path to /mnt/Cloud/Data/dietpi-backup.
@@ -252,6 +267,7 @@ Do the first login and follow the instructions.
 • Turn on daily backup.
 
 • Change the quantity to 3.
+
 
 #### dietpi-drive_manager:
 
@@ -261,11 +277,13 @@ Do the first login and follow the instructions.
 
 • Teste drive speed if necessary.
 
+
 #### Dietpi-Dashboard:
  	
 • Chose Nightly on Dietpi-Dashboard.
 
 • Chose no to "only backend".
+
 
 #### PiVPN:
 
@@ -285,7 +303,9 @@ Do the first login and follow the instructions.
 
 • Test if ipv6 and ipv4 is ok.
 
+
 ### Services Configuration:
+
 
 #### AdGuard Home:
 
@@ -305,6 +325,7 @@ Do the first login and follow the instructions.
 
 • Set DNS on router and devices to the ip of the server.
 
+
 #### FAil2Ban:
 
 • The status can be checked with these commands:
@@ -314,6 +335,7 @@ Do the first login and follow the instructions.
 	sudo fail2ban-client status dropbear
 
 	sudo fail2ban-client set <sshd or dropbear> unbanip <ip>
+
 
 #### Transmission:
 
@@ -325,7 +347,8 @@ Do the first login and follow the instructions.
 
 • Change the path to /mnt/Cloud/Public/Downloads.
 
- #### Arrs:
+
+#### Arrs:
 
 • Login on Arrs to change users and passwords.
 
@@ -335,6 +358,7 @@ Do the first login and follow the instructions.
 
 • Create language profile on bazar, after add providers to turn on Sonarr and Bazarr.
 
+
 #### Jellyfin and Kavita:
 
 • To force first login on jellyfin use this link "https://jellyfin.<DOMAIN>/web/index.html#/wizardstart".html.
@@ -343,11 +367,13 @@ Do the first login and follow the instructions.
 
 • Do the the first login on kavita and crate Users and Libraries.
 
+
 #### Immich:
 
 • On Immich Change user and password
 
 • Create Users and Libraries.
+
 
 #### Nginx - Certbot
 
@@ -359,7 +385,9 @@ Do the first login and follow the instructions.
 
 • Put the token on cloudlfare.ini.
 
+
 ### Devices Configuration:
+
 
 #### On Windows:
 
@@ -368,6 +396,7 @@ Do the first login and follow the instructions.
 • Save Private Keys (Secret Folder).
 
 • On putty create a session with the private key.
+
 
 #### On termux:
 
