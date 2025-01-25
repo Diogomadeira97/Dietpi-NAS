@@ -251,6 +251,16 @@ Do the first login and follow the instructions.
 
 • Exit.
 
+#### dietpi-drive_manager:
+
+• Mount faster drive to /mnt/Cloud. 
+
+• Mount the other drive to /mnt/BAK_Cloud.
+
+• Do benchmark to test if necessary.
+
+• Exit.
+
 #### dietpi-sync:
 
 • Change Source Location to /mnt/Cloud.
@@ -270,16 +280,6 @@ Do the first login and follow the instructions.
 • Turn on daily backup.
 
 • Change the quantity to 3.
-
-• Exit.
-
-#### dietpi-drive_manager:
-
-• Mount faster drive to /mnt/Cloud. 
-
-• Mount the other drive to /mnt/BAK_Cloud.
-
-• Do benchmark to test if necessary.
 
 • Exit.
 

@@ -6,14 +6,14 @@ apt-get update && upgrade -y
 #dietpi-config
 /boot/dietpi/dietpi-config
 
+#dietpi-drive_manager
+/boot/dietpi/dietpi-drive_manager
+
 #dietpi-sync
 /boot/dietpi/dietpi-sync
 
 #dietpi-backup
 /boot/dietpi/dietpi-backup
-
-#dietpi-drive_manager
-/boot/dietpi/dietpi-drive_manager
 
 #Create directory and move Dietpi-NAS folder.
 cd ../../../
