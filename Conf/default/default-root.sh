@@ -27,14 +27,14 @@ mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker /Data/Docker/flareso
 #Define Umask.
 umask 0022
 
-#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
-/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 44 144 145 151 180 203 178 212
-
 #Add default users.
 adduser --quiet --disabled-password --shell /bin/bash --home /home/admin-nas --gecos "User" "admin-nas"
 adduser --quiet --disabled-password --shell /bin/bash --home /home/guest-nas --gecos "User" "guest-nas"
 echo "admin-nas:"$(echo "$2")"" | chpasswd
 echo "guest-nas:"$(echo "$3")"" | chpasswd
+
+#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
+/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 44 144 145 151 180 203 178 212
 
 #Add default users Samba password.
 (echo "$(echo "$4")"; echo "$(echo "$4")") | smbpasswd -a -s admin-nas
@@ -109,7 +109,6 @@ mv iptables_custom.sh /mnt/Cloud/Data/Commands
 #Create crontab to custom iptables.
 crontab ../crontab.txt
 rm ../crontab.txt
-nano teste
 
 #Install Access Control List.
 apt install acl -y
@@ -157,14 +156,13 @@ chown -R jellyfin:$1_Cloud Data/Jellyfin
 chown -R debian-transmission:$1_Cloud Public/Downloads
 
 #Create Flaresolver Docker directory.
-cd Data/Docker/flaresolver
+cd /mnt/Cloud/Data/Docker/flaresolver
 
 #Run Flaresolver on Docker.
 docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart unless-stopped   ghcr.io/flaresolverr/flaresolverr:latest
 
 #Go to Immich Docker directory.
-cd Data/Docker/immich-app
-nano teste
+cd /mnt/Cloud/Data/Docker/immich-app
 
 #Import default files.
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/* /mnt/Cloud/Data/Docker/immich-app
@@ -177,5 +175,3 @@ docker compose up -d
 
 #Go to Commands folder.
 cd /mnt/Cloud/Data/Commands
-
-nano teste
