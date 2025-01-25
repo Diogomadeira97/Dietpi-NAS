@@ -54,6 +54,10 @@ gpasswd -M admin-nas $1_BAK
 #Go to Conf folder.
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf
 
+#Create crontab to custom iptables.
+crontab crontab
+rm crontab
+
 #Turn admin-nas in SU without password.
 mv sudoers /etc
 chmod 600 /etc/sudoers
@@ -105,10 +109,6 @@ echo -e "#! /bin/bash" >> iptables_custom.sh
 
 #Use /mnt/Cloud/Data/iptables_custom.sh to add iptables.
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
-
-#Create crontab to custom iptables.
-crontab ../crontab.txt
-rm ../crontab.txt
 
 #Install Access Control List.
 apt install acl -y
@@ -165,10 +165,10 @@ docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart
 cd /mnt/Cloud/Data/Docker/immich-app
 
 #Import default files.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/* /mnt/Cloud/Data/Docker/immich-app
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/docker-compose.yml /mnt/Cloud/Data/Docker/immich-app
 
 #Change Data Base password.
-echo -e "DB_PASSWORD=$7" >> .env
+echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$7" >> .env
 
 #Run Immich on Docker.
 docker compose up -d
