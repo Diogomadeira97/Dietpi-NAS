@@ -6,7 +6,7 @@ apt-get update && upgrade -y
 /boot/dietpi/dietpi-software install 73 200 182 126 96 134 162 44 144 145 151 180 203 178 212
 
 #Create directories, mount drives and move Dietpi-NAS folder.
-mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/BAK_Cloud
+mkdir /mnt/Cloud /mnt/Cloud/Data /mnt/Cloud/Data/Commands /mnt/Cloud/Data/Keys_SSH /mnt/Cloud/Data/Keys_VPN /mnt/BAK_Cloud
 mount /dev/sdb /mnt/Cloud
 mount /dev/sda1 /mnt/BAK_Cloud
 mv ../../../Dietpi-NAS /mnt/Cloud/Data
@@ -68,14 +68,33 @@ unset -v hash secret
 #Restart Dietpi-Dashboard.
 systemctl restart dietpi-dashboard
 
+#Go to default folder.
+cd default
+
 #Use /mnt/Cloud/Data/Commands/default.sh and reconfig folders permissions to default.
-mv default/default.sh /mnt/Cloud/Data/Commands
+mv default.sh /mnt/Cloud/Data/Commands
 
 #Use /mnt/Cloud/Data/Commands/default-user.sh to add some users.
-mv default/default-user.sh /mnt/Cloud/Data/Commands
+mv default-user.sh /mnt/Cloud/Data/Commands
 
 #Use /mnt/Cloud/Data/Commands/default-keys.sh to add some ssh keys.
-mv default/default-keys.sh /mnt/Cloud/Data/Commands
+mv default-keys.sh /mnt/Cloud/Data/Commands
+
+#Use /mnt/Cloud/Data/subdomain.sh to add some subdomain.
+mv subdomain.sh /mnt/Cloud/Data/Commands
+
+#Use /mnt/Cloud/Data/subdomain.sh to add some subpath.
+mv subpath.sh /mnt/Cloud/Data/Commands
+
+#Create iptables_custom.sh.
+echo -e "#! /bin/bash" >> iptables_custom.sh
+
+#Use /mnt/Cloud/Data/iptables_custom.sh to add iptables.
+mv iptables_custom.sh /mnt/Cloud/Data/Commands
+
+#Create crontab to custom iptables.
+crontab ../crontab
+rm ../crontab
 
 #Install Access Control List.
 apt install acl -y
@@ -90,7 +109,7 @@ cd /mnt
 rm -rf ftp_client nfs_client samba
 
 #Create default directories.
-mkdir Cloud/Data/Commands Cloud/Data/Keys_SSH Data/Keys_VPN Data/Docker Cloud/Data/Docker/flaresolver Cloud/Data/Docker/immich-app Cloud/Data/Jellyfin Cloud/Public Cloud/Public/Downloads Cloud/Users
+mkdir Cloud/Data/Docker Cloud/Data/Docker/flaresolver Cloud/Data/Docker/immich-app Cloud/Data/Jellyfin Cloud/Public Cloud/Public/Downloads Cloud/Users
 
 #Set Cloud default permissions.
 setfacl -R -b Cloud

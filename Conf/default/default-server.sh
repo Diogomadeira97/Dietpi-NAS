@@ -8,16 +8,24 @@ apt install python3-certbot-nginx python3-certbot-dns-cloudflare -y
 
 #Go to Nginx Folder and create the files that are still missing.
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx
+
+#Create Nginx config to Domain.
 echo -e "server{\n	listen 80 default_server;\n	listen [::]:80 default_server;\n\n	listen 443 default_server;\n	listen [::]:443 default_server;\n	ssl_reject_handshake on;\n	server_name _;\n	return 444	\n}\n\n" >> $1
 echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name $1$2;\n	root /var/www/$1$2;\n\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n}" >> $1
+
+#Edit index.html of Domain.
 echo -e        '<title>'"$1"'</title>' >> index.html
 echo -e index_temp.html >> index.html
+
+#Create manifest.json to Domain.
 echo -e '{"name":"'"$1"'","short_name":"'"$1"'","start_url":"../","display":"standalone","background_color":"#ffffff","lang":"en","scope":"../","description":"'"$1"'","theme_color":"#3367D6","icons":[{"src":"./icons/logo.svg","type":"image/svg"}]}' >> manifest.json
+
+#Edit config.yml of Domain.
 echo -e '# Homepage configuration\ntitle: "'"$1"'"' >> config.yml
 echo -e config_temp.yml >> config.yml
+
+#Create Cloudlfare token file.
 echo -e "#Cloudflare API token used by Certbot\ndns_cloudflare_api_token = $4" >> cloudflare.ini
-echo -e "#! /bin/bash" >> ../default/iptables_custom.sh
-chmod 700 ../default/iptables_custom.sh
 
 #Add Cloudflare token
 mv cloudflare.ini /etc/letsencrypt
@@ -41,12 +49,16 @@ cp homer-theme-main/assets/wallpaper-light.jpeg /var/www/homer/assets/wallpaper-
 cp -R homer-theme-main/assets/fonts /var/www/homer/assets/
 rm -R homer-theme-main
 
-#Move Homer to Domain folder.
+#Go to www folder.
 cd /var/www/
 rm index.nginx-debian.html
+
+#Create Domain folder with right owner and permissions.
 mkdir $1
 chown root:root $1
 chmod 755 $1
+
+#Move Homer to Domain folder.
 mv homer/* $1
 rm -rf homer
 
@@ -80,19 +92,6 @@ chmod 544 $1
 cd ../sites-enabled
 rm default
 ln -s /etc/nginx/sites-available/$1 .
-
-#Move Scripts to /mnt/Cloud/Data.
-cd /mnt/Cloud/Data/Dietpi-NAS/Conf/default
-#Use /mnt/Cloud/Data/subdomain.sh to add some subdomain.
-mv subdomain.sh /mnt/Cloud/Data/Commands
-#Use /mnt/Cloud/Data/subdomain.sh to add some subpath.
-mv subpath.sh /mnt/Cloud/Data/Commands
-#Use /mnt/Cloud/Data/iptables_custom.sh to add iptables.
-mv iptables_custom.sh /mnt/Cloud/Data/Commands
-
-#Create crontab to custom iptables.
-crontab ../crontab
-rm ../crontab
 
 #Add Services with default configs.
 cd /mnt/Cloud/Data/Commands
