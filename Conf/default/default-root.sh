@@ -47,39 +47,33 @@ chmod 600 /etc/sudoers
 mv dietpi.conf /etc/ssh/sshd_config.d
 chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
 
-#Change terminal user of Dietpi-Dashboard to admin-nas.
-mv config.toml /opt/dietpi-dashboard/
-chmod 644 /opt/dietpi-dashboard/config.toml
-
 #Create default Samba share folders.
 mv Samba/smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
 
-#Use /mnt/Cloud/Data/default.sh and reconfig folders permissions to default.
-mv default/default.sh /mnt/Cloud/Data
-chown admin-nas:root /mnt/Cloud/Data/default.sh
-chmod 750 /mnt/Cloud/Data/default.sh
-
-#Use /mnt/Cloud/Data/default-user.sh to add some users.
-mv default/default-user.sh /mnt/Cloud/Data
-chown admin-nas:root /mnt/Cloud/Data/default-user.sh
-chmod 750 /mnt/Cloud/Data/default-user.sh
-
-#Use /mnt/Cloud/Data/default-keys.sh to add some ssh keys.
-mv default/default-keys.sh /mnt/Cloud/Data
-chown admin-nas:root /mnt/Cloud/Data/default-Keys.sh
-chmod 750 /mnt/Cloud/Data/default-keys.sh
+#Change terminal user of Dietpi-Dashboard to admin-nas.
+mv config.toml /opt/dietpi-dashboard/
+chmod 644 /opt/dietpi-dashboard/config.toml
 
 #Change Dietpi-Dashboard password.
 hash=$(echo -n "$(echo "$6")" | sha512sum | mawk '{print $1}')
 secret=$(openssl rand -hex 32)
-G_CONFIG_INJECT 'pass[[:blank:]]' 'pass = true' /opt/dietpi-dashboard/config.toml
-GCI_PASSWORD=1 G_CONFIG_INJECT 'hash[[:blank:]]' "hash = \"$hash\"" /opt/dietpi-dashboard/config.toml
-GCI_PASSWORD=1 G_CONFIG_INJECT 'secret[[:blank:]]' "secret = \"$secret\"" /opt/dietpi-dashboard/config.toml
+echo -e "pass = true" >> /opt/dietpi-dashboard/config.toml
+echo -e "hash="$hash"" >> /opt/dietpi-dashboard/config.toml
+echo -e "hash="$secret"" >> /opt/dietpi-dashboard/config.toml
 unset -v hash secret
 
 #Restart Dietpi-Dashboard.
 systemctl restart dietpi-dashboard
+
+#Use /mnt/Cloud/Data/Commands/default.sh and reconfig folders permissions to default.
+mv default/default.sh /mnt/Cloud/Data/Commands
+
+#Use /mnt/Cloud/Data/Commands/default-user.sh to add some users.
+mv default/default-user.sh /mnt/Cloud/Data/Commands
+
+#Use /mnt/Cloud/Data/Commands/default-keys.sh to add some ssh keys.
+mv default/default-keys.sh /mnt/Cloud/Data/Commands
 
 #Install Access Control List.
 apt install acl -y
@@ -95,7 +89,7 @@ rm -rf ftp_client nfs_client samba
 
 #Go to Cloud and create the default directories.
 cd Cloud
-mkdir Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
+mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
 
 #Set Cloud default permissions.
 setfacl -R -b Cloud
@@ -147,3 +141,5 @@ echo -e "DB_PASSWORD=$7" >> .env
 
 #Run Immich on Docker.
 docker compose up -d
+
+cd /mnt/Cloud/Data/Commands

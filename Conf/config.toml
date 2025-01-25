@@ -13,17 +13,6 @@
 #cert = "/path/to/cert"
 #key = "/path/to/key"
 
-# Password protection
-# - Default: false
-pass = true
-# To get hash: "echo -n '<PASSWORD>' | sha512sum"
-hash = "4f3d96b6c278de0daac79b9c269d63f7a8b4b7d20f84f08c49f884ac76797fa0700c0dc52a6162833938c5bda18802ada06057d08df5a0f89e96da805291e102"
-# To get random secret: "openssl rand -hex 32"
-secret = "4a10191ab4c441e42608117dfda948b637e8eb071dea82ccbe459f1e1dd5bc1c"
-# Token expiry time in seconds
-# - Default: 3600
-#expiry = 3600
-
 # Other nodes viewable on frontend page
 # - Default: []
 # Please insert the IP addresses/domains and ports of these nodes
@@ -44,3 +33,11 @@ terminal_user = "admin-nas"
 # - Options: fahrenheit, celsius
 # - Default: "celsius"
 #temp_unit = "celsius"
+
+# Password protection
+# - Default: false
+# Token expiry time in seconds
+# - Default: 3600
+#expiry = 3600
+# To get hash: "echo -n '<PASSWORD>' | sha512sum"
+# To get random secret: "openssl rand -hex 32"

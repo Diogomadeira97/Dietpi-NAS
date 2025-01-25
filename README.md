@@ -106,37 +106,37 @@ In addition to security, another fundamental objective is to be an environment w
 
 • [Immich](https://immich.app/).
 
-Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data:
+Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data/Commands:
 
 • [default.sh](Conf/default/default.sh).
 
 > Reconfigure folders to default permissions and default owners.
 
-	bash /mnt/Cloud/Data/default.sh
+	bash /mnt/Cloud/Data/Commands/default.sh
 
 • [default-user.sh](Conf/default/default-user.sh).
 
 > Create Users with the default configuration to folders, permissions, groups, and Samba Share.
 
-	bash /mnt/Cloud/Data/default-user.sh
+	bash /mnt/Cloud/Data/Commands/default-user.sh
 
 • [default-Keys.sh](Conf/default/default-Keys.sh).
 
 > Create SSH Private keys to multiple devices (Need root login).
 
-	bash /mnt/Cloud/Data/default-Keys.sh
+	bash /mnt/Cloud/Data/Commands/default-Keys.sh
 
 • [subdomain.sh](Conf/default/subdomain.sh).
 
 > Create subdomain to a service in Nginx and Homer.
 
-	bash /mnt/Cloud/Data/subdomain.sh
+	bash /mnt/Cloud/Data/Commands/subdomain.sh
 
 • [subpath.sh](Conf/default/subpath.sh).
 
 > Create subpath to a service in Nginx and Homer.
 
-	bash /mnt/Cloud/Data/subpath.sh
+	bash /mnt/Cloud/Data/Commands/subpath.sh
 
 ## Notes:
 

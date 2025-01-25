@@ -46,7 +46,8 @@ bash default-root.sh $SERVERNAME $ADMINPW $GUESTPW $ADMINSMBPW $GUESTSMBPW $DIET
 bash default-user.sh $SERVERNAME $USER $USERPW $USERSMBPW ... $USERx $USERPWx $USERSMBPWx
 
 #Add SSH_Keys and VPN_Keys to Devices.
-#Can easily export with Dietpi-Dashboard.
+#Can easily export with Dietpi-Dashboard or Samba.
+#EDIT!!!
 bash default-keys.sh $SERVERNAME $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.
