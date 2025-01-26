@@ -14,7 +14,7 @@ do
     sudo ssh-keygen -f $a
 
     #Create a Device Wireguard Key.
-    sudo pivpn add $a
+    sudo pivpn add -n $a
 
     #Copy Device SSH Key to default user.
     sudo ssh-copy-id -i $a.pub admin-nas@$1

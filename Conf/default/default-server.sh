@@ -15,20 +15,21 @@ echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $1$2;\n	return 301
 
 #Edit index.html of Domain.
 echo -e        '<title>'"$1"'</title>' >> index.html
-echo -e index_temp.html >> index.html
+cat index_temp.html >> index.html
 
 #Create manifest.json to Domain.
 echo -e '{"name":"'"$1"'","short_name":"'"$1"'","start_url":"../","display":"standalone","background_color":"#ffffff","lang":"en","scope":"../","description":"'"$1"'","theme_color":"#3367D6","icons":[{"src":"./icons/logo.svg","type":"image/svg"}]}' >> manifest.json
 
 #Edit config.yml of Domain.
 echo -e '# Homepage configuration\ntitle: "'"$1"'"' >> config.yml
-echo -e config_temp.yml >> config.yml
+cat config_temp.yml >> config.yml
 
 #Create Cloudlfare token file.
 echo -e "#Cloudflare API token used by Certbot\ndns_cloudflare_api_token = $4" >> cloudflare.ini
 
 #Add Cloudflare token
 mv cloudflare.ini /etc/letsencrypt
+chown root:root /etc/letsencrypt/cloudflare.ini
 chmod 600 /etc/letsencrypt/cloudflare.ini
 
 #Change default files permissions.
@@ -36,7 +37,7 @@ chown root:root ./*
 chmod 644 ./*
 
 #Create SSL Keys.
-certbot certonly --dns-cloudflare --dns-cloudflare-credentials cloudflare.ini -d *.$1$2 -d $1$2
+certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d *.$1$2 -d $1$2
 
 #Install Homer theme of Walkx Code.
 cd /tmp
@@ -115,7 +116,7 @@ echo -e '      - name: "Kavita"\n        logo: "assets/icons/kavita.svg"\n      
 #Immich.
 bash subdomain.sh $1 $2 immich 2283 $3
 
-echo -e '      - name: "Immich"        logo: "assets/icons/immich.svg"\n        subtitle: "Galeria de Mídias."\n        url: "https://immich.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
+echo -e '      - name: "Immich"\n        logo: "assets/icons/immich.svg"\n        subtitle: "Galeria de Mídias."\n        url: "https://immich.'"$1$2"'"\n        target: "_blank"\n\n' >> /var/www/$1/assets/config.yml
 
 #Downloads section.
 echo -e '  - name: "Downloads"\n    icon: "fa-solid fa-download"\n   items:\n\n' >> /var/www/$1/assets/config.yml
