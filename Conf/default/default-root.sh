@@ -58,11 +58,6 @@ cd /mnt/Cloud/Data/Dietpi-NAS/Conf
 mv sudoers /etc
 chmod 600 /etc/sudoers
 
-#Turn off root and password login.
-echo -e "# Added by DietPi:\nPasswordAuthentication no\nPermitRootLogin no" >> dietpi.conf
-mv dietpi.conf /etc/ssh/sshd_config.d
-chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
-
 #Create default Samba share folders.
 mv Samba/smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf

@@ -36,8 +36,20 @@ chmod 600 /etc/letsencrypt/cloudflare.ini
 chown root:root ./*
 chmod 644 ./*
 
+#Authorize password authentication.
+sudo echo -e "# Added by DietPi:\nPasswordAuthentication yes\nPermitRootLogin no" >> dietpi.conf
+sudo mv dietpi.conf /etc/ssh/sshd_config.d
+sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
+sudo service sshd restart
+
 #Create SSL Keys.
 certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d *.$1$2 -d $1$2
+
+#Deny password authentication.
+sudo echo -e "# Added by DietPi:\nPasswordAuthentication no\nPermitRootLogin no" >> dietpi.conf
+sudo mv dietpi.conf /etc/ssh/sshd_config.d
+sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
+sudo service sshd restart
 
 #Install Homer theme of Walkx Code.
 cd /tmp
