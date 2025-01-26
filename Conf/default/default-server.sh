@@ -144,7 +144,7 @@ echo -e '      - name: "Readarr"\n        logo: "assets/icons/readarr.svg"\n    
 #Prowlarr.
 bash subdomain.sh $1 $2 prowlarr 9696 $3
 
-echo -e '      - name: "Prowlarr"\n        logo: "assets/icons/prowlarr.svg"\n        subtitle: "Rastreador de indexadores."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+echo -e '      - name: "Prowlarr"\n        logo: "assets/icons/prowlarr.svg"\n        subtitle: "Rastreador de indexadores."\n        url: "https://prowlarr.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
 #Bazarr.
 bash subdomain.sh $1 $2 bazarr 6767 $3
