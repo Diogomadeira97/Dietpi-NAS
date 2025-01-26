@@ -17,7 +17,7 @@ do
     sudo pivpn add $a
 
     #Copy Device SSH Key to default user.
-    sudo ssh-copy-id -i $i.pub admin-nas@$a
+    sudo ssh-copy-id -i $a.pub admin-nas@$1
 
     #Change Device SSH key permissions.
     sudo chmod 777 $a
