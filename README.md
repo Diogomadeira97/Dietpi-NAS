@@ -124,7 +124,7 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 • [default-Keys.sh](Conf/default/default-Keys.sh).
 
-> Create SSH Private keys to multiple devices (Need root login).
+> Create SSH Private keys to multiple devices.
 
 	bash /mnt/Cloud/Data/Commands/default-Keys.sh
 
