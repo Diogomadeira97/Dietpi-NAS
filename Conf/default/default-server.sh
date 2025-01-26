@@ -39,17 +39,6 @@ chmod 644 ./*
 #Create SSL Keys.
 certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d *.$1$2 -d $1$2
 
-#Install Homer theme of Walkx Code.
-cd /tmp
-curl -fLO 'https://github.com/walkxcode/homer-theme/archive/main.tar.gz'
-tar xf main.tar.gz
-rm main.tar.gz
-cp homer-theme-main/assets/custom.css /var/www/homer/assets/custom.css
-cp homer-theme-main/assets/wallpaper.jpeg /var/www/homer/assets/wallpaper.jpeg
-cp homer-theme-main/assets/wallpaper-light.jpeg /var/www/homer/assets/wallpaper-light.jpeg
-cp -R homer-theme-main/assets/fonts /var/www/homer/assets/
-rm -R homer-theme-main
-
 #Go to www folder.
 cd /var/www/
 rm index.nginx-debian.html
@@ -82,6 +71,17 @@ rm pwa-512x512.png
 rm pwa-192x192.png
 rm README.md
 mv mv /mnt/Cloud/Data/Dietpi-NAS/Icons/* .
+
+#Install Homer theme of Walkx Code.
+cd /tmp
+curl -fLO 'https://github.com/walkxcode/homer-theme/archive/main.tar.gz'
+tar xf main.tar.gz
+rm main.tar.gz
+cp homer-theme-main/assets/custom.css /var/www/homer/assets/custom.css
+cp homer-theme-main/assets/wallpaper.jpeg /var/www/homer/assets/wallpaper.jpeg
+cp homer-theme-main/assets/wallpaper-light.jpeg /var/www/homer/assets/wallpaper-light.jpeg
+cp -R homer-theme-main/assets/fonts /var/www/homer/assets/
+rm -R homer-theme-main
 
 #Change the default site available.
 cd /etc/nginx/sites-available
