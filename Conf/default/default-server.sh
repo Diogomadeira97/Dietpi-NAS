@@ -166,7 +166,7 @@ bash subdomain.sh $1 $2 adguard 8083 $3
 echo -e '      - name: "AdGuard"\n        logo: "assets/icons/adguardhome.svg"\n        subtitle: "Servidor DNS."\n        url: "https://adguard.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
 #Dietpi-Dashboard
-echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-logo.svg"\n        subtitle: "Gestão do servidor."\n        url: "'"$1$2"':5252"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-logo.svg"\n        subtitle: "Gestão do servidor."\n        url: "http://'"$1$2"':5252"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
 #Reload Nginx Server
 nginx -s reload
