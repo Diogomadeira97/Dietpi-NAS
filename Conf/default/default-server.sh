@@ -170,8 +170,3 @@ echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-lo
 
 #Reload Nginx Server
 nginx -s reload
-
-#Deny password authentication.
-sudo echo -e "# Added by DietPi:\nPasswordAuthentication no\nPermitRootLogin no" >> dietpi.conf
-sudo mv dietpi.conf /etc/ssh/sshd_config.d
-sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
