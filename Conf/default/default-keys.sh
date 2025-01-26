@@ -1,9 +1,11 @@
 #! /bin/bash
 
 #Authorize password authentication.
-echo -e "# Added by DietPi:\nPasswordAuthentication yes\nPermitRootLogin no" >> dietpi.conf
-mv dietpi.conf /etc/ssh/sshd_config.d
-chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
+sudo echo -e "# Added by DietPi:\nPasswordAuthentication yes\nPermitRootLogin no" >> dietpi.conf
+sudo mv dietpi.conf /etc/ssh/sshd_config.d
+sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
+sudo service sshd restart
+
 
 #Go to .ssh folder to create SSH Keys.
 cd ~/.ssh
@@ -33,9 +35,10 @@ do
 done
 
 #Deny password authentication.
-echo -e "# Added by DietPi:\nPasswordAuthentication no\nPermitRootLogin no" >> dietpi.conf
-mv dietpi.conf /etc/ssh/sshd_config.d
-chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
+sudo echo -e "# Added by DietPi:\nPasswordAuthentication no\nPermitRootLogin no" >> dietpi.conf
+sudo mv dietpi.conf /etc/ssh/sshd_config.d
+sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
+sudo service sshd restart
 
 #Move Device Wireguard Key to /mnt/Cloud/Keys_VPN and easily export with Dietpi-Dashboard or Samba.
 sudo mv /home/admin-nas/configs/* /mnt/Cloud/Data/Keys_VPN
