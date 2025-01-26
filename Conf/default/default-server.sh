@@ -106,7 +106,7 @@ echo -e '   - name: "Mídias"\n     icon: "fa-solid fa-photo-film"\n     items:'
 #Jellyfin.
 bash subdomain.sh $1 $2 jellyfin 8097 $3
 
-echo -e '      - name: "Jellyfin"\n        logo: "/var/www/alga-nas/assets/icons/jellyfin.svg"\n        subtitle: "Reprodutor de filmes e séries."\n        url: "https://jellyfin.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+echo -e '      - name: "Jellyfin"\n        logo: "assets/icons/jellyfin.svg"\n        subtitle: "Reprodutor de filmes e séries."\n        url: "https://jellyfin.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
 #Kavita.
 bash subdomain.sh $1 $2 kavita 2036 $3
