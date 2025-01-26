@@ -51,7 +51,7 @@ bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $USER $USERPW $USERSMB
 bash /mnt/Cloud/Data/Commands/default-keys.sh $SERVERNAME $ADMINPW $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS

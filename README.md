@@ -313,13 +313,12 @@ Do the first login and follow the instructions.
 
 #### Nginx - Certbot
 
-• 
+• Enter email address (used for urgent renewal and security notices).
 
-• 
+• Agree with the  Terms of Service.
 
-• 
-
-• 
+• Deny  to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
 
 
 ### Services Configuration:

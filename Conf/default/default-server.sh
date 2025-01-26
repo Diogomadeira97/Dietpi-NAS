@@ -14,7 +14,7 @@ echo -e "server{\n	listen 80 default_server;\n	listen [::]:80 default_server;\n\
 echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name $1$2;\n	root /var/www/$1;\n\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n}" >> $1
 
 #Edit index.html of Domain.
-echo -e        '<title>'"$1"'</title>' >> index.html
+echo -e '\n       <title>'"$5"'</title>' >> index.html
 cat index_temp.html >> index.html
 
 #Create manifest.json to Domain.
@@ -77,11 +77,11 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/manifest.json .
 
 #Go to icons folder and set the default files.
 cd icons
-rm apple-touch-icon.png
-rm pwa-512x512.png
-rm pwa-192x192.png
-rm README.md
-mv mv /mnt/Cloud/Data/Dietpi-NAS/Icons/* .
+rm ./*
+mv /mnt/Cloud/Data/Dietpi-NAS/Icons/* .
+chown root:root ./*
+chmod 644 ./*
+
 
 #Change the default site available.
 cd /etc/nginx/sites-available
@@ -106,7 +106,7 @@ echo -e '   - name: "Mídias"\n     icon: "fa-solid fa-photo-film"\n     items:'
 #Jellyfin.
 bash subdomain.sh $1 $2 jellyfin 8097 $3
 
-echo -e '      - name: "Jellyfin"\n        logo: "assets/icons/jellyfin.svg"\n        subtitle: "Reprodutor de filmes e séries."\n        url: "https://jellyfin.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+echo -e '      - name: "Jellyfin"\n        logo: "/var/www/alga-nas/assets/icons/jellyfin.svg"\n        subtitle: "Reprodutor de filmes e séries."\n        url: "https://jellyfin.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
 #Kavita.
 bash subdomain.sh $1 $2 kavita 2036 $3
