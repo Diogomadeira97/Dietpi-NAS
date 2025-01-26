@@ -48,7 +48,7 @@ bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $USER $USERPW $USERSMB
 #Add SSH_Keys and VPN_Keys to Devices.
 #Can easily export with Dietpi-Dashboard or Samba.
 #EDIT!!!
-bash /mnt/Cloud/Data/Commands/default-keys.sh $SERVERNAME $DEVICE ... $DEVICEx
+bash /mnt/Cloud/Data/Commands/default-keys.sh $SERVERNAME $ADMINPW $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN
