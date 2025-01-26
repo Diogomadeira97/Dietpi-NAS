@@ -195,7 +195,15 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • Create a port <a name="forwarding">forwarding</a> (UDP), using the IPv4 and IPv6 of the server, with the port you chose (default is 51820).
 
-• If you are going to make the [DDNS](#DDNS) recommendation, create a domain.
+• If the [DDNS](#DDNS) recommendation is choose, create a domain to Public IPv4.
+
+• Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
+
+• On Cloudflare create a token and put IPv4 and IPv6 to filter. If necessary, before [Commands](#Commands), use this command to check eth0 IPs:
+
+	ifconfig
+
+• Save the token and put on [default-variables.sh](Conf/default/default-variables.sh).
 
 
 ## Installation:
@@ -302,11 +310,16 @@ Do the first login and follow the instructions.
 
 • If the [DDNS](#DDNS) recommendation is being made, chose DDNS and put your domain.
 
-• Download wireguard on your device and use the QR code or the key to do the connection.
 
-• Enable VPN permissions on device.
+#### Nginx - Certbot
 
-• Test if ipv6 and ipv4 is ok.
+• 
+
+• 
+
+• 
+
+• 
 
 
 ### Services Configuration:
@@ -327,6 +340,8 @@ Do the first login and follow the instructions.
 • On General Settings enable AdGuard browsing security service.
 
 • Set DNS Blocklists and Custom filtering rules on the web UI.
+
+• Rewrite DNS to your domain and wildcard, pointing to your server private ip.
 
 • Set DNS on router and devices to the ip of the server.
 
@@ -380,21 +395,18 @@ Do the first login and follow the instructions.
 • Create Users and Libraries.
 
 
-#### Nginx - Certbot
-
-• Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
-
-• On AdGuarde rewrite DNS to your domain and wildcard, pointing to your server private ip.
-
-• On Cloudflare create a token and put IPv4 and IPv6 to filter.
-
-• Put the token on cloudlfare.ini.
-
-
 ### Devices Configuration:
 
 
 #### On Windows:
+
+• Export SSH Key and VPN Key with Dietpi-Dashboard or Samba.
+
+• Download wireguard on your device and use the private key to do the connection.
+
+• Enable VPN permissions on device.
+
+• Test if ipv6 and ipv4 is ok.
 
 • Create a private key on PuTTYgen (.ppk extension), after delete the Keys from docs.
 
@@ -403,7 +415,19 @@ Do the first login and follow the instructions.
 • On putty create a session with the private key.
 
 
-#### On termux:
+#### On Android:
+
+• Download wireguard on your device and use the QR code to do the connection.
+
+	pivpn -qr /mnt/Cloud/Data/Keys_VPN/<DEVICE>
+
+• Enable VPN permissions on device.
+
+• Test if ipv6 and ipv4 is ok.
+
+• Export SSH Key with Dietpi-Dashboard or Samba.
+
+• Download Termux and do this commands:
 
 	pkg install openssh
 
