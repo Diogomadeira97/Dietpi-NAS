@@ -48,7 +48,7 @@ bash default-root.sh $SERVERNAME $ADMINPW $GUESTPW $ADMINSMBPW $GUESTSMBPW $DIET
 #EDIT!!!
 bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $USER $USERPW $USERSMBPW ... $USERx $USERPWx $USERSMBPWx
 
-#Add host to known_hosts.
+#Add Domain to known_hosts.
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 
 #Add SSH_Keys and VPN_Keys to Devices.
