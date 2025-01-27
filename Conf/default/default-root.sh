@@ -108,7 +108,7 @@ crontab crontab
 rm crontab
 
 #Install Access Control List.
-apt install acl -y
+apt install acl sshpass -y
 
 #This code is to fix the reboot error message.
 systemctl unmask systemd-logind

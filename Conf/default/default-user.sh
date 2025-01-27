@@ -57,7 +57,7 @@ do
 
     #Add Samba share folders to the user.
     sudo cat /etc/samba/smb.conf >> smb.conf
-    sudo echo -e "\n\n#User $a\n\n[Mídias]\n	comment = Mídias $a\n	path = /mnt/Cloud/Users/$a/Midias\n	valid users = $a\n\n[Docs]\n	comment = Docs $a\n	path = /mnt/Cloud/Users/$a/Docs\n	valid users = $a" >> smb.conf
+    sudo echo -e "\n\n#User $a\n\n[$a]\n	comment = $a\n	path = /mnt/Cloud/Users/$a\n	valid users = $a" >> smb.conf
     sudo chown root:root smb.conf
     sudo chmod 644 smb.conf
     sudo mv smb.conf /etc/samba/smb.conf
