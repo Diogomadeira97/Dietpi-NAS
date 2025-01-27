@@ -35,8 +35,11 @@ DOMAIN=
 TPDOMAIN=
 #IPv4 static IP.
 IP=
-#Create this token once you have a domain pointing to Clouflare
+#Create this token once you have a domain pointing to Clouflare.
 CLOUDFLARETOKEN=''
+#E-mail to certbot expiration.
+EMAIL=''
+
 
 #Add Default configs.
 bash default-root.sh $SERVERNAME $ADMINPW $GUESTPW $ADMINSMBPW $GUESTSMBPW $DIETPIPW
@@ -51,7 +54,7 @@ bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $USER $USERPW $USERSMB
 bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMINPW $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS
