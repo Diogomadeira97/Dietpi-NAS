@@ -10,7 +10,7 @@ sudo service sshd restart
 cd ~/.ssh
 
 #Do it while have a Device.
-for (( i=3; i<=$#; i++)); 
+for (( i=4; i<=$#; i++)); 
 do
 
     #Device.
