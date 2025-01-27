@@ -20,7 +20,7 @@ do
     sudo ssh-keygen -f $a -P ""
 
     #Copy the Device SSH key to admin-nas user.
-    sudo sshpass -p "$(echo "$2")" ssh-copy-id -i $a.pub admin-nas@$1
+    sudo sshpass -p "$(echo "$3")" ssh-copy-id -i $a.pub admin-nas@$1$2
 
     #Change Device SSH key permissions.
     sudo chmod 777 $a
