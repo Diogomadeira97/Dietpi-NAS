@@ -65,6 +65,8 @@ In addition to security, another fundamental objective is to be an environment w
 
 • [Immich](https://immich.app/).
 
+• [Home assistant](https://dietpi.com/docs/software/home_automation/#home-assistant).
+
 Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data/Commands:
 
 • [default.sh](Conf/default/default.sh).
