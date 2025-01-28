@@ -71,8 +71,8 @@ adduser --quiet --disabled-password --shell /bin/bash --home /home/$GUEST --geco
 echo "$ADMIN:"$(echo "$ADMINPW")"" | chpasswd
 echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 
-#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Home_Assistant Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
-/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 157 44 144 145 151 180 203 178 212
+#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Home_Assistant 157 Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
+/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 44 144 145 151 180 203 178 212
 
 #Add default users Samba password.
 (echo "$(echo "$ADMINSMBPW")"; echo "$(echo "$ADMINSMBPW")") | smbpasswd -a -s $ADMIN
