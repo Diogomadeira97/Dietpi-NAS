@@ -23,6 +23,8 @@ echo -e '{"name":"'"$1"'","short_name":"'"$1"'","start_url":"../","display":"sta
 #Edit config.yml of Domain.
 echo -e '# Homepage configuration\ntitle: "'"$1"'"' >> config.yml
 cat config_temp.yml >> config.yml
+mv config.yml /opt/dietpi-dashboard/config.toml
+chmod 644 /opt/dietpi-dashboard/config.toml
 
 #Create Cloudlfare token file.
 echo -e "#Cloudflare API token used by Certbot\ndns_cloudflare_api_token = $4" >> cloudflare.ini
