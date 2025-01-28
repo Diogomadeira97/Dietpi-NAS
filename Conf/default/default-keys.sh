@@ -14,7 +14,7 @@ for (( i=1; i<=$#; i++));
 do
 
     #Device.
-    a=${$5[i]}
+    a=${$5[$i]}
 
     #Generate a Device SSH key.
     sudo ssh-keygen -f $a -P ""

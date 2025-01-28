@@ -8,8 +8,8 @@ do
 
     #User.
     echo -e "#User $1.\n" >> PASSWD_$1.txt
-    USER=${$2[i]}
-    echo -e "USER="${!i} >> PASSWD_$1.txt
+    USER=${$2[$i]}
+    echo -e "USER=$USER" >> PASSWD_$1.txt
     USERPW=$(passwd)
     echo -e "$(echo "$USERPW")" >> PASSWD_$1.txt
     USERSMBPW=$(passwd)
