@@ -3,7 +3,7 @@
 passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
 #Do it while have a User.
-for (( i=2; i<=$#; i++)); 
+for (( i=2; i<=$#; i++));
 do
 
     #User.

@@ -1,46 +1,47 @@
 #! /bin/bash
 
+passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
+
 #Default variables.
+echo -e "#Default variables." >> PASSWD.txt
 SERVERNAME=$1
-echo -e "SERVERNAME=$1" >> PASSWD.txt
-DIETPIPW="$(echo '')"
-echo -e "" >> PASSWD.txt
-DBIMMICHPW="$(echo '')"
-echo -e "" >> PASSWD.txt
+echo -e "SERVERNAME=$SERVERNAME" >> PASSWD.txt
+DIETPIPW=$(passwd)
+echo -e "DIETPIPW=$DIETPIPW" >> PASSWD.txt
+DBIMMICHPW=$(passwd)
+echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD.txt
 
 #Default Users.
+echo -e "#Default Users." >> PASSWD.txt
 ADMIN=$2
-echo -e "$2" >> PASSWD.txt
-ADMINPW="$(echo '')"
-echo -e "" >> PASSWD.txt
-ADMINSMBPW="$(echo '')"
-echo -e "" >> PASSWD.txt
+echo -e "ADMIN=$ADMIN" >> PASSWD.txt
+ADMINPW=$(passwd)
+echo -e "ADMINPW=$ADMINPW" >> PASSWD.txt
+ADMINSMBPW=$(passwd)
+echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD.txt
 GUEST=$3
-echo -e "$3" >> PASSWD.txt
-GUESTPW="$(echo '')"
-echo -e "" >> PASSWD.txt
-GUESTSMBPW="$(echo '')"
-echo -e "" >> PASSWD.txt
+echo -e "GUEST=$GUEST" >> PASSWD.txt
+GUESTPW=$(passwd)
+echo -e "GUESTPW=$GUESTPW" >> PASSWD.txt
+GUESTSMBPW=$(passwd)
+echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD.txt
 
-#Domain name.
+#Default Server.
+echo -e "#Default Server." >> PASSWD.txt
 DOMAIN=$4
-echo -e "" >> PASSWD.txt
-#Examples: .com .pt .com.br
+echo -e "DOMAIN=$DOMAIN" >> PASSWD.txt
 TPDOMAIN=$5
-echo -e "" >> PASSWD.txt
-#IPv4 static IP.
+echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD.txt
 IP=$6
-echo -e "" >> PASSWD.txt
-#Create this token once you have a domain pointing to Clouflare.
-CLOUDFLARETOKEN="$(echo "$7")"
-echo -e "" >> PASSWD.txt
-#E-mail to certbot expiration.
+echo -e "IP=$IP" >> PASSWD.txt
+CLOUDFLARETOKEN=$7
+echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD.txt
 EMAIL=$8
-echo -e "" >> PASSWD.txt
+echo -e "EMAIL=$EMAIL" >> PASSWD.txt
 
 #Device variables.
 DEVICE=
-echo -e "" >> PASSWD.txt
+echo -e "DEVICE=$DEVICE" >> PASSWD.txt
 #Put the Number of Devices.
 #        .
 #        .
