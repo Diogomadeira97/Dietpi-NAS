@@ -1,49 +1,6 @@
 # Dietpi-NAS
 
 
-## Index:
-
-• [Description](#Description)
-
-• [Notes](#Notes)
-
-• [Requirements](#Requirements)
-
-• [Recommendations](#Recommendations)
-
-• [Tips](#Tips)
-
-• [Installation](#Installation)
-
-> • [First Steps](#First-Steps)
-
-> • [Commands](#Commands)
-
-• [Services Configuration](#Services-Configuration)
-
-> • [Dietpi-Dashboard](#Dietpi-Dashboar)
-
-> • [AdGuard Home](#AdGuard-Home)
-
-> • [Fail2Ban](#Fail2Ban)
-
-> • [Transmission and Arrs](#Transmission-and-Arrs)
-
-> • [Jellyfin and Kavita](#Jellyfin-and-Kavita)
-
-> • [Immich](#Immich)
-
-> • [PiVPN](#PiVPN)
-
-> • [Nginx - Certbot](#Nginx-Certbot)
-
-• [Devices Configuration](#Devices-Configuration)
-
-> • [On Windows](#On-Windows)
-
-> • [On Termux](#On-Termux)
-
-
 ## Description:
 
 Collection of scripts to perform a complete installation of a NAS-Server running Dietpi. The goal is to have a home lab that runs very lightly and very safely, so the focus of this configuration is on:
@@ -139,6 +96,49 @@ Last but not least, the installation was thought out to be practical, so that pe
 > Create subpath to a service in Nginx and Homer.
 
 	bash /mnt/Cloud/Data/Commands/subpath.sh
+
+
+## Index:
+
+• [Description](#Description)
+
+• [Notes](#Notes)
+
+• [Requirements](#Requirements)
+
+• [Recommendations](#Recommendations)
+
+• [Tips](#Tips)
+
+• [Installation](#Installation)
+
+> • [First Steps](#First-Steps)
+
+> • [Commands](#Commands)
+
+• [Services Configuration](#Services-Configuration)
+
+> • [Dietpi-Dashboard](#Dietpi-Dashboar)
+
+> • [AdGuard Home](#AdGuard-Home)
+
+> • [Fail2Ban](#Fail2Ban)
+
+> • [Transmission and Arrs](#Transmission-and-Arrs)
+
+> • [Jellyfin and Kavita](#Jellyfin-and-Kavita)
+
+> • [Immich](#Immich)
+
+> • [PiVPN](#PiVPN)
+
+> • [Nginx - Certbot](#Nginx-Certbot)
+
+• [Devices Configuration](#Devices-Configuration)
+
+> • [On Windows](#On-Windows)
+
+> • [On Termux](#On-Termux)
 
 
 ## Notes:
