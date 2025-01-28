@@ -212,14 +212,14 @@ echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA
 #Run Immich on Docker.
 docker compose up -d
 
-#Add Domain to known_hosts.
-ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
-
 #Add Nginx, Certbot and Homer default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
 
 #Add Users.
 bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $9
+
+#Add Domain to known_hosts.
+ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 
 #Add Devices.
 bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW $10
