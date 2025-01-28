@@ -14,6 +14,7 @@ do
     echo -e "$(echo "$USERPW")" >> PASSWD_$1.txt
     USERSMBPW=$(passwd)
     echo -e "$(echo "$USERSMBPW")" >> PASSWD_$1.txt
+    mv PASSWD_$1.txt /mnt/Cloud/Public
 
     #Add user.
     sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/$USER --gecos "User" "$USER"

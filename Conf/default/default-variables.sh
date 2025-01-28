@@ -3,41 +3,43 @@
 passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
 #Default variables.
-echo -e "#Default variables." >> PASSWD.txt
+echo -e "#Default variables." >> PASSWD_$1.txt
 SERVERNAME=$1
-echo -e "SERVERNAME=$SERVERNAME" >> PASSWD.txt
+echo -e "SERVERNAME=$SERVERNAME" >> PASSWD_$1.txt
 DIETPIPW=$(passwd)
-echo -e "DIETPIPW=$DIETPIPW" >> PASSWD.txt
+echo -e "DIETPIPW=$DIETPIPW" >> PASSWD_$1.txt
 DBIMMICHPW=$(passwd)
-echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD.txt
+echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD_$1.txt
 
 #Default Users.
-echo -e "#Default Users." >> PASSWD.txt
+echo -e "#Default Users." >> PASSWD_$1.txt
 ADMIN=$2
-echo -e "ADMIN=$ADMIN" >> PASSWD.txt
+echo -e "ADMIN=$ADMIN" >> PASSWD_$1.txt
 ADMINPW=$(passwd)
-echo -e "ADMINPW=$ADMINPW" >> PASSWD.txt
+echo -e "ADMINPW=$ADMINPW" >> PASSWD_$1.txt
 ADMINSMBPW=$(passwd)
-echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD.txt
+echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD_$1.txt
 GUEST=$3
-echo -e "GUEST=$GUEST" >> PASSWD.txt
+echo -e "GUEST=$GUEST" >> PASSWD_$1.txt
 GUESTPW=$(passwd)
-echo -e "GUESTPW=$GUESTPW" >> PASSWD.txt
+echo -e "GUESTPW=$GUESTPW" >> PASSWD_$1.txt
 GUESTSMBPW=$(passwd)
-echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD.txt
+echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD_$1.txt
 
 #Default Server.
-echo -e "#Default Server." >> PASSWD.txt
+echo -e "#Default Server." >> PASSWD_$1.txt
 DOMAIN=$4
-echo -e "DOMAIN=$DOMAIN" >> PASSWD.txt
+echo -e "DOMAIN=$DOMAIN" >> PASSWD_$1.txt
 TPDOMAIN=$5
-echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD.txt
+echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD_$1.txt
 IP=$6
-echo -e "IP=$IP" >> PASSWD.txt
+echo -e "IP=$IP" >> PASSWD_$1.txt
 CLOUDFLARETOKEN=$7
-echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD.txt
+echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$1.txt
 EMAIL=$8
-echo -e "EMAIL=$EMAIL" >> PASSWD.txt
+echo -e "EMAIL=$EMAIL" >> PASSWD_$1.txt
+
+mv PASSWD_$1.txt /mnt/Cloud/Public
 
 #Add Default configs.
 bash default-root.sh $SERVERNAME $ADMIN $ADMINPW $ADMINSMBPW $GUEST $GUESTPW $GUESTSMBPW $DIETPIPW $DBIMMICHPW

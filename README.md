@@ -245,7 +245,6 @@ Do the first login and follow the instructions.
     git clone https://github.com/Diogomadeira97/Dietpi-NAS
 	cd Dietpi-NAS/Conf/default
     chmod +x ./*
-	nano default-variables.sh
 
 	bash default-variables.sh <SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> <CLOUD_FLARETOKEN> <EMAIL>
 
