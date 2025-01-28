@@ -1,10 +1,16 @@
 #! /bin/bash
 
-for (( i=2; i<=$#; i = i + 3)); 
+#Do it while have a User.
+for (( i=2; i<=$#; i++)); 
 do
 
-    x=$(($i + 1))
-    y=$(($i + 2))
+    #User.
+    USER=${!i}
+    echo -e "USER="${!i} >> PASSWD_$1.txt
+    USERPW=
+    echo -e "$(echo "$USERPW")" >> PASSWD_$1.txt
+    USERSMBPW=
+    echo -e "$(echo "$USERSMBPW")" >> PASSWD_$1.txt
 
     #User.
     a=${!i}

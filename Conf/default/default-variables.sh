@@ -1,56 +1,55 @@
 #! /bin/bash
 
 #Default variables.
-SERVERNAME=
+SERVERNAME=$1
+echo -e "SERVERNAME=$1" >> PASSWD.txt
 DIETPIPW="$(echo '')"
+echo -e "" >> PASSWD.txt
 DBIMMICHPW="$(echo '')"
+echo -e "" >> PASSWD.txt
 
 #Default Users.
-ADMIN=
+ADMIN=$2
+echo -e "$2" >> PASSWD.txt
 ADMINPW="$(echo '')"
+echo -e "" >> PASSWD.txt
 ADMINSMBPW="$(echo '')"
-GUEST=
+echo -e "" >> PASSWD.txt
+GUEST=$3
+echo -e "$3" >> PASSWD.txt
 GUESTPW="$(echo '')"
+echo -e "" >> PASSWD.txt
 GUESTSMBPW="$(echo '')"
+echo -e "" >> PASSWD.txt
 
-#Users variables.
-USER=
-USERPW="$(echo '')"
-USERSMBPW="$(echo '')"
-#Put the Number of Users.
-#        .
-#        .
-#        .
-#USERx=
-#USERPWx=
-#USERSMBPWx=
+#Domain name.
+DOMAIN=$4
+echo -e "" >> PASSWD.txt
+#Examples: .com .pt .com.br
+TPDOMAIN=$5
+echo -e "" >> PASSWD.txt
+#IPv4 static IP.
+IP=$6
+echo -e "" >> PASSWD.txt
+#Create this token once you have a domain pointing to Clouflare.
+CLOUDFLARETOKEN="$(echo "$7")"
+echo -e "" >> PASSWD.txt
+#E-mail to certbot expiration.
+EMAIL=$8
+echo -e "" >> PASSWD.txt
 
 #Device variables.
 DEVICE=
+echo -e "" >> PASSWD.txt
 #Put the Number of Devices.
 #        .
 #        .
 #        .
 #DEVICEx=
 
-#Domain name.
-DOMAIN=
-#Examples: .com .pt .com.br
-TPDOMAIN=
-#IPv4 static IP.
-IP=
-#Create this token once you have a domain pointing to Clouflare.
-CLOUDFLARETOKEN=''
-#E-mail to certbot expiration.
-EMAIL=''
-
 
 #Add Default configs.
 bash default-root.sh $SERVERNAME $ADMIN $ADMINPW $ADMINSMBPW $GUEST $GUESTPW $GUESTSMBPW $DIETPIPW $DBIMMICHPW
-
-#Add users with default configs.
-#EDIT!!!
-bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $USER $USERPW $USERSMBPW ... $USERx $USERPWx $USERSMBPWx
 
 #Add Domain to known_hosts.
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
