@@ -150,7 +150,7 @@ setfacl -R -d -m o::--- Data
 #Turn admin the owner of Folder.
 chown -R $2:$1_Cloud Data/Commands
 
-#Turn debian-transmission the owner of Folder.
+#Turn jellyfin the owner of Folder.
 chown -R jellyfin:$1_Cloud Data/Jellyfin
 
 #Turn debian-transmission the owner of Public Downloads Folder.
