@@ -246,7 +246,7 @@ Do the first login and follow the instructions.
 	cd Dietpi-NAS/Conf/default
     chmod +x ./*
 
-	bash default-variables.sh <SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> <CLOUD_FLARETOKEN> <EMAIL> (<USER1> ... <USERx>) (<DEVICE1> ... <DEVICEx>)
+	bash default-install.sh <SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> <CLOUD_FLARETOKEN> <EMAIL> (<USER1> ... <USERx>) (<DEVICE1> ... <DEVICEx>)
 
 
 #### dietpi-config:
