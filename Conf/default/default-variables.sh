@@ -39,26 +39,11 @@ echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD.txt
 EMAIL=$8
 echo -e "EMAIL=$EMAIL" >> PASSWD.txt
 
-#Device variables.
-DEVICE=
-echo -e "DEVICE=$DEVICE" >> PASSWD.txt
-#Put the Number of Devices.
-#        .
-#        .
-#        .
-#DEVICEx=
-
-
 #Add Default configs.
 bash default-root.sh $SERVERNAME $ADMIN $ADMINPW $ADMINSMBPW $GUEST $GUESTPW $GUESTSMBPW $DIETPIPW $DBIMMICHPW
 
 #Add Domain to known_hosts.
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
-
-#Add SSH_Keys and VPN_Keys to Devices.
-#Can easily export with Dietpi-Dashboard or Samba.
-#EDIT!!!
-bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW $DEVICE ... $DEVICEx
 
 #Add Nginx, Certbot and Homer default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL

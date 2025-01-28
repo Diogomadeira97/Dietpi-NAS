@@ -99,76 +99,95 @@ ln -s /etc/nginx/sites-available/$1 .
 #Add Services with default configs.
 cd /mnt/Cloud/Data/Commands
 
+section(){
+    echo -e '   - name: "'$2'"\n     icon: "'$3'"\n     items:' >> /var/www/$1/assets/config.yml
+}
+
+item(domain=$1$2){
+    echo -e '      - name: "'${1^}'"\n        logo: "assets/icons/'$1'.svg"\n        subtitle: "'$2'"\n        url: "https://'$1'.'$domain'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+}
+
 #Start.
 echo -e 'services:' >> /var/www/$1/assets/config.yml
 
 #Mídias Section.
-echo -e '   - name: "Mídias"\n     icon: "fa-solid fa-photo-film"\n     items:' >> /var/www/$1/assets/config.yml
+bash $(section) $1 "Mídias" "fa-solid fa-photo-film"
 
 #Jellyfin.
-bash subdomain.sh $1 $2 jellyfin 8097 $3
+bash subdomain.sh $1 $2 "jellyfin" 8097 $3
 
-echo -e '      - name: "Jellyfin"\n        logo: "assets/icons/jellyfin.svg"\n        subtitle: "Reprodutor de filmes e séries."\n        url: "https://jellyfin.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "jellyfin" "Reprodutor de filmes e séries."
 
 #Kavita.
-bash subdomain.sh $1 $2 kavita 2036 $3
+bash subdomain.sh $1 $2 "kavita" 2036 $3
 
-echo -e '      - name: "Kavita"\n        logo: "assets/icons/kavita.svg"\n        subtitle: "Leitor de E-Book."\n        url: "https://kavita.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "kavita" "Leitor de E-Book."
 
 #Immich.
-bash subdomain.sh $1 $2 immich 2283 $3
+bash subdomain.sh $1 $2 "immich" 2283 $3
 
-echo -e '      - name: "Immich"\n        logo: "assets/icons/immich.svg"\n        subtitle: "Galeria de Mídias."\n        url: "https://immich.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "immich" "Galeria de Mídias."
 
 #Downloads section.
-echo -e '   - name: "Downloads"\n     icon: "fa-solid fa-download"\n     items:' >> /var/www/$1/assets/config.yml
+bash $(section) $1 "Downloads" "fa-solid fa-download"
 
 #Transmission.
-bash subdomain.sh $1 $2 transmission 9091 $3
+bash subdomain.sh $1 $2 "transmission" 9091 $3
 
-echo -e '      - name: "Transmission"\n        logo: "assets/icons/transmission.svg"\n        subtitle: "Gestor de Downloads."\n        url: "https://transmission.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "transmission" "Gestor de Downloads."
 
 #Radarr.
-bash subdomain.sh $1 $2 radarr 7878 $3
+bash subdomain.sh $1 $2 "radarr" 7878 $3
 
-echo -e '      - name: "Radarr"\n        logo: "assets/icons/radarr.svg"\n        subtitle: "Rastreador de Filmes."\n        url: "https://radarr.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "radarr" "Rastreador de Filmes."
 
 #Sonarr.
-bash subdomain.sh $1 $2 sonarr 8989 $3
+bash subdomain.sh $1 $2 "sonarr" 8989 $3
 
-echo -e '      - name: "Sonarr"\n        logo: "assets/icons/sonarr.svg"\n        subtitle: "Rastreador de TV-Shows."\n        url: "https://sonarr.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "sonarr" "Rastreador de TV-Shows."
 
 #Readarr.
-bash subdomain.sh $1 $2 readarr 8787 $3
+bash subdomain.sh $1 $2 "readarr" 8787 $3
 
-echo -e '      - name: "Readarr"\n        logo: "assets/icons/readarr.svg"\n        subtitle: "Rastreador de Livros."\n        url: "https://readarr.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "readarr" "Rastreador de Livros."
 
 #Prowlarr.
-bash subdomain.sh $1 $2 prowlarr 9696 $3
+bash subdomain.sh $1 $2 "prowlarr" 9696 $3
 
-echo -e '      - name: "Prowlarr"\n        logo: "assets/icons/prowlarr.svg"\n        subtitle: "Rastreador de indexadores."\n        url: "https://prowlarr.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "prowlarr" "Rastreador de indexadores."
 
 #Bazarr.
-bash subdomain.sh $1 $2 bazarr 6767 $3
+bash subdomain.sh $1 $2 "bazarr" 6767 $3
 
-echo -e '      - name: "Bazarr"\n        logo: "assets/icons/bazarr.svg"\n        subtitle: "Rastreador de Legendas."\n        url: "https://bazarr.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "bazarr" "Rastreador de Legendas."
 
 #Smart Home section.
-echo -e '   - name: "Casa Inteligente"\n     icon: "fa-solid fa-home"\n     items:' >> /var/www/$1/assets/config.yml
+bash $(section) $1 "Casa Inteligente" "fa-solid fa-home"
 
 #Home Assistant.
-echo -e '      - name: "Home Asssistant"\n        logo: "assets/icons/home-assistant.svg"\n        subtitle: "Automação Residencial."\n        url: "https://home-assistant.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash subdomain.sh $1 $2 "home-assistant" 8123 $3
+
+bash $(item) "home-assistant" "Automação Residencial."
 
 #Server management section.
-echo -e '   - name: "Gestão"\n     icon: "fa-solid fa-gear"\n     items:' >> /var/www/$1/assets/config.yml
+bash $(section) $1 "Gestão" "fa-solid fa-gear"
 
 #AdGuard Home
-bash subdomain.sh $1 $2 adguard 8083 $3
+bash subdomain.sh $1 $2 "adguard" 8083 $3
 
-echo -e '      - name: "AdGuard"\n        logo: "assets/icons/adguardhome.svg"\n        subtitle: "Servidor DNS."\n        url: "https://adguard.'"$1$2"'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+bash $(item) "adguard" "Servidor DNS."
 
 #Dietpi-Dashboard
-echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-logo.svg"\n        subtitle: "Gestão do servidor."\n        url: "http://'"$1$2"':5252"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+echo -e "server{\n	listen 5252;\n	listen [::]:5252;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 5252 ssl http2;\n	listen [::]:5252 ssl http2;\n	server_name $1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem}" >> /etc/nginx/sites-available/dietpi-dashboard
+
+sudo chown root:root /etc/nginx/sites-available/dietpi-dashboard
+sudo chmod 544 /etc/nginx/sites-available/dietpi-dashboard
+
+cd /etc/nginx/sites-enabled
+
+sudo ln -s /etc/nginx/sites-available/dietpi-dashboard .
+
+bash $(item) "dietpi-dashboard" "Servidor DNS."
 
 #Reload Nginx Server
 nginx -s reload

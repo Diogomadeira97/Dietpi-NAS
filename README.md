@@ -249,7 +249,9 @@ Do the first login and follow the instructions.
 
 	bash default-variables.sh <SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> <CLOUD_FLARETOKEN> <EMAIL>
 
-	bash /mnt/Cloud/Data/Commands/default-user.sh <SERVER_NAME> <USER> ... <USERx>
+	bash /mnt/Cloud/Data/Commands/default-user.sh <SERVER_NAME> <USER1> ... <USERx>
+
+	bash /mnt/Cloud/Data/Commands/default-keys.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
 
 
 #### dietpi-config:
