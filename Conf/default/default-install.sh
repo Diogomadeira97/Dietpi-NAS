@@ -1,7 +1,45 @@
 #! /bin/bash
 
-#Update and Upgrade.
-apt-get update && upgrade -y
+passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
+
+#Default variables.
+echo -e "#Default variables." >> PASSWD_$1.txt
+SERVERNAME=$1
+echo -e "SERVERNAME=$SERVERNAME" >> PASSWD_$1.txt
+DIETPIPW=$(passwd)
+echo -e "DIETPIPW=$DIETPIPW" >> PASSWD_$1.txt
+DBIMMICHPW=$(passwd)
+echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD_$1.txt
+
+#Default Users.
+echo -e "#Default Users." >> PASSWD_$1.txt
+ADMIN=$2
+echo -e "ADMIN=$ADMIN" >> PASSWD_$1.txt
+ADMINPW=$(passwd)
+echo -e "ADMINPW=$ADMINPW" >> PASSWD_$1.txt
+ADMINSMBPW=$(passwd)
+echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD_$1.txt
+GUEST=$3
+echo -e "GUEST=$GUEST" >> PASSWD_$1.txt
+GUESTPW=$(passwd)
+echo -e "GUESTPW=$GUESTPW" >> PASSWD_$1.txt
+GUESTSMBPW=$(passwd)
+echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD_$1.txt
+
+#Default Server.
+echo -e "#Default Server." >> PASSWD_$1.txt
+DOMAIN=$4
+echo -e "DOMAIN=$DOMAIN" >> PASSWD_$1.txt
+TPDOMAIN=$5
+echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD_$1.txt
+IP=$6
+echo -e "IP=$IP" >> PASSWD_$1.txt
+CLOUDFLARETOKEN=$7
+echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$1.txt
+EMAIL=$8
+echo -e "EMAIL=$EMAIL" >> PASSWD_$1.txt
+
+mv PASSWD_$1.txt /mnt/Cloud/Public
 
 #dietpi-config
 /boot/dietpi/dietpi-config
@@ -28,43 +66,43 @@ mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresol
 umask 0022
 
 #Add default users.
-adduser --quiet --disabled-password --shell /bin/bash --home /home/$2 --gecos "User" "$2"
-adduser --quiet --disabled-password --shell /bin/bash --home /home/$5 --gecos "User" "$5"
-echo "$3:"$(echo "$3")"" | chpasswd
-echo "$6:"$(echo "$6")"" | chpasswd
+adduser --quiet --disabled-password --shell /bin/bash --home /home/$ADMIN --gecos "User" "$ADMIN"
+adduser --quiet --disabled-password --shell /bin/bash --home /home/$GUEST --gecos "User" "$GUEST"
+echo "$ADMIN:"$(echo "$ADMINPW")"" | chpasswd
+echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 
 #Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Home_Assistant Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
 /boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 157 44 144 145 151 180 203 178 212
 
 #Add default users Samba password.
-(echo "$(echo "$4")"; echo "$(echo "$4")") | smbpasswd -a -s $2
-(echo "$(echo "$7")"; echo "$(echo "$7")") | smbpasswd -a -s $5
+(echo "$(echo "$ADMINSMBPW")"; echo "$(echo "$ADMINSMBPW")") | smbpasswd -a -s $ADMIN
+(echo "$(echo "$GUESTSMBPW")"; echo "$(echo "$GUESTSMBPW")") | smbpasswd -a -s $GUEST
 
 #Exclude dietpi user from Samba.
 pdbedit -x dietpi
 
 #Add default groups.
-groupadd $1_Cloud
-groupadd $1_BAK
+groupadd $SERVERNAME_Cloud
+groupadd $SERVERNAME_BAK
 
 #Add default users to default groups.
-gpasswd -M $2,$5 $1_Cloud
-gpasswd -M $2 $1_BAK
+gpasswd -M $ADMIN,$GUEST $SERVERNAME_Cloud
+gpasswd -M $ADMIN $SERVERNAME_BAK
 
 #Turn admin in SU without password.
-echo -e "$2 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 #Change terminal user of Dietpi-Dashboard to admin.
 rm /opt/dietpi-dashboard/
-echo -e 'terminal_user = "'$2'"' >> config.toml
+echo -e 'terminal_user = "'$ADMIN'"' >> config.toml
 chmod 644 config.toml
 
 #Go to Samba folder.
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Samba
 
 #Create default Samba share folders.
-echo -e "        guest account = $5" >> smb.conf
-echo -e "        valid users = $2" >> smb.conf
+echo -e "        guest account = $GUEST" >> smb.conf
+echo -e "        valid users = $ADMIN" >> smb.conf
 
 cat smb_temp.html >> smb.conf
 mv Samba/smb.conf /etc/samba/smb.conf
@@ -72,7 +110,7 @@ chmod 644 /etc/samba/smb.conf
 service samba restart
 
 #Change Dietpi-Dashboard password.
-hash=$(echo -n "$(echo "$8")" | sha512sum | mawk '{print $1}')
+hash=$(echo -n "$(echo "$DIETPIPW")" | sha512sum | mawk '{print $SERVERNAME}')
 secret=$(openssl rand -hex 32)
 echo -e "pass = true" >> /opt/dietpi-dashboard/config.toml
 echo -e 'hash="'$hash'"' >> /opt/dietpi-dashboard/config.toml
@@ -126,7 +164,7 @@ rm -rf ftp_client nfs_client samba
 #Set Cloud default permissions.
 setfacl -R -b Cloud
 chmod -R 775 Cloud
-chown -R $2:$1_Cloud Cloud
+chown -R $ADMIN:$SERVERNAME_Cloud Cloud
 setfacl -R -d -m u::rwx Cloud
 setfacl -R -d -m g::rwx Cloud
 setfacl -R -d -m o::r-x Cloud
@@ -134,7 +172,7 @@ chmod -R g+s Cloud
 
 #Set BAK_Cloud default permissions.
 chmod 750 BAK_Cloud
-chown $2:$1_BAK BAK_Cloud
+chown $ADMIN:$SERVERNAME_BAK BAK_Cloud
 setfacl -d -m u::rwx BAK_Cloud
 setfacl -d -m g::r-x BAK_Cloud
 setfacl -d -m o::--- BAK_Cloud
@@ -148,13 +186,13 @@ setfacl -R -d -m g::r-x Data
 setfacl -R -d -m o::--- Data
 
 #Turn admin the owner of Folder.
-chown -R $2:$1_Cloud Data/Commands
+chown -R $ADMIN:$SERVERNAME_Cloud Data/Commands
 
 #Turn jellyfin the owner of Folder.
-chown -R jellyfin:$1_Cloud Data/Jellyfin
+chown -R jellyfin:$SERVERNAME_Cloud Data/Jellyfin
 
 #Turn debian-transmission the owner of Public Downloads Folder.
-chown -R debian-transmission:$1_Cloud Public/Downloads
+chown -R debian-transmission:$SERVERNAME_Cloud Public/Downloads
 
 #Create Flaresolver Docker directory.
 cd /mnt/Cloud/Data/Docker/flaresolver
@@ -169,7 +207,25 @@ cd /mnt/Cloud/Data/Docker/immich-app
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/docker-compose.yml /mnt/Cloud/Data/Docker/immich-app
 
 #Change Data Base password.
-echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$9" >> .env
+echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$DBIMMICHPW" >> .env
 
 #Run Immich on Docker.
 docker compose up -d
+
+#Add Domain to known_hosts.
+ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
+
+#Add Nginx, Certbot and Homer default configs.
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
+
+#Add Users.
+bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $9
+
+#Add Devices.
+bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW $10
+
+#Delete the installation folder.
+rm -rf /mnt/Cloud/Data/Dietpi-NAS
+
+#Reboot the system and use SSH key to login with admin.
+reboot

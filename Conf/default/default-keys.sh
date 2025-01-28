@@ -10,11 +10,11 @@ sudo service sshd restart
 cd ~/.ssh
 
 #Do it while have a Device.
-for (( i=5; i<=$#; i++)); 
+for (( i=1; i<=$#; i++)); 
 do
 
     #Device.
-    a=${!i}
+    a=${$5[i]}
 
     #Generate a Device SSH key.
     sudo ssh-keygen -f $a -P ""

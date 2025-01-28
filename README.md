@@ -246,11 +246,7 @@ Do the first login and follow the instructions.
 	cd Dietpi-NAS/Conf/default
     chmod +x ./*
 
-	bash default-variables.sh <SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> <CLOUD_FLARETOKEN> <EMAIL>
-
-	bash /mnt/Cloud/Data/Commands/default-user.sh <SERVER_NAME> <USER1> ... <USERx>
-
-	bash /mnt/Cloud/Data/Commands/default-keys.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
+	bash default-variables.sh <SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> <CLOUD_FLARETOKEN> <EMAIL> (<USER1> ... <USERx>) (<DEVICE1> ... <DEVICEx>)
 
 
 #### dietpi-config:
