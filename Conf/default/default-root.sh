@@ -33,8 +33,8 @@ adduser --quiet --disabled-password --shell /bin/bash --home /home/$5 --gecos "U
 echo "$3:"$(echo "$3")"" | chpasswd
 echo "$6:"$(echo "$6")"" | chpasswd
 
-#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
-/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 44 144 145 151 180 203 178 212
+#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Home_Assistant Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
+/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 157 44 144 145 151 180 203 178 212
 
 #Add default users Samba password.
 (echo "$(echo "$4")"; echo "$(echo "$4")") | smbpasswd -a -s $2
