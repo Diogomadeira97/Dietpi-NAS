@@ -240,17 +240,21 @@ Do the first login and follow the instructions.
 • Install.
 
 #### Commands:
+
+	CLOUDFLARE="$(echo '<TOKEN>')"
 	
-	apt install git -y
-    git clone https://github.com/Diogomadeira97/Dietpi-NAS
-	cd Dietpi-NAS/Conf/default
-    chmod +x ./*
+	VARIABLES=(<SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> $CLOUDFLARE <EMAIL>)
 
 	USERS=(<USER1> ... <USERx>)
 
 	DEVICES=(<DEVICE1> ... <DEVICEx>)
 
-	bash default-install.sh <SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> <CLOUD_FLARETOKEN> <EMAIL> $USERS $DEVICES
+	apt install git -y
+    git clone https://github.com/Diogomadeira97/Dietpi-NAS
+	cd Dietpi-NAS/Conf/default
+    chmod +x ./*
+	bash default-install.sh $VARIABLES $USERS $DEVICES
+	unset -v VARIABLES USERS DEVICES
 
 
 #### dietpi-config:

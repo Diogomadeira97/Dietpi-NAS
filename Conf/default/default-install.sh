@@ -3,43 +3,43 @@
 passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
 #Default variables.
-echo -e "#Default variables." >> PASSWD_$1.txt
-SERVERNAME=$1
-echo -e "SERVERNAME=$SERVERNAME" >> PASSWD_$1.txt
+echo -e "#Default variables." >> PASSWD_$SERVERNAME.txt
+SERVERNAME=${$1[$1]}
+echo -e "SERVERNAME=$SERVERNAME" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
-echo -e "DIETPIPW=$DIETPIPW" >> PASSWD_$1.txt
+echo -e "DIETPIPW=$DIETPIPW" >> PASSWD_$SERVERNAME.txt
 DBIMMICHPW=$(passwd)
-echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD_$1.txt
+echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
-echo -e "#Default Users." >> PASSWD_$1.txt
-ADMIN=$2
-echo -e "ADMIN=$ADMIN" >> PASSWD_$1.txt
+echo -e "#Default Users." >> PASSWD_$SERVERNAME.txt
+ADMIN=${$1[$2]}
+echo -e "ADMIN=$ADMIN" >> PASSWD_$SERVERNAME.txt
 ADMINPW=$(passwd)
-echo -e "ADMINPW=$ADMINPW" >> PASSWD_$1.txt
+echo -e "ADMINPW=$ADMINPW" >> PASSWD_$SERVERNAME.txt
 ADMINSMBPW=$(passwd)
-echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD_$1.txt
-GUEST=$3
-echo -e "GUEST=$GUEST" >> PASSWD_$1.txt
+echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD_$SERVERNAME.txt
+GUEST=${$1[$3]}
+echo -e "GUEST=$GUEST" >> PASSWD_$SERVERNAME.txt
 GUESTPW=$(passwd)
-echo -e "GUESTPW=$GUESTPW" >> PASSWD_$1.txt
+echo -e "GUESTPW=$GUESTPW" >> PASSWD_$SERVERNAME.txt
 GUESTSMBPW=$(passwd)
-echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD_$1.txt
+echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD_$SERVERNAME.txt
 
 #Default Server.
-echo -e "#Default Server." >> PASSWD_$1.txt
-DOMAIN=$4
-echo -e "DOMAIN=$DOMAIN" >> PASSWD_$1.txt
-TPDOMAIN=$5
-echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD_$1.txt
-IP=$6
-echo -e "IP=$IP" >> PASSWD_$1.txt
-CLOUDFLARETOKEN=$7
-echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$1.txt
-EMAIL=$8
-echo -e "EMAIL=$EMAIL" >> PASSWD_$1.txt
+echo -e "#Default Server." >> PASSWD_$SERVERNAME.txt
+DOMAIN=${$1[$4]}
+echo -e "DOMAIN=$DOMAIN" >> PASSWD_$SERVERNAME.txt
+TPDOMAIN=${$1[$5]}
+echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD_$SERVERNAME.txt
+IP=${$1[$6]}
+echo -e "IP=$IP" >> PASSWD_$SERVERNAME.txt
+CLOUDFLARETOKEN=${$1[$7]}
+echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$SERVERNAME.txt
+EMAIL=${$1[$8]}
+echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 
-mv PASSWD_$1.txt /mnt/Cloud/Public
+mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
 
 #dietpi-config
 /boot/dietpi/dietpi-config
@@ -222,7 +222,7 @@ bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $9
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 
 #Add Devices.
-bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW $10
+bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW $SERVERNAME0
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS
