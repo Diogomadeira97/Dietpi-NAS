@@ -6,7 +6,7 @@ cd /mnt
 #Set Cloud default permissions.
 setfacl -R -b Cloud
 chmod -R 775 Cloud
-chown -R admin-nas:$1_Cloud Cloud
+chown -R $2:$1_Cloud Cloud
 setfacl -R -d -m u::rwx Cloud
 setfacl -R -d -m g::rwx Cloud
 setfacl -R -d -m o::r-x Cloud
@@ -14,7 +14,7 @@ chmod -R g+s Cloud
 
 #Set BAK_Cloud default permissions.
 chmod 750 BAK_Cloud
-chown admin-nas:$1_BAK BAK_Cloud
+chown $2:$1_BAK BAK_Cloud
 setfacl -d -m u::rwx BAK_Cloud
 setfacl -d -m g::r-x BAK_Cloud
 setfacl -d -m o::--- BAK_Cloud
@@ -27,8 +27,8 @@ setfacl -R -d -m u::rwx Data
 setfacl -R -d -m g::r-x Data
 setfacl -R -d -m o::--- Data
 
-#Turn admin-nas the owner of Folder.
-chown -R admin-nas:$1_Cloud Data/Commands
+#Turn $2 the owner of Folder.
+chown -R $2:$1_Cloud Data/Commands
 
 #Turn debian-transmission the owner of Folder.
 chown -R jellyfin:$1_Cloud Data/Jellyfin

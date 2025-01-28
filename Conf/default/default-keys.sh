@@ -10,7 +10,7 @@ sudo service sshd restart
 cd ~/.ssh
 
 #Do it while have a Device.
-for (( i=4; i<=$#; i++)); 
+for (( i=5; i<=$#; i++)); 
 do
 
     #Device.
@@ -19,8 +19,8 @@ do
     #Generate a Device SSH key.
     sudo ssh-keygen -f $a -P ""
 
-    #Copy the Device SSH key to admin-nas user.
-    sudo sshpass -p "$(echo "$3")" ssh-copy-id -i $a.pub admin-nas@$1$2
+    #Copy the Device SSH key to admin user.
+    sudo sshpass -p "$(echo "$4")" ssh-copy-id -i $a.pub $3@$1$2
 
     #Change Device SSH key permissions.
     sudo chmod 777 $a
@@ -40,5 +40,5 @@ sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
 sudo service sshd restart
 
 #Move Device Wireguard Key to /mnt/Cloud/Keys_VPN and easily export with Dietpi-Dashboard or Samba.
-sudo mv /home/admin-nas/configs/* /mnt/Cloud/Data/Keys_VPN
-sudo rm -rf /home/admin-nas/configs
+sudo mv /home/$3/configs/* /mnt/Cloud/Data/Keys_VPN
+sudo rm -rf /home/$3/configs

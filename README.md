@@ -1,4 +1,4 @@
-# Dietpi NAS
+# Dietpi Enterprise NAS
 
 
 ## Description:
@@ -300,7 +300,7 @@ Do the first login and follow the instructions.
 
 #### PiVPN:
 
-• Chose admin-nas to user.
+• Chose admin to user.
 
 • Set wireguard and use the default options.
 
@@ -438,4 +438,4 @@ Do the first login and follow the instructions.
 
 	nano bash.bashrc
 
-		ssh admin-nas@<SERVER IP>
+		ssh <ADMIN>@<SERVER IP>
