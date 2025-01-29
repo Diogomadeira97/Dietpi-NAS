@@ -9,12 +9,14 @@ sudo service sshd restart
 #Go to .ssh folder to create SSH Keys.
 cd ~/.ssh
 
+ARS=( "$@" )
+
 #Do it while have a Device.
-for (( i=1; i<=$#; i++)); 
+for (( i=4; i<=$#; i++)); 
 do
 
     #Device.
-    a=${$5[$i]}
+    a=${ARS[i]}
 
     #Generate a Device SSH key.
     sudo ssh-keygen -f $a -P ""

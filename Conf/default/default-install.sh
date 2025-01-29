@@ -2,9 +2,48 @@
 
 passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
+ARS=( "$@" )
+
+VARIABLES=()
+USERS=()
+DEVICES=()
+
+i=0
+
+until [ ${ARS[i]} = "." ]
+do
+
+        if [ ${ARS[i]} != "." ]; then
+                VARIABLES+=(${ARS[i]})
+                ((i++))
+        fi
+
+done
+
+((i++))
+
+until [ ${ARS[i]} = "." ]
+do
+
+        if [ ${ARS[i]} != "." ]; then
+                USERS+=(${ARS[i]})
+                ((i++))
+        fi
+
+done
+
+((i++))
+
+for (( $i; i<=$#; i++));
+do
+
+    DEVICES+=(${ARS[i]})
+
+done
+
 #Default variables.
-echo -e "#Default variables." >> PASSWD_$SERVERNAME.txt
-SERVERNAME=${$1[$1]}
+echo -e "#Default variables." >> PASSWD_${VARIABLES[$1]}.txt
+SERVERNAME=${VARIABLES[$1]}
 echo -e "SERVERNAME=$SERVERNAME" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
 echo -e "DIETPIPW=$DIETPIPW" >> PASSWD_$SERVERNAME.txt
@@ -13,13 +52,13 @@ echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
 echo -e "#Default Users." >> PASSWD_$SERVERNAME.txt
-ADMIN=${$1[$2]}
+ADMIN=${VARIABLES[$2]}
 echo -e "ADMIN=$ADMIN" >> PASSWD_$SERVERNAME.txt
 ADMINPW=$(passwd)
 echo -e "ADMINPW=$ADMINPW" >> PASSWD_$SERVERNAME.txt
 ADMINSMBPW=$(passwd)
 echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD_$SERVERNAME.txt
-GUEST=${$1[$3]}
+GUEST=${VARIABLES[$3]}
 echo -e "GUEST=$GUEST" >> PASSWD_$SERVERNAME.txt
 GUESTPW=$(passwd)
 echo -e "GUESTPW=$GUESTPW" >> PASSWD_$SERVERNAME.txt
@@ -28,15 +67,15 @@ echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD_$SERVERNAME.txt
 
 #Default Server.
 echo -e "#Default Server." >> PASSWD_$SERVERNAME.txt
-DOMAIN=${$1[$4]}
+DOMAIN=${VARIABLES[$4]}
 echo -e "DOMAIN=$DOMAIN" >> PASSWD_$SERVERNAME.txt
-TPDOMAIN=${$1[$5]}
+TPDOMAIN=${VARIABLES[$5]}
 echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD_$SERVERNAME.txt
-IP=${$1[$6]}
+IP=${VARIABLES[$6]}
 echo -e "IP=$IP" >> PASSWD_$SERVERNAME.txt
-CLOUDFLARETOKEN=${$1[$7]}
+CLOUDFLARETOKEN=${VARIABLES[$7]}
 echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$SERVERNAME.txt
-EMAIL=${$1[$8]}
+EMAIL=${VARIABLES[$8]}
 echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 
 mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
@@ -216,13 +255,13 @@ docker compose up -d
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
 
 #Add Users.
-bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME $9
+bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME ${USERS[@]}
 
 #Add Domain to known_hosts.
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 
 #Add Devices.
-bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW $SERVERNAME0
+bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW ${DEVICES[@]}
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS

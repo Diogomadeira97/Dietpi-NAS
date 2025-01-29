@@ -253,7 +253,7 @@ Do the first login and follow the instructions.
     git clone https://github.com/Diogomadeira97/Dietpi-NAS
 	cd Dietpi-NAS/Conf/default
     chmod +x ./*
-	bash default-install.sh $VARIABLES $USERS $DEVICES
+	bash default-install.sh $VARIABLES . $USERS . $DEVICES
 	unset -v VARIABLES USERS DEVICES
 
 
