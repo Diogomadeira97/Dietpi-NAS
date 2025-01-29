@@ -33,7 +33,7 @@ do
     sudo mkdir $USER $USER/Docs $USER/Midias
 
     #Set default permissions to user folder.
-    sudo chown -R $USER:$1_Cloud $USER
+    sudo chown -R $USER:$1"_Cloud" $USER
     sudo chmod -R 775 $USER
     sudo setfacl -R -d -m u::rwx $USER
     sudo setfacl -R -d -m g::rwx $USER
@@ -54,9 +54,9 @@ do
     sudo setfacl -R -d -m u::rwx Midias-Anuais
     sudo setfacl -R -d -m g::r-x Midias-Anuais
     sudo setfacl -R -d -m o::--- Midias-Anuais
-    sudo chown -R radarr:$1_Cloud Filmes
-    sudo chown -R sonarr:$1_Cloud TV-Shows
-    sudo chown -R readarr:$1_Cloud Livros
+    sudo chown -R radarr:$1"_Cloud" Filmes
+    sudo chown -R sonarr:$1"_Cloud" TV-Shows
+    sudo chown -R readarr:$1"_Cloud" Livros
     sudo setfacl -R -m user:bazarr:rwx Filmes
     sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
