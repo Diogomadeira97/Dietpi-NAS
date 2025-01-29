@@ -121,8 +121,8 @@ echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 pdbedit -x dietpi
 
 #Create group names.
-$CLOUD="$(echo $SERVERNAME'_Cloud' )"
-$BAK="$(echo $SERVERNAME'_BAK' )"
+CLOUD="$(echo $SERVERNAME'_Cloud' )"
+BAK="$(echo $SERVERNAME'_BAK' )"
 
 #Add default groups.
 groupadd $CLOUD
