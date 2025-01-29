@@ -243,11 +243,11 @@ Do the first login and follow the instructions.
 
 	CLOUDFLARE="$(echo '<TOKEN>')"
 	
-	VARIABLES=(<SERVER_NAME> <ADMIN_NAME> <GUEST_NAME> <DOMAIN> <TP_DOMAIN> <IP> $CLOUDFLARE <EMAIL>)
+	VARIABLES=('<SERVER_NAME>' '<ADMIN_NAME>' '<GUEST_NAME>' '<DOMAIN>' '<TP_DOMAIN>' '<IP>' $CLOUDFLARE '<EMAIL>')
 
-	USERS=(<USER1> ... <USERx>)
+	USERS=('<USER1>' ... '<USERx>')
 
-	DEVICES=(<DEVICE1> ... <DEVICEx>)
+	DEVICES=('<DEVICE1>' ... '<DEVICEx>')
 
 	apt install git -y
     git clone https://github.com/Diogomadeira97/Dietpi-NAS
