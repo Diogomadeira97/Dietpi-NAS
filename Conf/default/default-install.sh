@@ -121,12 +121,12 @@ echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 pdbedit -x dietpi
 
 #Add default groups.
-groupadd $SERVERNAME_Cloud
-groupadd $SERVERNAME_BAK
+groupadd $SERVERNAME"_Cloud"
+groupadd $SERVERNAME"_BAK"
 
 #Add default users to default groups.
-gpasswd -M $ADMIN,$GUEST $SERVERNAME_Cloud
-gpasswd -M $ADMIN $SERVERNAME_BAK
+gpasswd -M "$ADMIN","$GUEST" $SERVERNAME"_Cloud"
+gpasswd -M "$ADMIN" $SERVERNAME"_BAK"
 
 #Turn admin in SU without password.
 echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -204,7 +204,7 @@ rm -rf ftp_client nfs_client samba
 #Set Cloud default permissions.
 setfacl -R -b Cloud
 chmod -R 775 Cloud
-chown -R $ADMIN:$SERVERNAME_Cloud Cloud
+chown -R $ADMIN:$SERVERNAME"_Cloud" Cloud
 setfacl -R -d -m u::rwx Cloud
 setfacl -R -d -m g::rwx Cloud
 setfacl -R -d -m o::r-x Cloud
@@ -212,7 +212,7 @@ chmod -R g+s Cloud
 
 #Set BAK_Cloud default permissions.
 chmod 750 BAK_Cloud
-chown $ADMIN:$SERVERNAME_BAK BAK_Cloud
+chown $ADMIN:$SERVERNAME"_BAK" BAK_Cloud
 setfacl -d -m u::rwx BAK_Cloud
 setfacl -d -m g::r-x BAK_Cloud
 setfacl -d -m o::--- BAK_Cloud
@@ -226,13 +226,13 @@ setfacl -R -d -m g::r-x Data
 setfacl -R -d -m o::--- Data
 
 #Turn admin the owner of Folder.
-chown -R $ADMIN:$SERVERNAME_Cloud Data/Commands
+chown -R $ADMIN:$SERVERNAME"_Cloud" Data/Commands
 
 #Turn jellyfin the owner of Folder.
-chown -R jellyfin:$SERVERNAME_Cloud Data/Jellyfin
+chown -R jellyfin:$SERVERNAME"_Cloud" Data/Jellyfin
 
 #Turn debian-transmission the owner of Public Downloads Folder.
-chown -R debian-transmission:$SERVERNAME_Cloud Public/Downloads
+chown -R debian-transmission:$SERVERNAME"_Cloud" Public/Downloads
 
 #Create Flaresolver Docker directory.
 cd /mnt/Cloud/Data/Docker/flaresolver
