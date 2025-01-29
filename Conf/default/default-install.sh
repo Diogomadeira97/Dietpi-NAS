@@ -78,6 +78,14 @@ echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$SERVERNAME.txt
 EMAIL=${VARIABLES[8]}
 echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 
+#Create directory and move Dietpi-NAS folder.
+mkdir /mnt/Cloud/Data
+mv Dietpi-NAS /mnt/Cloud/Data
+
+#Go to Cloud and create default folders.
+cd /mnt/Cloud
+mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
+
 mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
 
 #dietpi-config
@@ -91,15 +99,6 @@ mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
 
 #dietpi-backup
 /boot/dietpi/dietpi-backup
-
-#Create directory and move Dietpi-NAS folder.
-cd ../../../
-mkdir /mnt/Cloud/Data
-mv Dietpi-NAS /mnt/Cloud/Data
-
-#Go to Cloud and create default folders.
-cd /mnt/Cloud
-mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
 
 #Define Umask.
 umask 0022
@@ -269,7 +268,7 @@ ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW ${DEVICES[@]}
 
 #Delete the installation folder.
-rm -rf /mnt/Cloud/Data/Dietpi-NAS
+#rm -rf /mnt/Cloud/Data/Dietpi-NAS
 
 #Reboot the system and use SSH key to login with admin.
-reboot
+#reboot
