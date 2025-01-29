@@ -12,7 +12,7 @@ cd ~/.ssh
 ARS=( "$@" )
 
 #Do it while have a Device.
-for (( i=4; i<=$#; i++)); 
+for (( i=4; i<=(($#-1)); i++)); 
 do
 
     #Device.
