@@ -142,9 +142,9 @@ cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Samba
 
 #Create default Samba share folders.
 echo -e "        guest account = $GUEST" >> smb.conf
+cat smb_temp.conf >> smb.conf
 echo -e "        valid users = $ADMIN" >> smb.conf
 
-cat smb_temp.conf >> smb.conf
 mv smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
 service samba restart

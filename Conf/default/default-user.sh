@@ -23,7 +23,7 @@ do
     sudo echo "$USER:"$(echo "$USERPW")"" | chpasswd
 
     #Add Samba password.
-    sudo (echo "$(echo "$USERSMBPW")"; echo "$(echo "$USERSMBPW")") | smbpasswd -a -s $USER
+    (echo "$(echo "$USERSMBPW")"; echo "$(echo "$USERSMBPW")") | sudo smbpasswd -a -s $USER
 
     #Put user in the default group.
     sudo gpasswd -M "$USER" $1"_Cloud"
