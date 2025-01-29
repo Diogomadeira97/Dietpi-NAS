@@ -1,4 +1,4 @@
-# Dietpi Enterprise NAS
+# Dietpi NAS
 
 
 ## Description:
