@@ -8,13 +8,13 @@ VARIABLES=()
 USERS=()
 DEVICES=()
 
-i=0
+i=-1
 
 until [ ${ARS[i]} = "." ]
 do
 
         if [ ${ARS[i]} != "." ]; then
-                VARIABLES+=("'"${ARS[i]}"'")
+                VARIABLES+=(${ARS[i]})
                 ((i++))
         fi
 
@@ -26,7 +26,7 @@ until [ ${ARS[i]} = "." ]
 do
 
         if [ ${ARS[i]} != "." ]; then
-                USERS+=("'"${ARS[i]}"'")
+                USERS+=(${ARS[i]})
                 ((i++))
         fi
 
@@ -37,7 +37,7 @@ done
 for (( $i; i<=$#; i++));
 do
 
-    DEVICES+=("'"${ARS[i]}"'")
+    DEVICES+=(${ARS[i]})
 
 done
 
