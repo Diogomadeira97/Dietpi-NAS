@@ -97,85 +97,87 @@ ln -s /etc/nginx/sites-available/$1 .
 #Add Services with default configs.
 cd /mnt/Cloud/Data/Commands
 
+domain=$1
+
+tpdomain=$2
+
 section(){
-    echo -e '   - name: "'$2'"\n     icon: "'$3'"\n     items:' >> /var/www/$1/assets/config.yml
+    echo -e '   - name: "'$1'"\n     icon: "'$2'"\n     items:' >> /var/www/$domain/assets/config.yml
 }
 
-item(domain=$1$2){
-    echo -e '      - name: "'${1^}'"\n        logo: "assets/icons/'$1'.svg"\n        subtitle: "'$2'"\n        url: "https://'$1'.'$domain'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+item(){
+    echo -e '      - name: "'${1^}'"\n        logo: "assets/icons/'$1'.svg"\n        subtitle: "'$2'"\n        url: "https://'$1'.'$domain$tpdomain'"\n        target: "_blank"' >> /var/www/$domain/assets/config.yml
 }
-
-domain=$1$2
 
 #Start.
 echo -e 'services:' >> /var/www/$1/assets/config.yml
 
 #Mídias Section.
-bash $(section) $1 "Mídias" "fa-solid fa-photo-film"
+section $1 "Mídias" "fa-solid fa-photo-film"
 
 #Jellyfin.
 bash subdomain.sh $1 $2 "jellyfin" 8097 $3
 
-bash $(item) "jellyfin" "Reprodutor de filmes e séries." $domain
+item "jellyfin" "Reprodutor de filmes e séries."
 
 #Kavita.
 bash subdomain.sh $1 $2 "kavita" 2036 $3
 
-bash $(item) "kavita" "Leitor de E-Book." $domain
+item "kavita" "Leitor de E-Book." $domain
 
 #Immich.
 bash subdomain.sh $1 $2 "immich" 2283 $3
 
-bash $(item) "immich" "Galeria de Mídias." $domain
+item "immich" "Galeria de Mídias." $domain
 
 #Downloads section.
-bash $(section) $1 "Downloads" "fa-solid fa-download" $domain
+section $1 "Downloads" "fa-solid fa-download" $domain
 
 #Transmission.
 bash subdomain.sh $1 $2 "transmission" 9091 $3
 
-bash $(item) "transmission" "Gestor de Downloads." $domain
+item "transmission" "Gestor de Downloads." $domain
 
 #Radarr.
 bash subdomain.sh $1 $2 "radarr" 7878 $3
 
-bash $(item) "radarr" "Rastreador de Filmes." $domain
+item "radarr" "Rastreador de Filmes." $domain
 
 #Sonarr.
 bash subdomain.sh $1 $2 "sonarr" 8989 $3
 
-bash $(item) "sonarr" "Rastreador de TV-Shows." $domain
+item "sonarr" "Rastreador de TV-Shows." $domain
 
 #Readarr.
 bash subdomain.sh $1 $2 "readarr" 8787 $3
 
-bash $(item) "readarr" "Rastreador de Livros." $domain
+item "readarr" "Rastreador de Livros." $domain
 
 #Prowlarr.
 bash subdomain.sh $1 $2 "prowlarr" 9696 $3
 
-bash $(item) "prowlarr" "Rastreador de indexadores." $domain
+item "prowlarr" "Rastreador de indexadores." $domain
 
 #Bazarr.
 bash subdomain.sh $1 $2 "bazarr" 6767 $3
 
-bash $(item) "bazarr" "Rastreador de Legendas." $domain
+item "bazarr" "Rastreador de Legendas." $domain
 
 #Smart Home section.
-bash $(section) $1 "Casa Inteligente" "fa-solid fa-home"
+section $1 "Casa Inteligente" "fa-solid fa-home"
 
 #Home Assistant.
 bash subdomain.sh $1 $2 "home-assistant" 8123 $3
 
-bash $(item) "home-assistant" "Automação Residencial." $domain
+item "home-assistant" "Automação Residencial." $domain
 
 #Server management section.
-bash $(section) $1 "Gestão" "fa-solid fa-gear"
+section $1 "Gestão" "fa-solid fa-gear"
 
 #AdGuard Home
 bash subdomain.sh $1 $2 "adguard" 8083 $3
 
-bash $(item) "adguard" "Servidor DNS." $domain
+item "adguard" "Servidor DNS." $domain
 
 #Dietpi-Dashboard
 echo -e "server{\n	listen 5252;\n	listen [::]:5252;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 5252 ssl http2;\n	listen [::]:5252 ssl http2;\n	server_name $1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem}" >> /etc/nginx/sites-available/dietpi-dashboard
@@ -187,7 +189,7 @@ cd /etc/nginx/sites-enabled
 
 sudo ln -s /etc/nginx/sites-available/dietpi-dashboard .
 
-bash $(item) "dietpi-dashboard" "Servidor DNS."
+item "dietpi-dashboard" "Servidor DNS."
 
 #Reload Nginx Server
 nginx -s reload
