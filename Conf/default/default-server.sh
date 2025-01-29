@@ -19,20 +19,18 @@ cat index_temp.html >> index.html
 
 #Create manifest.json to Domain.
 echo -e '{"name":"'"$1"'","short_name":"'"$1"'","start_url":"../","display":"standalone","background_color":"#ffffff","lang":"en","scope":"../","description":"'"$1"'","theme_color":"#3367D6","icons":[{"src":"./icons/logo.svg","type":"image/svg"}]}' >> manifest.json
+chmod 644 config.yml
+
+#Create Cloudlfare token file.
+echo -e "#Cloudflare API token used by Certbot\ndns_cloudflare_api_token = $4" >> cloudflare.ini
+mv cloudflare.ini /etc/letsencrypt
+chown root:root /etc/letsencrypt/cloudflare.ini
+chmod 600 /etc/letsencrypt/cloudflare.ini
 
 #Edit config.yml of Domain.
 echo -e '# Homepage configuration\ntitle: "'"$1"'"' >> config.yml
 cat config_temp.yml >> config.yml
-mv config.yml /opt/dietpi-dashboard/config.toml
-chmod 644 /opt/dietpi-dashboard/config.toml
-
-#Create Cloudlfare token file.
-echo -e "#Cloudflare API token used by Certbot\ndns_cloudflare_api_token = $4" >> cloudflare.ini
-
-#Add Cloudflare token
-mv cloudflare.ini /etc/letsencrypt
-chown root:root /etc/letsencrypt/cloudflare.ini
-chmod 600 /etc/letsencrypt/cloudflare.ini
+chmod 644 config.yml
 
 #Change default files permissions.
 chown root:root ./*

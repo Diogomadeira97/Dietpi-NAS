@@ -132,7 +132,8 @@ gpasswd -M $ADMIN $SERVERNAME_BAK
 echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 #Change terminal user of Dietpi-Dashboard to admin.
-rm /opt/dietpi-dashboard/
+cd /opt/dietpi-dashboard/
+rm config.toml
 echo -e 'terminal_user = "'$ADMIN'"' >> config.toml
 chmod 644 config.toml
 
