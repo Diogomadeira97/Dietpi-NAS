@@ -25,15 +25,18 @@ do
     #Add Samba password.
     (echo "$(echo "$USERSMBPW")"; echo "$(echo "$USERSMBPW")") | sudo smbpasswd -a -s $USER
 
+    #Create group names.
+    $CLOUD="$(echo $1'_Cloud' )"
+
     #Put user in the default group.
-    sudo gpasswd -M "$USER" $1"_Cloud"
+    sudo gpasswd -M "$USER" $CLOUD
 
     #Go to Users folder and create default folders to the user.
     cd /mnt/Cloud/Users
     sudo mkdir $USER $USER/Docs $USER/Midias
 
     #Set default permissions to user folder.
-    sudo chown -R $USER:$1"_Cloud" $USER
+    sudo chown -R $USER:$CLOUD $USER
     sudo chmod -R 775 $USER
     sudo setfacl -R -d -m u::rwx $USER
     sudo setfacl -R -d -m g::rwx $USER
@@ -54,9 +57,9 @@ do
     sudo setfacl -R -d -m u::rwx Midias-Anuais
     sudo setfacl -R -d -m g::r-x Midias-Anuais
     sudo setfacl -R -d -m o::--- Midias-Anuais
-    sudo chown -R radarr:$1"_Cloud" Filmes
-    sudo chown -R sonarr:$1"_Cloud" TV-Shows
-    sudo chown -R readarr:$1"_Cloud" Livros
+    sudo chown -R radarr:$CLOUD Filmes
+    sudo chown -R sonarr:$CLOUD TV-Shows
+    sudo chown -R readarr:$CLOUD Livros
     sudo setfacl -R -m user:bazarr:rwx Filmes
     sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
