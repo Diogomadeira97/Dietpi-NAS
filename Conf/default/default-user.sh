@@ -26,7 +26,7 @@ do
     (echo "$(echo "$USERSMBPW")"; echo "$(echo "$USERSMBPW")") | sudo smbpasswd -a -s $USER
 
     #Create group names.
-    $CLOUD="$(echo $1'_Cloud' )"
+    CLOUD="$(echo $1'_Cloud' )"
 
     #Put user in the default group.
     sudo gpasswd -M "$USER" $CLOUD
