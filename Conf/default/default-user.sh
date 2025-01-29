@@ -20,13 +20,13 @@ do
 
     #Add user.
     sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/$USER --gecos "User" "$USER"
-    echo "$USER:"$(echo "$USERPW")"" | sudo chpasswd
+    sudo echo "$USER:"$(echo "$USERPW")"" | chpasswd
 
     #Add Samba password.
-    (echo "$(echo "$USERSMBPW")"; echo "$(echo "$USERSMBPW")") | sudo smbpasswd -a -s $USER
+    sudo (echo "$(echo "$USERSMBPW")"; echo "$(echo "$USERSMBPW")") | smbpasswd -a -s $USER
 
     #Put user in the default group.
-    sudo gpasswd -M $USER $1_Cloud
+    sudo gpasswd -M "$USER" $1"_Cloud"
 
     #Go to Users folder and create default folders to the user.
     cd /mnt/Cloud/Users

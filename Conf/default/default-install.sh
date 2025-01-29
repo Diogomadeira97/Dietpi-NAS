@@ -144,8 +144,8 @@ cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Samba
 echo -e "        guest account = $GUEST" >> smb.conf
 echo -e "        valid users = $ADMIN" >> smb.conf
 
-cat smb_temp.html >> smb.conf
-mv Samba/smb.conf /etc/samba/smb.conf
+cat smb_temp.conf >> smb.conf
+mv smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
 service samba restart
 
