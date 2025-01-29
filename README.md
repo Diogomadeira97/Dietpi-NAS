@@ -254,7 +254,7 @@ Do the first login and follow the instructions.
 	cd Dietpi-NAS/Conf/default
     chmod +x ./*
 	bash default-install.sh $VARIABLES . $USERS . $DEVICES
-	unset -v VARIABLES USERS DEVICES
+	unset -v CLODUFLRAE VARIABLES USERS DEVICES
 
 
 #### dietpi-config:
