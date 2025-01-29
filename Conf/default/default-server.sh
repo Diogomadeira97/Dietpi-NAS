@@ -35,7 +35,7 @@ chown root:root ./*
 chmod 644 ./*
 
 #Create SSL Keys.
-certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d *.$1$2 -d $1$2 --non-interactive --agree-tos -m "$6"
+certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d *.$1$2 -d $1$2 --non-interactive --agree-tos -m $6
 
 #Install Homer theme of Walkx Code.
 cd /tmp
