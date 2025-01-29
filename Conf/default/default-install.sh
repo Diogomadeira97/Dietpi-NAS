@@ -43,7 +43,7 @@ done
 
 #Default variables.
 echo -e "#Default variables." >> PASSWD_${VARIABLES[1]}.txt
-SERVERNAME="${VARIABLES[1]}"
+SERVERNAME=${VARIABLES[1]}
 echo -e "SERVERNAME=$SERVERNAME" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
 echo -e "DIETPIPW=$DIETPIPW" >> PASSWD_$SERVERNAME.txt
@@ -52,13 +52,13 @@ echo -e "DBIMMICHPW=$DBIMMICHPW" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
 echo -e "#Default Users." >> PASSWD_$SERVERNAME.txt
-ADMIN="${VARIABLES[2]}"
+ADMIN=${VARIABLES[2]}
 echo -e "ADMIN=$ADMIN" >> PASSWD_$SERVERNAME.txt
 ADMINPW=$(passwd)
 echo -e "ADMINPW=$ADMINPW" >> PASSWD_$SERVERNAME.txt
 ADMINSMBPW=$(passwd)
 echo -e "ADMINSMBPW=$ADMINSMBPW" >> PASSWD_$SERVERNAME.txt
-GUEST="${VARIABLES[3]}"
+GUEST=${VARIABLES[3]}
 echo -e "GUEST=$GUEST" >> PASSWD_$SERVERNAME.txt
 GUESTPW=$(passwd)
 echo -e "GUESTPW=$GUESTPW" >> PASSWD_$SERVERNAME.txt
@@ -67,15 +67,15 @@ echo -e "GUESTSMBPW=$GUESTSMBPW" >> PASSWD_$SERVERNAME.txt
 
 #Default Server.
 echo -e "#Default Server." >> PASSWD_$SERVERNAME.txt
-DOMAIN="${VARIABLES[4]}"
+DOMAIN=${VARIABLES[4]}
 echo -e "DOMAIN=$DOMAIN" >> PASSWD_$SERVERNAME.txt
-TPDOMAIN="${VARIABLES[5]}"
+TPDOMAIN=${VARIABLES[5]}
 echo -e "TPDOMAIN=$TPDOMAIN" >> PASSWD_$SERVERNAME.txt
-IP="${VARIABLES[6]}"
+IP=${VARIABLES[6]}
 echo -e "IP=$IP" >> PASSWD_$SERVERNAME.txt
-CLOUDFLARETOKEN="${VARIABLES[7]}"
+CLOUDFLARETOKEN=${VARIABLES[7]}
 echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$SERVERNAME.txt
-EMAIL="${VARIABLES[8]}"
+EMAIL=${VARIABLES[8]}
 echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 
 mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
@@ -105,8 +105,8 @@ mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresol
 umask 0022
 
 #Add default users.
-adduser --quiet --disabled-password --shell /bin/bash --home /home/$ADMIN --gecos "User" "$ADMIN"
-adduser --quiet --disabled-password --shell /bin/bash --home /home/$GUEST --gecos "User" "$GUEST"
+adduser --quiet --disabled-password --shell /bin/bash --home /home/"$ADMIN" --gecos "User" "$ADMIN"
+adduser --quiet --disabled-password --shell /bin/bash --home /home/"$GUEST" --gecos "User" "$GUEST"
 echo "$ADMIN:"$(echo "$ADMINPW")"" | chpasswd
 echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 
