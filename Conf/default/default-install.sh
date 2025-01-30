@@ -132,9 +132,9 @@ groupadd $CLOUD
 groupadd $BAK
 
 #Add default users to default groups.
-gpasswd -M "$ADMIN" $CLOUD
-gpasswd -M "$GUEST" $CLOUD
-gpasswd -M "$ADMIN" $BAK
+usermod -a -G $CLOUD "$ADMIN"
+usermod -a -G $CLOUD "$GUEST"
+usermod -a -G  $BAK "$ADMIN"
 
 #Turn admin in SU without password.
 echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers

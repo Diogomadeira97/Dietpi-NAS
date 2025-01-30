@@ -19,7 +19,7 @@ do
     
     #Move passwords with right permissions to Public.
     sudo chmod 777 PASSWD_$USER.txt
-    mv PASSWD_$USER.txt /mnt/Cloud/Public/Passwords
+    sudo mv PASSWD_$USER.txt /mnt/Cloud/Public/Passwords
 
     #Add user.
     sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/$USER --gecos "User" "$USER"
@@ -32,7 +32,7 @@ do
     CLOUD="$(echo $1'_Cloud' )"
 
     #Put user in the default group.
-    sudo gpasswd -M "$USER" $CLOUD
+    sudo usermod -a -G $CLOUD "$USER"
 
     #Go to Users folder and create default folders to the user.
     cd /mnt/Cloud/Users
@@ -55,7 +55,7 @@ do
 
     #Go to Midias, create default folders and set default permissions.
     cd Midias
-    mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
+    sudo mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
     sudo chmod -R 750 Midias-Anuais
     sudo setfacl -R -d -m u::rwx Midias-Anuais
     sudo setfacl -R -d -m g::r-x Midias-Anuais
@@ -72,7 +72,7 @@ do
     sudo chown root:root smb.conf
     sudo chmod 644 smb.conf
     sudo mv smb.conf /etc/samba/smb.conf
-    service samba restart
+    sudo service samba restart
 
     #Add user folders to immich.
     cd /mnt/Cloud/Data/Docker/immich-app
@@ -80,8 +80,8 @@ do
     sudo docker compose restart
 
     #Create a crontab to sync Immich with user folder.
-    echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich_files/library/$USER/*  /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich\n\nchown -R $USER:$USER /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich" >> immich_cron_$USER.sh
-    mv immich_cron_$USER.sh /etc/cron.daily
-    chmod 750 /etc/cron.daily/immich_cron_$USER.sh
+    sudo echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich_files/library/$USER/*  /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich\n\nchown -R $USER:$USER /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich" >> immich_cron_$USER.sh
+    sudo mv immich_cron_$USER.sh /etc/cron.daily
+    sudo chmod 750 /etc/cron.daily/immich_cron_$USER.sh
 
 done
