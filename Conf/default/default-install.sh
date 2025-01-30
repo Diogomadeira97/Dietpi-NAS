@@ -132,7 +132,8 @@ groupadd $CLOUD
 groupadd $BAK
 
 #Add default users to default groups.
-gpasswd -M "$ADMIN","$GUEST" $CLOUD
+gpasswd -M "$ADMIN" $CLOUD
+gpasswd -M "$GUEST" $CLOUD
 gpasswd -M "$ADMIN" $BAK
 
 #Turn admin in SU without password.
