@@ -79,6 +79,10 @@ echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN" >> PASSWD_$SERVERNAME.txt
 EMAIL=${VARIABLES[8]}
 echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 
+#Move passwords with right permissions to Public.
+sudo chmod 777 PASSWD_$SERVERNAME.txt
+mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
+
 #Create directory and move Dietpi-NAS folder.
 cd ../../../
 mkdir /mnt/Cloud/Data
@@ -87,8 +91,6 @@ mv Dietpi-NAS /mnt/Cloud/Data
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
 mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
-
-mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
 
 #dietpi-config
 /boot/dietpi/dietpi-config

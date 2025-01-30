@@ -178,15 +178,6 @@ bash subdomain.sh $1 $2 "adguard" 8083 $3
 item "adguard" "Servidor DNS." $domain
 
 #Dietpi-Dashboard
-echo -e "server{\n	listen 5252;\n	listen [::]:5252;\n	server_name $1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 5252 ssl http2;\n	listen [::]:5252 ssl http2;\n	server_name $1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;	\n}" >> /etc/nginx/sites-available/dietpi-dashboard
-
-sudo chown root:root /etc/nginx/sites-available/dietpi-dashboard
-sudo chmod 544 /etc/nginx/sites-available/dietpi-dashboard
-
-cd /etc/nginx/sites-enabled
-
-sudo ln -s /etc/nginx/sites-available/dietpi-dashboard .
-
 item "dietpi-dashboard" "Servidor DNS."
 
 #Reload Nginx Server

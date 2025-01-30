@@ -16,6 +16,9 @@ do
     echo -e "$(echo "$USERPW")" >> PASSWD_$USER.txt
     USERSMBPW=$(passwd)
     echo -e "$(echo "$USERSMBPW")" >> PASSWD_$USER.txt
+    
+    #Move passwords with right permissions to Public.
+    sudo chmod 777 PASSWD_$USER.txt
     mv PASSWD_$USER.txt /mnt/Cloud/Public
 
     #Add user.
