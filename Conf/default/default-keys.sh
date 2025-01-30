@@ -10,10 +10,9 @@ sudo service sshd restart
 cd ~/.ssh
 
 ARS=( "$@" )
-F=(($# - 1))
 
 #Do it while have a Device.
-for (( i=4; i<=$F; i++)); 
+for (( i=4; i<$#; i++)); 
 do
 
     #Device.
