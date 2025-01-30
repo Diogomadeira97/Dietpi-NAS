@@ -60,7 +60,7 @@ mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
-mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
+mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Public/Passwords Users
 
 #Default variables.
 
@@ -102,7 +102,7 @@ echo -e "EMAIL=$EMAIL\n" >> PASSWD_$SERVERNAME.txt
 
 #Move passwords with right permissions to Public.
 sudo chmod 777 PASSWD_$SERVERNAME.txt
-mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
+mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public/Passwords
 
 #Define Umask.
 umask 0022

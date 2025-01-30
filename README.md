@@ -73,31 +73,31 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 > Reconfigure folders to default permissions and default owners.
 
-	bash /mnt/Cloud/Data/Commands/default.sh
+	bash /mnt/Cloud/Data/Commands/default.sh <ADMIN> <SERVERNAME>
 
 • [default-user.sh](Conf/default/default-user.sh).
 
 > Create Users with the default configuration to folders, permissions, groups, and Samba Share.
 
-	bash /mnt/Cloud/Data/Commands/default-user.sh
+	bash /mnt/Cloud/Data/Commands/default-user.sh <$SERVERNAME> <USER1> ... <USERx>
 
 • [default-Keys.sh](Conf/default/default-Keys.sh).
 
 > Create SSH Private keys to multiple devices.
 
-	bash /mnt/Cloud/Data/Commands/default-Keys.sh
+	bash /mnt/Cloud/Data/Commands/default-Keys.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
 
 • [subdomain.sh](Conf/default/subdomain.sh).
 
 > Create subdomain to a service in Nginx and Homer.
 
-	bash /mnt/Cloud/Data/Commands/subdomain.sh
+	bash /mnt/Cloud/Data/Commands/subdomain.sh <DOMAIN> <TPDOMAIN> <SERVICE> <PORT> <IP>
 
 • [subpath.sh](Conf/default/subpath.sh).
 
 > Create subpath to a service in Nginx and Homer.
 
-	bash /mnt/Cloud/Data/Commands/subpath.sh
+	bash /mnt/Cloud/Data/Commands/subpath.sh <DOMAIN> <TPDOMAIN> <SERVICE>
 
 
 ## Index:
@@ -184,9 +184,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 ## Tips:
 
-• Copy the text of [default-variables.sh](Conf/default/default-variables.sh) to a code editor and, with the help of a password generator, fill in all the information. When run "nano default-variables.sh" on [commands](#Commands), use Crtl+6 and then Crtl+K to delete everything. Fill in with the text you created.
-
-•  The private keys of Samba Server and Wireguard will be create on /mnt/Cloud/Data/Keys_SSH and /mnt/Cloud/Data/Keys_VPN consecutively and use Samba or Diet-Dashboard to easily export. Use one key per device and store them very well, you don't want them to fall into the wrong hands.
+•  The private keys (Samba Server and Wireguard) and the files with generated passwords for server and users  will be create on /mnt/Cloud/Public/Keys_SSH, /mnt/Cloud/Public/Keys_VPN and /mnt/Cloud/Public/Passwords consecutively, use Samba or Diet-Dashboard to easily export. Use one key per device and store them very well, you don't want them to fall into the wrong hands.
 
 
 ## Pre-Installation:
@@ -205,7 +203,9 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 	ifconfig
 
-• Save the token and put on [default-variables.sh](Conf/default/default-variables.sh).
+• Before installing, create your variables using the [Models](Conf/Models) template files. 
+
+• Save the token and put on [Model](Conf/Models).
 
 
 ## Installation:
@@ -242,11 +242,8 @@ Do the first login and follow the instructions.
 #### Commands:
 
 	CLOUDFLARE="$(echo '<TOKEN>')"
-	
 	VARIABLES=('<SERVER_NAME>' '<ADMIN_NAME>' '<GUEST_NAME>' '<DOMAIN>' '<TP_DOMAIN>' '<IP>' $CLOUDFLARE '<EMAIL>')
-
 	USERS=('<USER1>' ... '<USERx>')
-
 	DEVICES=('<DEVICE1>' ... '<DEVICEx>')
 
 	apt install git -y

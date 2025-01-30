@@ -19,7 +19,7 @@ do
     
     #Move passwords with right permissions to Public.
     sudo chmod 777 PASSWD_$USER.txt
-    mv PASSWD_$USER.txt /mnt/Cloud/Public
+    mv PASSWD_$USER.txt /mnt/Cloud/Public/Passwords
 
     #Add user.
     sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/$USER --gecos "User" "$USER"
