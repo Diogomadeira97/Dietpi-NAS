@@ -138,12 +138,6 @@ gpasswd -M "$ADMIN" $BAK
 #Turn admin in SU without password.
 echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-#Change terminal user of Dietpi-Dashboard to admin.
-cd /opt/dietpi-dashboard/
-rm config.toml
-echo -e 'terminal_user = "'$ADMIN'"' >> config.toml
-chmod 644 config.toml
-
 #Go to Samba folder.
 cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Samba
 
@@ -156,12 +150,15 @@ mv smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
 service samba restart
 
-#Change Dietpi-Dashboard password.
-hash=$(echo -n "$(echo "teste")" | sha512sum | mawk '{print $SERVERNAME}')
+#Change Dietpi-Dashboard password and terminal user to admin.
+hash=$(echo -n "$(echo "$DIETPIPW")" | sha512sum | mawk '{print $SERVERNAME}')
 secret=$(openssl rand -hex 32)
-echo -e "pass = true" >> /opt/dietpi-dashboard/config.toml
-echo -e 'hash="'$hash'"' >> /opt/dietpi-dashboard/config.toml
-echo -e 'secret="'$secret'"' >> /opt/dietpi-dashboard/config.toml
+echo -e "pass = true" >> config.toml
+echo -e 'hash="'$hash'"' >> config.toml
+echo -e 'secret="'$secret'"' >> config.toml
+echo -e 'terminal_user = "'$ADMIN'"' >> config.toml
+mv config.toml /opt/dietpi-dashboard/
+chmod 644 /opt/dietpi-dashboard/config.toml
 unset -v hash secret
 
 #Restart Dietpi-Dashboard.
