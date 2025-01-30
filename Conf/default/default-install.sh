@@ -151,7 +151,7 @@ chmod 644 /etc/samba/smb.conf
 service samba restart
 
 #Change Dietpi-Dashboard password and terminal user to admin.
-hash=$(echo -n "$(echo "$DIETPIPW")" | sha512sum | mawk '{print $SERVERNAME}')
+hash=$(echo -n "$(echo "$DIETPIPW")" | sha512sum | mawk '{print $1}')
 secret=$(openssl rand -hex 32)
 echo -e "pass = true" >> config.toml
 echo -e 'hash="'$hash'"' >> config.toml
