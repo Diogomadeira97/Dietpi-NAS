@@ -80,6 +80,7 @@ echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 
 #Create directory and move Dietpi-NAS folder.
 mkdir /mnt/Cloud/Data
+cd ../../../
 mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
@@ -268,7 +269,7 @@ ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW ${DEVICES[@]}
 
 #Delete the installation folder.
-#rm -rf /mnt/Cloud/Data/Dietpi-NAS
+rm -rf /mnt/Cloud/Data/Dietpi-NAS
 
 #Reboot the system and use SSH key to login with admin.
-#reboot
+reboot
