@@ -25,7 +25,7 @@ do
     sudo ssh-keygen -f $a -P ""
 
     #Copy the Device SSH key to admin user.
-    sudo sshpass -p "$(echo "$4")" ssh-copy-id -i $a.pub "$2@$1$2"
+    sudo sshpass -p "$(echo "$4")" ssh-copy-id -i $a.pub "$3@$1$2"
 
     #Change Device SSH key permissions.
     sudo chmod 777 $a
