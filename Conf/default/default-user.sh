@@ -13,9 +13,9 @@ do
     echo -e "#User $USER.\n" >> PASSWD_$USER.txt
     echo -e "USER=$USER" >> PASSWD_$USER.txt
     USERPW=$(passwd)
-    echo -e "$(echo "$USERPW")" >> PASSWD_$USER.txt
+    echo -e "$(echo "USERPW=$USERPW")" >> PASSWD_$USER.txt
     USERSMBPW=$(passwd)
-    echo -e "$(echo "$USERSMBPW")" >> PASSWD_$USER.txt
+    echo -e "$(echo "USERSMBPW=$USERSMBPW")" >> PASSWD_$USER.txt
     
     #Move passwords with right permissions to Public.
     sudo chmod 777 PASSWD_$USER.txt
