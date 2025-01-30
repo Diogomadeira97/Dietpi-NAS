@@ -79,8 +79,8 @@ EMAIL=${VARIABLES[8]}
 echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 
 #Create directory and move Dietpi-NAS folder.
-mkdir /mnt/Cloud/Data
 cd ../../../
+mkdir /mnt/Cloud/Data
 mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
