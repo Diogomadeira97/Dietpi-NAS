@@ -111,7 +111,7 @@ item(){
 echo -e 'services:' >> /var/www/$1/assets/config.yml
 
 #Mídias Section.
-section $1 "Mídias" "fa-solid fa-photo-film"
+section "Mídias" "fa-solid fa-photo-film"
 
 #Jellyfin.
 bash subdomain.sh $1 $2 "jellyfin" 8097 $3
@@ -121,64 +121,64 @@ item "jellyfin" "Reprodutor de filmes e séries."
 #Kavita.
 bash subdomain.sh $1 $2 "kavita" 2036 $3
 
-item "kavita" "Leitor de E-Book." $domain
+item "kavita" "Leitor de E-Book."
 
 #Immich.
 bash subdomain.sh $1 $2 "immich" 2283 $3
 
-item "immich" "Galeria de Mídias." $domain
+item "immich" "Galeria de Mídias."
 
 #Downloads section.
-section $1 "Downloads" "fa-solid fa-download" $domain
+section "Downloads" "fa-solid fa-download"
 
 #Transmission.
 bash subdomain.sh $1 $2 "transmission" 9091 $3
 
-item "transmission" "Gestor de Downloads." $domain
+item "transmission" "Gestor de Downloads."
 
 #Radarr.
 bash subdomain.sh $1 $2 "radarr" 7878 $3
 
-item "radarr" "Rastreador de Filmes." $domain
+item "radarr" "Rastreador de Filmes."
 
 #Sonarr.
 bash subdomain.sh $1 $2 "sonarr" 8989 $3
 
-item "sonarr" "Rastreador de TV-Shows." $domain
+item "sonarr" "Rastreador de TV-Shows."
 
 #Readarr.
 bash subdomain.sh $1 $2 "readarr" 8787 $3
 
-item "readarr" "Rastreador de Livros." $domain
+item "readarr" "Rastreador de Livros."
 
 #Prowlarr.
 bash subdomain.sh $1 $2 "prowlarr" 9696 $3
 
-item "prowlarr" "Rastreador de indexadores." $domain
+item "prowlarr" "Rastreador de indexadores."
 
 #Bazarr.
 bash subdomain.sh $1 $2 "bazarr" 6767 $3
 
-item "bazarr" "Rastreador de Legendas." $domain
+item "bazarr" "Rastreador de Legendas."
 
 #Smart Home section.
-section $1 "Casa Inteligente" "fa-solid fa-home"
+section "Casa Inteligente" "fa-solid fa-home"
 
 #Home Assistant.
 bash subdomain.sh $1 $2 "home-assistant" 8123 $3
 
-item "home-assistant" "Automação Residencial." $domain
+item "home-assistant" "Automação Residencial."
 
 #Server management section.
-section $1 "Gestão" "fa-solid fa-gear"
+section "Gestão" "fa-solid fa-gear"
 
 #AdGuard Home
 bash subdomain.sh $1 $2 "adguard" 8083 $3
 
-item "adguard" "Servidor DNS." $domain
+item "adguard" "Servidor DNS."
 
 #Dietpi-Dashboard
-echo -e '      - name: "'${1^}'"\n        logo: "assets/icons/'$1'.svg"\n        subtitle: "'$2'"\n        url: "http://'$domain$tpdomain:5252'"\n        target: "_blank"' >> /var/www/$domain/assets/config.yml
+echo -e '      - name: Dietpi-Dashboard\n        logo: "assets/icons/dietpi-dashboard.svg"\n        subtitle: Gestão de Servidor\n        url: "http://'$1$2:5252'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
 #Reload Nginx Server
 nginx -s reload
