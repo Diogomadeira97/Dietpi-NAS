@@ -178,7 +178,7 @@ bash subdomain.sh $1 $2 "adguard" 8083 $3
 item "adguard" "Servidor DNS." $domain
 
 #Dietpi-Dashboard
-item "dietpi-dashboard" "Servidor DNS."
+echo -e '      - name: "'${1^}'"\n        logo: "assets/icons/'$1'.svg"\n        subtitle: "'$2'"\n        url: "http://'$domain$tpdomain:5252'"\n        target: "_blank"' >> /var/www/$domain/assets/config.yml
 
 #Reload Nginx Server
 nginx -s reload
