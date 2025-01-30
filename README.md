@@ -210,12 +210,12 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 ## Installation:
 
+
+### First Steps:
+
 • Download the last image of Dietpi to your device [here](https://dietpi.com/).
 
 • If necessary, use [Rufus](https://rufus.ie/) to create a bootable USB drive.
-
-
-### First Steps:
 
 Do the first login and follow the instructions.
 
