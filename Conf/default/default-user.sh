@@ -11,9 +11,9 @@ do
     #User.
     USER=${ARS[i]}
     echo -e "#User $USER.\n" >> PASSWD_$USER.txt
-    echo -e "USER=$USER" >> PASSWD_$USER.txt
+    echo -e "USER=$USER\n" >> PASSWD_$USER.txt
     USERPW=$(passwd)
-    echo -e "$(echo "USERPW=$USERPW")" >> PASSWD_$USER.txt
+    echo -e "$(echo "USERPW=$USERPW\n")" >> PASSWD_$USER.txt
     USERSMBPW=$(passwd)
     echo -e "$(echo "USERSMBPW=$USERSMBPW")" >> PASSWD_$USER.txt
     
