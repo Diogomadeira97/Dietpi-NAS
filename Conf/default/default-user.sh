@@ -72,6 +72,7 @@ do
     sudo chown root:root smb.conf
     sudo chmod 644 smb.conf
     sudo mv smb.conf /etc/samba/smb.conf
+    service samba restart
 
     #Add user folders to immich.
     cd /mnt/Cloud/Data/Docker/immich-app
