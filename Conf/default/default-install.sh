@@ -157,7 +157,7 @@ chmod 644 /etc/samba/smb.conf
 service samba restart
 
 #Change Dietpi-Dashboard password.
-hash=$(echo -n "$(echo "$DIETPIPW")" | sha512sum | mawk '{print $SERVERNAME}')
+hash=$(echo -n "$(echo "teste")" | sha512sum | mawk '{print $SERVERNAME}')
 secret=$(openssl rand -hex 32)
 echo -e "pass = true" >> /opt/dietpi-dashboard/config.toml
 echo -e 'hash="'$hash'"' >> /opt/dietpi-dashboard/config.toml
