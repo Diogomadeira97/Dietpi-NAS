@@ -266,7 +266,7 @@ bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME ${USERS[@]}
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 
 #Add Devices.
-bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW ${DEVICES[@]}
+bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN ${DEVICES[@]}
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS

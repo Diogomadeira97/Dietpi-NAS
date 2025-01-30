@@ -15,7 +15,7 @@ cd ~/.ssh
 ARS=( "$@" )
 
 #Do it while have a Device.
-for (( i=4; i<$#; i++)); 
+for (( i=2; i<$#; i++)); 
 do
 
     #Device.
@@ -25,7 +25,7 @@ do
     sudo ssh-keygen -f $a -P ""
 
     #Copy the Device SSH key to admin user.
-    sudo sshpass -p "$(echo "$4")" ssh-copy-id -i $a.pub "$3@$1$2"
+    sudo ssh-copy-id -i $a.pub "$a@$1$2"
 
     #Change Device SSH key permissions.
     sudo chmod 777 $a
