@@ -15,7 +15,7 @@ cd ~/.ssh
 ARS=( "$@" )
 
 #Do it while have a Device.
-for (( i=3; i<$#; i++)); 
+for (( i=4; i<$#; i++)); 
 do
 
     #Device.
@@ -25,7 +25,7 @@ do
     sudo ssh-keygen -f $a -P ""
 
     #Copy the Device SSH key to admin user.
-    sudo sshpass -p "$(echo "$3")" ssh-copy-id -i $a.pub "$2@$1"
+    sudo sshpass -p "$(echo "$4")" ssh-copy-id -i $a.pub "$2@$1$2"
 
     #Change Device SSH key permissions.
     sudo chmod 777 $a
@@ -48,6 +48,6 @@ sudo service sshd restart
 sudo chmod -R 777 /mnt/Cloud/Public/Keys_SSH
 
 #Move Device Wireguard Key to /mnt/Cloud/Keys_VPN and easily export with Dietpi-Dashboard or Samba.
-sudo chmod 777 /home/$2/configs/*
-sudo mv /home/$2/configs/* /mnt/Cloud/Public/Keys_VPN
-sudo rm -rf /home/$2/configs
+sudo chmod 777 /home/$3/configs/*
+sudo mv /home/$3/configs/* /mnt/Cloud/Public/Keys_VPN
+sudo rm -rf /home/$3/configs
