@@ -3,9 +3,10 @@
 passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
 ARS=( "$@" )
+F=(($# - 1))
 
 #Do it while have a User.
-for (( i=1; i<=$#; i++));
+for (( i=1; i<=$F; i++));
 do
 
     #User.
@@ -16,7 +17,7 @@ do
     echo -e "$(echo "$USERPW")" >> PASSWD_$USER.txt
     USERSMBPW=$(passwd)
     echo -e "$(echo "$USERSMBPW")" >> PASSWD_$USER.txt
-    mv PASSWD_$1.txt /mnt/Cloud/Public
+    mv PASSWD_$USER.txt /mnt/Cloud/Public
 
     #Add user.
     sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/$USER --gecos "User" "$USER"
@@ -69,7 +70,6 @@ do
     sudo chown root:root smb.conf
     sudo chmod 644 smb.conf
     sudo mv smb.conf /etc/samba/smb.conf
-    cat /etc/samba/smb.conf
 
     #Add user folders to immich.
     cd /mnt/Cloud/Data/Docker/immich-app
