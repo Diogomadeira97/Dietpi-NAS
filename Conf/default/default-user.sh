@@ -9,13 +9,13 @@ for (( i=1; i<=$#; i++));
 do
 
     #User.
-    echo -e "#User $1.\n" >> PASSWD_$1.txt
     USER=${ARS[i]}
-    echo -e "USER=$USER" >> PASSWD_$1.txt
+    echo -e "#User $USER.\n" >> PASSWD_$USER.txt
+    echo -e "USER=$USER" >> PASSWD_$USER.txt
     USERPW=$(passwd)
-    echo -e "$(echo "$USERPW")" >> PASSWD_$1.txt
+    echo -e "$(echo "$USERPW")" >> PASSWD_$USER.txt
     USERSMBPW=$(passwd)
-    echo -e "$(echo "$USERSMBPW")" >> PASSWD_$1.txt
+    echo -e "$(echo "$USERSMBPW")" >> PASSWD_$USER.txt
     mv PASSWD_$1.txt /mnt/Cloud/Public
 
     #Add user.

@@ -42,8 +42,9 @@ do
 done
 
 #Default variables.
-echo -e "#Default variables." >> PASSWD_${VARIABLES[1]}.txt
+
 SERVERNAME=${VARIABLES[1]}
+echo -e "#Default variables." >> PASSWD_$SERVERNAME.txt
 echo -e "SERVERNAME=$SERVERNAME" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
 echo -e "DIETPIPW=$DIETPIPW" >> PASSWD_$SERVERNAME.txt
