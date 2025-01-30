@@ -41,6 +41,27 @@ do
 
 done
 
+#dietpi-config
+/boot/dietpi/dietpi-config
+
+#dietpi-drive_manager
+/boot/dietpi/dietpi-drive_manager
+
+#dietpi-sync
+/boot/dietpi/dietpi-sync
+
+#dietpi-backup
+/boot/dietpi/dietpi-backup
+
+#Create directory and move Dietpi-NAS folder.
+cd ../../../
+mkdir /mnt/Cloud/Data
+mv Dietpi-NAS /mnt/Cloud/Data
+
+#Go to Cloud and create default folders.
+cd /mnt/Cloud
+mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
+
 #Default variables.
 
 SERVERNAME=${VARIABLES[1]}
@@ -82,27 +103,6 @@ echo -e "EMAIL=$EMAIL" >> PASSWD_$SERVERNAME.txt
 #Move passwords with right permissions to Public.
 sudo chmod 777 PASSWD_$SERVERNAME.txt
 mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public
-
-#Create directory and move Dietpi-NAS folder.
-cd ../../../
-mkdir /mnt/Cloud/Data
-mv Dietpi-NAS /mnt/Cloud/Data
-
-#Go to Cloud and create default folders.
-cd /mnt/Cloud
-mkdir Data/Commands Data/Keys_SSH Data/Keys_VPN Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Users
-
-#dietpi-config
-/boot/dietpi/dietpi-config
-
-#dietpi-drive_manager
-/boot/dietpi/dietpi-drive_manager
-
-#dietpi-sync
-/boot/dietpi/dietpi-sync
-
-#dietpi-backup
-/boot/dietpi/dietpi-backup
 
 #Define Umask.
 umask 0022
