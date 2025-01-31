@@ -6,14 +6,14 @@ sudo mkdir /mnt/Cloud/Public/Keys_VPN
 ARS=( "$@" )
 
 #Do it while have a Device.
-for (( i=2; i<$#; i++)); 
+for (( i=1; i<$#; i++)); 
 do
 
     #Device.
     a=${ARS[i]}
 
     #Create a Device Wireguard Key.
-    sudo pivpn add -n $a
+    (echo "";) | sudo pivpn add -n $a
 
 done
 

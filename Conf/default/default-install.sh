@@ -174,7 +174,7 @@ mv default.sh /mnt/Cloud/Data/Commands
 mv default-user.sh /mnt/Cloud/Data/Commands
 
 #Use /mnt/Cloud/Data/Commands/default-keys-ssh.sh to add some ssh keys.
-mv default-keys.sh /mnt/Cloud/Data/Commands
+mv default-keys-ssh.sh /mnt/Cloud/Data/Commands
 
 #Use /mnt/Cloud/Data/Commands/default-keys-vpn.sh to add some vpn keys.
 mv default-keys-vpn.sh /mnt/Cloud/Data/Commands

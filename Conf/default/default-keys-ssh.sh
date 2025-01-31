@@ -22,7 +22,7 @@ do
     a=${ARS[i]}
 
     #Generate a Device SSH key.
-    sudo ssh-keygen -f "$a'_'$3" -P ""
+    sudo ssh-keygen -f "$a'('$3')'" -P ""
 
     #Copy the Device SSH key to admin user.
     sudo ssh-copy-id -i $a.pub "$3@$1$2"
