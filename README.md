@@ -204,11 +204,11 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
 
-• On Cloudflare create a token and put IPv4 and IPv6 to filter. If necessary, before [Commands](#Commands), use this command to check eth0 IPs:
-
 	ifconfig
 
-• Before installing, create your variables using the [Models](Conf/Models) template files. 
+• Before installing, create your variables using the [Models](Conf/Models) template files.
+
+• On Cloudflare create a token and put IPv4 and IPv6 to filter. If necessary, before [Commands](#Commands), use this command to check eth0 IPs:
 
 • Save the token and put on [Model](Conf/Models).
 
