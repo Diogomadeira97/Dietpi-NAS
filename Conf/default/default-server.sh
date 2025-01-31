@@ -124,6 +124,39 @@ bash subdomain.sh $1 $2 "kavita" 2036 $3
 item "kavita" "Leitor de E-Book."
 
 #Immich.
+
+server{
+        listen 80;
+        listen [::]:80;
+        server_name immich.alga-nas.com.br;
+        return 301 https://$host$request_uri;
+}
+
+server{
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+        server_name immich.alga-nas.com.br;
+        ssl_certificate /etc/letsencrypt/live/alga-nas.com.br/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/alga-nas.com.br/privkey.pem;
+        set $url 192.168.68.104:2283;
+
+        location / {
+                proxy_pass http://$url;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+        }
+
+        location /.well-known/acme-challenge/ {
+                allow all;
+        }
+
+}
+echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $3.$1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name $3.$1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n	set \$url $5:$4;\n\n" >> /etc/nginx/sites-available/$3
+echo -e "	location / {\n		proxy_pass http://\$url;\n		proxy_http_version 1.1;\n		proxy_set_header Upgrade \$http_upgrade;\n		proxy_set_header Connection 'upgrade';\n		proxy_set_header Host \$host;\n		proxy_cache_bypass \$http_upgrade;\n	}\n\n	location /.well-known/acme-challenge/ {\n		allow all;\n	}\n}" >> /etc/nginx/sites-available/$3
+
 bash subdomain.sh $1 $2 "immich" 2283 $3
 
 item "immich" "Galeria de Mídias."
