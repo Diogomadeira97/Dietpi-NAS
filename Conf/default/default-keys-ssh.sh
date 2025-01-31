@@ -6,6 +6,9 @@ sudo mv dietpi.conf /etc/ssh/sshd_config.d
 sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
 sudo service sshd restart
 
+#Add Domain to known_hosts.
+ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
+
 #Create folders to put the private keys.
 sudo mkdir /mnt/Cloud/Public/Keys_SSH
 
@@ -22,16 +25,16 @@ do
     a=${ARS[i]}
 
     #Generate a Device SSH key.
-    sudo ssh-keygen -f "$a'('$3')'" -P ""
+    sudo ssh-keygen -f "$a($3)" -P ""
 
     #Copy the Device SSH key to admin user.
-    sudo ssh-copy-id -i "$a'('$3')'".pub "$3@$1$2"
+    sudo sshpass -p "$(echo "$4")" ssh-copy-id -i "$a($3)".pub "$3@$1$2"
 
     #Change Device SSH key permissions.
-    sudo chmod 777 "$a'('$3')'"
+    sudo chmod 777 "$a($3)"
 
     #Move Device SSH Key to /mnt/Cloud/Keys_SSH and easily export with Dietpi-Dashboard or Samba.
-    sudo mv "$a'('$3')'" /mnt/Cloud/Public/Keys_SSH
+    sudo mv "$a($3)" /mnt/Cloud/Public/Keys_SSH
 
 done
 
