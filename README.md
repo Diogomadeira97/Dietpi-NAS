@@ -67,7 +67,7 @@ In addition to security, another fundamental objective is to be an environment w
 
 • [Home assistant](https://dietpi.com/docs/software/home_automation/#home-assistant).
 
-Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some scripts in the post-installation located in /mnt/Cloud/Data/Commands:
+Last but not least, the installation was thought out to be practical, so that people with little knowledge can install without worrying about the security of their network. In this sense, it is possible to use some <a name="scripts">scripts</a> in the post-installation located in /mnt/Cloud/Data/Commands:
 
 • [default.sh](Conf/default/default.sh).
 
@@ -81,11 +81,17 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 	bash /mnt/Cloud/Data/Commands/default-user.sh <$SERVERNAME> <USER1> ... <USERx>
 
-• [default-Keys.sh](Conf/default/default-Keys.sh).
+• [default-keys-ssh.sh](Conf/default/default-keys-ssh.sh).
 
 > Create SSH Private keys to multiple devices.
 
-	bash /mnt/Cloud/Data/Commands/default-Keys.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
+	bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
+
+• [default-keys-vpn.sh](Conf/default/default-keys-vpn.sh).
+
+> Create SSH Private keys to multiple devices.
+
+	bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh <DOMAIN> <DEVICE1> ... <DEVICEx>
 
 • [subdomain.sh](Conf/default/subdomain.sh).
 
@@ -177,9 +183,8 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • Offsite backups at least every month.
 
-• Different passwords for each variable in [default-variables.sh](Conf/default/default-variables.sh).
+• This installation will create SSH Private Keys only to Admin user, so choose enabled devices to Super User Login. To create others VPN and SSH keys, use the commands mentioned [here](#scripts). Protect the Keys very well because with they anyone can access your server.
 
-• Protect your private keys very well, because with it anyone can access your server.
 
 
 ## Tips:
@@ -199,13 +204,13 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • Create a 'A' record to the domain and a 'A' record to the wildcard, point both to your server private ip.
 
-• On Cloudflare create a token and put IPv4 and IPv6 to filter. If necessary, before [Commands](#Commands), use this command to check eth0 IPs:
-
 	ifconfig
 
-• Before installing, create your variables using the [Models](Conf/Models) template files. 
+• Before installing, create your variables using the [Models](Conf/Models) template files.
 
-• Save the token and put on [Model](Conf/Models).
+• On Cloudflare create a token and put IPv4 and IPv6 to filter. If necessary, before [Commands](#Commands), use this command to check eth0 IPs:
+
+• Save the token and put on [Models](Conf/Models).
 
 
 ## Installation:
@@ -322,10 +327,6 @@ Do the first login and follow the instructions.
 
 
 #### AdGuard Home:
-
-• Set Unbound to the DNS resolver on the installation.
-
-• Set static ip if you don't.
 
 • Login on web UI with: 
 
