@@ -25,13 +25,13 @@ do
     sudo ssh-keygen -f "$a'('$3')'" -P ""
 
     #Copy the Device SSH key to admin user.
-    sudo ssh-copy-id -i $a.pub "$3@$1$2"
+    sudo ssh-copy-id -i "$a'('$3')'".pub "$3@$1$2"
 
     #Change Device SSH key permissions.
-    sudo chmod 777 $a
+    sudo chmod 777 "$a'('$3')'"
 
     #Move Device SSH Key to /mnt/Cloud/Keys_SSH and easily export with Dietpi-Dashboard or Samba.
-    sudo mv $a /mnt/Cloud/Public/Keys_SSH
+    sudo mv "$a'('$3')'" /mnt/Cloud/Public/Keys_SSH
 
 done
 
