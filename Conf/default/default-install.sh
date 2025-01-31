@@ -60,7 +60,7 @@ mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
-mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Jellyfin Public Public/Downloads Public/Passwords Users
+mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Jellyfin Public Public/Downloads Public/Docs Public/Passwords Users
 
 #Default variables.
 
@@ -248,13 +248,22 @@ docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart
 #Go to Immich Docker directory.
 cd /mnt/Cloud/Data/Docker/immich-app
 
-#Import default files.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/docker-compose.yml /mnt/Cloud/Data/Docker/immich-app
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/docker-compose.yml .
 
 #Change Data Base password.
 echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$DBIMMICHPW" >> .env
 
 #Run Immich on Docker.
+docker compose up -d
+
+#Go to Immich Docker directory.
+cd /mnt/Cloud/Data/Docker/vscodium
+
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Vscodium/docker-compose.yml .
+
+#Run Vscodium on Docker.
 docker compose up -d
 
 #Add Nginx, Certbot and Homer default configs.

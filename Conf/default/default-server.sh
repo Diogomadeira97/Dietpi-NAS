@@ -188,7 +188,7 @@ bash subdomain.sh $1 $2 "home-assistant" 8123 $3
 item "home-assistant" "Automação Residencial."
 
 #Dietpi-Dashboard
-echo -e '      - name: Dietpi-Dashboard\n        logo: "assets/icons/dietpi-dashboard.svg"\n        subtitle: Gestão de Servidor\n        url: "http://'$1$2:5252'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-dashboard.svg"\n        subtitle: "Gestão de Servidor."\n        url: "http://'$1$2:5252'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
 #Reload Nginx Server
 nginx -s reload
