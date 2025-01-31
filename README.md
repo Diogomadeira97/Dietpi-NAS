@@ -81,11 +81,17 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 	bash /mnt/Cloud/Data/Commands/default-user.sh <$SERVERNAME> <USER1> ... <USERx>
 
-• [default-Keys.sh](Conf/default/default-Keys.sh).
+• [default-Keys.sh](Conf/default/default-keys-ssh.sh).
 
 > Create SSH Private keys to multiple devices.
 
-	bash /mnt/Cloud/Data/Commands/default-Keys.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
+	bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
+
+• [default-Keys.sh](Conf/default/default-keys-vpn.sh).
+
+> Create SSH Private keys to multiple devices.
+
+	bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh <DOMAIN> <DEVICE1> ... <DEVICEx>
 
 • [subdomain.sh](Conf/default/subdomain.sh).
 
