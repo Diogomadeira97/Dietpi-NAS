@@ -9,6 +9,6 @@ cd /etc/nginx/sites-enabled
 
 sudo ln -s /etc/nginx/sites-available/$3 .
 
-echo -e "sudo iptables -A INPUT -p tcp ! -s $5 --dport $4 -j DROP" >>/mnt/Cloud/Data/Commands/iptables_custom.sh
+echo -e "sudo iptables -A INPUT -p tcp ! -s $5 --dport $4 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
 
 sudo nginx -s reload
