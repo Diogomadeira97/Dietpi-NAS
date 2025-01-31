@@ -11,11 +11,10 @@ do
     #User.
     USER=${ARS[i]}
     echo -e "#User $USER.\n" >> PASSWD_$USER.txt
-    echo -e "USER=$USER\n" >> PASSWD_$USER.txt
     USERPW=$(passwd)
-    echo -e "$(echo "USERPW=$USERPW\n")" >> PASSWD_$USER.txt
+    echo -e "$(echo "       • $USER=$USERPW\n")" >> PASSWD_$USER.txt
     USERSMBPW=$(passwd)
-    echo -e "$(echo "USERSMBPW=$USERSMBPW")" >> PASSWD_$USER.txt
+    echo -e "$(echo "       • $USER(smb)=$USERSMBPW")" >> PASSWD_$USER.txt
     
     #Move passwords with right permissions to Public.
     sudo chmod 777 PASSWD_$USER.txt

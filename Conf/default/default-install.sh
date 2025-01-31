@@ -66,39 +66,37 @@ mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app D
 
 SERVERNAME=${VARIABLES[1]}
 echo -e "#Default variables.\n" >> PASSWD_$SERVERNAME.txt
-echo -e "SERVERNAME=$SERVERNAME\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • SERVERNAME: $SERVERNAME\n" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
-echo -e "DIETPIPW=$DIETPIPW\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • DIETPIPW: $DIETPIPW\n" >> PASSWD_$SERVERNAME.txt
 DBIMMICHPW=$(passwd)
-echo -e "DBIMMICHPW=$DBIMMICHPW\n\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • DBIMMICHPW: $DBIMMICHPW\n\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
 echo -e "#Default Users.\n" >> PASSWD_$SERVERNAME.txt
 ADMIN=${VARIABLES[2]}
-echo -e "ADMIN=$ADMIN\n" >> PASSWD_$SERVERNAME.txt
 ADMINPW=$(passwd)
-echo -e "ADMINPW=$ADMINPW\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • $ADMIN: $ADMINPW\n" >> PASSWD_$SERVERNAME.txt
 ADMINSMBPW=$(passwd)
-echo -e "ADMINSMBPW=$ADMINSMBPW\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • $ADMIN(smb): $ADMINSMBPW\n" >> PASSWD_$SERVERNAME.txt
 GUEST=${VARIABLES[3]}
-echo -e "GUEST=$GUEST\n" >> PASSWD_$SERVERNAME.txt
 GUESTPW=$(passwd)
-echo -e "GUESTPW=$GUESTPW\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • $GUEST: $GUESTPW\n" >> PASSWD_$SERVERNAME.txt
 GUESTSMBPW=$(passwd)
-echo -e "GUESTSMBPW=$GUESTSMBPW\n\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • $GUEST(smb): $GUESTSMBPW\n\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Server.
 echo -e "#Default Server.\n" >> PASSWD_$SERVERNAME.txt
 DOMAIN=${VARIABLES[4]}
-echo -e "DOMAIN=$DOMAIN\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • DOMAIN: $DOMAIN\n" >> PASSWD_$SERVERNAME.txt
 TPDOMAIN=${VARIABLES[5]}
-echo -e "TPDOMAIN=$TPDOMAIN\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • TPDOMAIN: $TPDOMAIN\n" >> PASSWD_$SERVERNAME.txt
 IP=${VARIABLES[6]}
-echo -e "IP=$IP\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • IP: $IP\n" >> PASSWD_$SERVERNAME.txt
 CLOUDFLARETOKEN=${VARIABLES[7]}
-echo -e "CLOUDFLARETOKEN=$CLOUDFLARETOKEN\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • CLOUDFLARETOKEN: $CLOUDFLARETOKEN\n" >> PASSWD_$SERVERNAME.txt
 EMAIL=${VARIABLES[8]}
-echo -e "EMAIL=$EMAIL\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • EMAIL: $EMAIL\n" >> PASSWD_$SERVERNAME.txt
 
 #Move passwords with right permissions to Public.
 sudo chmod 777 PASSWD_$SERVERNAME.txt
