@@ -75,7 +75,7 @@ do
 
     #Add user folders to immich.
     cd /mnt/Cloud/Data/Docker/immich-app
-    sudo echo -e "      - /mnt/Cloud/Users/$USER/Midia/Midias-Anuais:/mnt/Cloud/Users/$USER/Midia/Midias-Anuais:ro\n" >> docker-compose.yml
+    sudo echo -e "      - /mnt/Cloud/Users/$USER/Midias/Midias-Anuais:/mnt/Cloud/Users/$USER/Midias/Midias-Anuais:ro\n" >> docker-compose.yml
     sudo docker compose restart
 
     #Create a crontab to sync Immich with user folder.
