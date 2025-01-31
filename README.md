@@ -328,10 +328,6 @@ Do the first login and follow the instructions.
 
 #### AdGuard Home:
 
-• Set Unbound to the DNS resolver on the installation.
-
-• Set static ip if you don't.
-
 • Login on web UI with: 
 
 > Username: admin
