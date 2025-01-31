@@ -257,11 +257,20 @@ echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA
 #Run Immich on Docker.
 docker compose up -d
 
-#Go to Immich Docker directory.
+#Go to Vscodium Docker directory.
 cd /mnt/Cloud/Data/Docker/vscodium
 
 #Import default file.
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Vscodium/docker-compose.yml .
+
+#Run Vscodium on Docker.
+docker compose up -d
+
+#Go to Gimp Docker directory.
+cd /mnt/Cloud/Data/Docker/gimp
+
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Gimp/docker-compose.yml .
 
 #Run Vscodium on Docker.
 docker compose up -d
