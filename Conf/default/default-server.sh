@@ -124,20 +124,7 @@ bash subdomain.sh $1 $2 "kavita" 2036 $3
 item "kavita" "Leitor de E-Book."
 
 #Immich.
-
-echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name immich.$1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name immich.$1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n	set \$url $3:2283;\n\n" >> /etc/nginx/sites-available/immich
-echo -e "	location / {\n		proxy_pass http://\$url;\n		proxy_http_version 1.1;\n		proxy_set_header Upgrade \$http_upgrade;\n		proxy_set_header Connection 'upgrade';\n		proxy_set_header Host \$host;\n		proxy_cache_bypass \$http_upgrade;\n	}\n\n	location /.well-known/acme-challenge/ {\n		allow all;\n	}\n}" >> /etc/nginx/sites-available/immich
-
-sudo chown root:root /etc/nginx/sites-available/immich
-sudo chmod 544 /etc/nginx/sites-available/immich
-
-cd /etc/nginx/sites-enabled
-
-sudo ln -s /etc/nginx/sites-available/immich .
-
-echo -e "sudo iptables -A INPUT -p tcp ! -s $3 --dport 2283 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
-
-sudo nginx -s reload
+bash subdomain-docker.sh $1 $2 "immich" 2283 $3
 
 item "immich" "Galeria de Mídias."
 
@@ -173,6 +160,34 @@ item "prowlarr" "Rastreador de indexadores."
 bash subdomain.sh $1 $2 "bazarr" 6767 $3
 
 item "bazarr" "Rastreador de Legendas."
+
+#Tools Section.
+section "Ferramentas" "fa-solid fa-screwdriver-wrench"
+
+#Vscodium.
+bash subdomain-docker.sh $1 $2 "vscodium" 3000 $3
+
+item "vscodium" "Editor de Código."
+
+#Gimp.
+bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
+
+item "gimp" "Editor de Imagens."
+
+#Passbolt.
+#bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
+
+item "passbolt" "Gerenciador de Senhas."
+
+#Onlyoffice.
+#bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
+
+item "onlyoffice" "Plataforma de Produtividade."
+
+#Starling.
+#bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
+
+item "starling" "Manipulador de PDF."
 
 #Server management section.
 section "Gestão" "fa-solid fa-gear"
