@@ -173,8 +173,11 @@ mv default.sh /mnt/Cloud/Data/Commands
 #Use /mnt/Cloud/Data/Commands/default-user.sh to add some users.
 mv default-user.sh /mnt/Cloud/Data/Commands
 
-#Use /mnt/Cloud/Data/Commands/default-keys.sh to add some ssh keys.
+#Use /mnt/Cloud/Data/Commands/default-keys-ssh.sh to add some ssh keys.
 mv default-keys.sh /mnt/Cloud/Data/Commands
+
+#Use /mnt/Cloud/Data/Commands/default-keys-vpn.sh to add some vpn keys.
+mv default-keys-vpn.sh /mnt/Cloud/Data/Commands
 
 #Use /mnt/Cloud/Data/subdomain.sh to add some subdomain.
 mv subdomain.sh /mnt/Cloud/Data/Commands
@@ -266,7 +269,10 @@ bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME ${USERS[@]}
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 
 #Add Devices.
-bash /mnt/Cloud/Data/Commands/default-keys.sh $DOMAIN $TPDOMAIN $ADMIN ${DEVICES[@]}
+bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW ${DEVICES[@]}
+
+#Add Devices.
+bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh $ADMIN ${DEVICES[@]}
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS
