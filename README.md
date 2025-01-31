@@ -210,7 +210,7 @@ The remote used of this installation is designed to be only with a VPN, so the o
 
 • On Cloudflare create a token and put IPv4 and IPv6 to filter. If necessary, before [Commands](#Commands), use this command to check eth0 IPs:
 
-• Save the token and put on [Model](Conf/Models).
+• Save the token and put on [Models](Conf/Models).
 
 
 ## Installation:
