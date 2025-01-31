@@ -174,14 +174,6 @@ bash subdomain.sh $1 $2 "bazarr" 6767 $3
 
 item "bazarr" "Rastreador de Legendas."
 
-#Smart Home section.
-section "Casa Inteligente" "fa-solid fa-home"
-
-#Home Assistant.
-bash subdomain.sh $1 $2 "home-assistant" 8123 $3
-
-item "home-assistant" "Automação Residencial."
-
 #Server management section.
 section "Gestão" "fa-solid fa-gear"
 
@@ -189,6 +181,11 @@ section "Gestão" "fa-solid fa-gear"
 bash subdomain.sh $1 $2 "adguard" 8083 $3
 
 item "adguard" "Servidor DNS."
+
+#Home Assistant.
+bash subdomain.sh $1 $2 "home-assistant" 8123 $3
+
+item "home-assistant" "Automação Residencial."
 
 #Dietpi-Dashboard
 echo -e '      - name: Dietpi-Dashboard\n        logo: "assets/icons/dietpi-dashboard.svg"\n        subtitle: Gestão de Servidor\n        url: "http://'$1$2:5252'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
