@@ -125,39 +125,19 @@ item "kavita" "Leitor de E-Book."
 
 #Immich.
 
-server{
-        listen 80;
-        listen [::]:80;
-        server_name immich.alga-nas.com.br;
-        return 301 https://$host$request_uri;
-}
+echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name immich.$1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name immich.$1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n	set \$url $3:2283;\n\n" >> /etc/nginx/sites-available/immich
+echo -e "	location / {\n		proxy_pass http://\$url;\n		proxy_http_version 1.1;\n		proxy_set_header Upgrade \$http_upgrade;\n		proxy_set_header Connection 'upgrade';\n		proxy_set_header Host \$host;\n		proxy_cache_bypass \$http_upgrade;\n	}\n\n	location /.well-known/acme-challenge/ {\n		allow all;\n	}\n}" >> /etc/nginx/sites-available/immich
 
-server{
-        listen 443 ssl http2;
-        listen [::]:443 ssl http2;
-        server_name immich.alga-nas.com.br;
-        ssl_certificate /etc/letsencrypt/live/alga-nas.com.br/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/alga-nas.com.br/privkey.pem;
-        set $url 192.168.68.104:2283;
+sudo chown root:root /etc/nginx/sites-available/immich
+sudo chmod 544 /etc/nginx/sites-available/immich
 
-        location / {
-                proxy_pass http://$url;
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection 'upgrade';
-                proxy_set_header Host $host;
-                proxy_cache_bypass $http_upgrade;
-        }
+cd /etc/nginx/sites-enabled
 
-        location /.well-known/acme-challenge/ {
-                allow all;
-        }
+sudo ln -s /etc/nginx/sites-available/immich .
 
-}
-echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $3.$1$2;\n	return 301 https://\$host\$request_uri;	\n}\n\nserver{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name $3.$1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n	set \$url $5:$4;\n\n" >> /etc/nginx/sites-available/$3
-echo -e "	location / {\n		proxy_pass http://\$url;\n		proxy_http_version 1.1;\n		proxy_set_header Upgrade \$http_upgrade;\n		proxy_set_header Connection 'upgrade';\n		proxy_set_header Host \$host;\n		proxy_cache_bypass \$http_upgrade;\n	}\n\n	location /.well-known/acme-challenge/ {\n		allow all;\n	}\n}" >> /etc/nginx/sites-available/$3
+echo -e "sudo iptables -A INPUT -p tcp ! -s $3 --dport 2283 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
 
-bash subdomain.sh $1 $2 "immich" 2283 $3
+sudo nginx -s reload
 
 item "immich" "Galeria de Mídias."
 
