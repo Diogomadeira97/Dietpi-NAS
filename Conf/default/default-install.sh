@@ -60,7 +60,7 @@ mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
-mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Jellyfin Public Public/Downloads Public/Docs Public/Passwords Users
+mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Jellyfin Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users
 
 #Default variables.
 
