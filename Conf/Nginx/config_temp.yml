@@ -1,7 +1,9 @@
 
 subtitle: "Dashboard"
-header: false
+header: true
 footer: false
+
+logo: "assets/icons/logo.svg"
 
 stylesheet:
 - "assets/custom.css"
@@ -43,7 +45,11 @@ colors:
     background-image: "../assets/wallpaper.jpeg"
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
-links: []
+links:
+  - name: "Dietpi-NAS"
+    icon: "fab fa-github"
+    url: "https://github.com/Diogomadeira97/Dietpi-NAS"
+    target: "_blank"
 # Services
 # First level array represent a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
