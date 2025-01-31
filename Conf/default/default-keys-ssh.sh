@@ -6,9 +6,6 @@ sudo mv dietpi.conf /etc/ssh/sshd_config.d
 sudo chmod 644 /etc/ssh/sshd_config.d/dietpi.conf
 sudo service sshd restart
 
-#Add Domain to known_hosts.
-ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
-
 #Create folders to put the private keys.
 sudo mkdir /mnt/Cloud/Public/Keys_SSH
 

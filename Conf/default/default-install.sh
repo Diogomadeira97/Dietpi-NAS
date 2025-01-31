@@ -265,6 +265,9 @@ bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN
 #Add Users.
 bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME ${USERS[@]}
 
+#Add Domain to known_hosts.
+ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
+
 #Add Devices.
 bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW ${DEVICES[@]}
 
