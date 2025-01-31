@@ -27,7 +27,7 @@ chown root:root /etc/letsencrypt/cloudflare.ini
 chmod 600 /etc/letsencrypt/cloudflare.ini
 
 #Edit config.yml of Domain.
-echo -e '# Homepage configuration\ntitle: "'"$1"'"' >> config.yml
+echo -e '# Homepage configuration\ntitle: "'"$5"'"' >> config.yml
 cat config_temp.yml >> config.yml
 
 #Change default files permissions.
