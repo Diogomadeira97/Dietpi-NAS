@@ -67,6 +67,8 @@ mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app D
 SERVERNAME=${VARIABLES[1]}
 echo -e "#Default variables.\n" >> PASSWD_$SERVERNAME.txt
 echo -e "       • SERVERNAME: $SERVERNAME\n" >> PASSWD_$SERVERNAME.txt
+OFFICEPW=$(passwd)
+echo -e "       • OFFICEPW: $OFFICEPW\n" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
 echo -e "       • DIETPIPW: $DIETPIPW\n" >> PASSWD_$SERVERNAME.txt
 DBIMMICHPW=$(passwd)
@@ -195,7 +197,7 @@ crontab crontab
 rm crontab
 
 #Install Access Control List.
-apt install acl sshpass -y
+apt install acl sshpass postgresql rabbitmq-server -y
 
 #This code is to fix the reboot error message.
 systemctl unmask systemd-logind
@@ -238,6 +240,18 @@ chown -R jellyfin:$CLOUD Data/Jellyfin
 
 #Turn debian-transmission the owner of Public Downloads Folder.
 chown -R debian-transmission:$CLOUD Public/Downloads
+
+#Install Onlyoffice.
+sudo -i -u postgres psql -c "CREATE USER onlyoffice WITH PASSWORD "$(echo "$OFFICEPW")";"
+sudo -i -u postgres psql -c "CREATE DATABASE onlyoffice OWNER onlyoffice;"
+echo onlyoffice-documentserver onlyoffice/ds-port select 8090 | sudo debconf-set-selections
+mkdir -p -m 700 ~/.gnupg
+curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | gpg --no-default-keyring --keyring gnupg-ring:/tmp/onlyoffice.gpg --import
+chmod 644 /tmp/onlyoffice.gpg
+sudo chown root:root /tmp/onlyoffice.gpg
+sudo mv /tmp/onlyoffice.gpg /usr/share/keyrings/onlyoffice.gpg
+echo "deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://download.onlyoffice.com/repo/debian squeeze main" | sudo tee /etc/apt/sources.list.d/onlyoffice.list
+sudo apt-get install ttf-mscorefonts-installer onlyoffice-documentserver -y
 
 #Create Flaresolver Docker directory.
 cd /mnt/Cloud/Data/Docker/flaresolver

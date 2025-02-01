@@ -165,7 +165,7 @@ item "bazarr" "Rastreador de Legendas."
 section "Ferramentas" "fa-solid fa-screwdriver-wrench"
 
 #Vscodium.
-bash subdomain-docker.sh $1 $2 "vscodium" 3000 $3
+bash subdomain-docker.sh $1 $2 "vscodium" 3040 $3
 
 item "vscodium" "Editor de Código."
 
@@ -181,6 +181,7 @@ item "passbolt" "Gerenciador de Senhas."
 
 #Onlyoffice.
 #bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
+bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
 
 item "onlyoffice" "Plataforma de Produtividade."
 

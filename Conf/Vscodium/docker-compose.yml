@@ -17,7 +17,7 @@ services:
       - /mnt/Cloud/Data/Docker/vscodium/config:/config
       - /mnt/Cloud/Public/Docs:/mnt/Cloud/Public/Docs:ro
     ports:
-      - 3000:3000
+      - 3040:3000
       - 3001:3001
     shm_size: "1gb"
     restart: unless-stopped
