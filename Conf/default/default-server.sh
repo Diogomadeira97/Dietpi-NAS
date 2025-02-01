@@ -202,6 +202,11 @@ bash subdomain.sh $1 $2 "home-assistant" 8123 $3
 
 item "home-assistant" "Automação Residencial."
 
+#Portainer
+bash subdomain.sh $1 $2 "home-assistant" 9002 $3
+
+item "portainer" "Gerenciador de Containers."
+
 #Dietpi-Dashboard
 echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-dashboard.svg"\n        subtitle: "Gestão de Servidor."\n        url: "http://'$1$2:5252'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
 
