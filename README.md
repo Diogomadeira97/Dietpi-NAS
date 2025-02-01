@@ -33,6 +33,8 @@ In addition to security, another fundamental objective is to be an environment w
 
 • [Docker_Compose](https://dietpi.com/docs/software/programming/#docker-compose).
 
+• [Portainer](https://dietpi.com/docs/software/programming/#portainer).
+
 • [Transmission](https://dietpi.com/docs/software/bittorrent/#transmission).
 
 • [Sonarr](https://dietpi.com/docs/software/bittorrent/#sonarr).
@@ -325,6 +327,16 @@ Do the first login and follow the instructions.
 
 ### Services Configuration:
 
+#### Portainer
+
+• If you do not log in and complete the initial setup within 5 minutes the Portainer service within the container stops. This is a security measure to prevent a malicious user taking over a fresh Portainer installation. Read more [here](https://portal.portainer.io/knowledge/your-portainer-instance-has-timed-out-for-security-purposes).
+
+• You resolve this by running:
+
+	sudo docker stop portainer
+	sudo docker start portainer
+
+• After this, do the initial setup on web UI in less then 5 minutes.
 
 #### AdGuard Home:
 
