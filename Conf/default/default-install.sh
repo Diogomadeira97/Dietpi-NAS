@@ -200,7 +200,7 @@ crontab crontab
 rm crontab
 
 #Install Access Control List.
-apt install acl sshpass postgresql rabbitmq-server -y
+apt install acl sshpass -y
 
 #This code is to fix the reboot error message.
 systemctl unmask systemd-logind
@@ -277,18 +277,6 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Gimp/docker-compose.yml .
 #Run Vscodium on Docker.
 docker compose up -d
 
-#Install Onlyoffice.
-sudo -i -u postgres psql -c "CREATE USER onlyoffice WITH PASSWORD "$(echo "$OFFICEPW")";"
-sudo -i -u postgres psql -c "CREATE DATABASE onlyoffice OWNER onlyoffice;"
-echo onlyoffice-documentserver onlyoffice/ds-port select 8090 | sudo debconf-set-selections
-mkdir -p -m 700 ~/.gnupg
-curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | gpg --no-default-keyring --keyring gnupg-ring:/tmp/onlyoffice.gpg --import
-chmod 644 /tmp/onlyoffice.gpg
-sudo chown root:root /tmp/onlyoffice.gpg
-sudo mv /tmp/onlyoffice.gpg /usr/share/keyrings/onlyoffice.gpg
-echo "deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://download.onlyoffice.com/repo/debian squeeze main" | sudo tee /etc/apt/sources.list.d/onlyoffice.list
-sudo apt-get install ttf-mscorefonts-installer onlyoffice-documentserver -y
-
 #Add Nginx, Certbot and Homer default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
 
@@ -298,11 +286,14 @@ bash /mnt/Cloud/Data/Commands/default-user.sh $SERVERNAME ${USERS[@]}
 #Add Domain to known_hosts.
 ssh-keyscan -H $DOMAIN$TPDOMAIN >> ~/.ssh/known_hosts
 
-#Add Devices.
+#Add Devices (SSH).
 bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh $DOMAIN $TPDOMAIN $ADMIN $ADMINPW ${DEVICES[@]}
 
-#Add Devices.
+#Add Devices (VPN).
 bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh $ADMIN ${DEVICES[@]}
+
+#Install Onlyoffice.
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/Onlyoffice/default.sh $OFFICEPW
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS
