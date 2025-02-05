@@ -175,9 +175,14 @@ bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
 item "gimp" "Editor de Imagens."
 
 #Passbolt.
-#bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
+#bash subdomain.sh $1 $2 "passbolt" 3030 $3
 
 item "passbolt" "Gerenciador de Senhas."
+
+#Nextcloud.
+#bash subdomain.sh $1 $2 "nextcloud" 3030 $3
+
+item "nextcloud" "Gerenciador de Arquivos."
 
 #Onlyoffice.
 #bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
