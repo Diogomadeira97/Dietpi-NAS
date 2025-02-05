@@ -185,10 +185,10 @@ bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
 
 item "onlyoffice" "Plataforma de Produtividade."
 
-#Starling.
+#Stirling.
 #bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
 
-item "starling" "Manipulador de PDF."
+item "stirling" "Manipulador de PDF."
 
 #Server management section.
 section "Gestão" "fa-solid fa-gear"
