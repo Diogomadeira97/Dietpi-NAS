@@ -204,7 +204,7 @@ bash subdomain.sh $1 $2 "adguard" 8083 $3
 item "adguard" "Servidor DNS."
 
 #Home Assistant.
-bash subdomain.sh $1 $2 "home-assistant" 8123 $3
+#bash subdomain.sh $1 $2 "home-assistant" 8123 $3
 
 item "home-assistant" "Automação Residencial."
 
