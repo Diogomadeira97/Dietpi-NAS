@@ -185,7 +185,6 @@ item "passbolt" "Gerenciador de Senhas."
 item "nextcloud" "Gerenciador de Arquivos."
 
 #Onlyoffice.
-#bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
 bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
 
 item "onlyoffice" "Plataforma de Produtividade."
