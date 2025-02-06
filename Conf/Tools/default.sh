@@ -1,3 +1,5 @@
+#Install nextcloud.
+/boot/dietpi/dietpi-software install 114
 
 #Change Nextcloud configs. 
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
