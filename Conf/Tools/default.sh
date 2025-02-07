@@ -14,7 +14,7 @@ sudo rm -rf dietpi-dav_redirect.conf dietpi-nextcloud.conf
 sudo apt-get install postgresql -y
 
 #Create user and database.
-sudo -i -u postgres psql -c 'CREATE USER onlyoffice WITH PASSWORD '"$(echo "$1")"';'
+sudo -i -u postgres psql -c "CREATE USER onlyoffice WITH PASSWORD '$(echo "$1")';"
 sudo -i -u postgres psql -c 'CREATE DATABASE onlyoffice WITH OWNER onlyoffice;'
 
 #Install rabbitmq-server.
@@ -40,4 +40,9 @@ sudo apt-get update -y
 sudo apt-get install ttf-mscorefonts-installer -y
 
 #Install Onlyoffice.
-(echo "$(echo "$1")") | sudo apt-get install onlyoffice-documentserver -y
+sudo apt-get install onlyoffice-documentserver -y
+
+#Change /etc/nginx/nginx.conf with "variables_hash_max_size 2048;".
+
+sudo nano /etc/nginx/nginx.conf
+
