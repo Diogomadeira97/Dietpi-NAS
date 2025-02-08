@@ -59,6 +59,9 @@ exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake \
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set opcache.interned_strings_buffer --type=integer --value=9
 sudo -u www-data php8.2 /var/www/nextcloud/occ maintenance:repair --include-expensive
+sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set default_phone_region --value="BR"
+sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra -y
+
 #Remove default files.
 cd /etc/nginx/sites-dietpi
 sudo rm -rf dietpi-dav_redirect.conf dietpi-nextcloud.conf
@@ -72,6 +75,8 @@ sudo -i -u postgres psql -c 'CREATE DATABASE onlyoffice WITH OWNER onlyoffice;'
 sudo apt-get install rabbitmq-server -y
 #Change port to 8090
 echo onlyoffice-documentserver onlyoffice/ds-port select 8090 | sudo debconf-set-selections
+#Go to Data.
+cd /mnt/Cloud/Data
 #Add GPG key.
 mkdir -p -m 700 ~/.gnupg
 curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | gpg --no-default-keyring --keyring gnupg-ring:/tmp/onlyoffice.gpg --import
@@ -86,7 +91,8 @@ sudo apt-get update -y
 sudo apt-get install ttf-mscorefonts-installer -y
 #Install Onlyoffice.
 sudo apt-get install onlyoffice-documentserver -y
-
 #Change /etc/nginx/nginx.conf with "variables_hash_max_size 2048;".
-sudo nano /etc/nginx/nginx.conf
+sed '$ d' /etc/nginx/nginx.conf > nginx.conf
+echo -e '\n        variables_hash_max_size 2048;\n}' >> nginx.conf
+mv nginx.conf /etc/nginx
 
