@@ -60,19 +60,19 @@ mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
-mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users
+mkdir Data/Commands Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users
 
 #Default variables.
 
 SERVERNAME=${VARIABLES[1]}
 echo -e "#Default variables.\n" >> PASSWD_$SERVERNAME.txt
 echo -e "       • SERVERNAME: $SERVERNAME\n" >> PASSWD_$SERVERNAME.txt
-OFFICEPW=$(passwd)
-echo -e "       • OFFICEPW: $OFFICEPW\n" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
 echo -e "       • DIETPIPW: $DIETPIPW\n" >> PASSWD_$SERVERNAME.txt
 DBIMMICHPW=$(passwd)
 echo -e "       • DBIMMICHPW: $DBIMMICHPW\n\n" >> PASSWD_$SERVERNAME.txt
+DBOFFICEPW=$(passwd)
+echo -e "       • DBOFFICEPW: $OFFICEPW\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
 echo -e "#Default Users.\n" >> PASSWD_$SERVERNAME.txt
@@ -113,8 +113,8 @@ adduser --quiet --disabled-password --shell /bin/bash --home /home/"$GUEST" --ge
 echo "$ADMIN:"$(echo "$ADMINPW")"" | chpasswd
 echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 
-#Install Fail2Ban Dietpi-Dashboard PiVPN(Wireguard) Unbound AdGuard_Home Samba_server Docker Docker_Compose Home_Assistant 157 Transmission Sonarr Radarr Prowlarr Readarr Bazarr Jellyfin Kavita.
-/boot/dietpi/dietpi-software install 73 200 117 182 126 96 134 162 44 144 145 151 180 203 178 212
+#Install Fail2Ban, Dietpi-Dashboard, PiVPN(Wireguard), Unbound, AdGuard_Home, Samba_server, Transmission, Sonarr, Radarr, Prowlarr, Readarr, Bazarr, Jellyfin and Kavita.
+/boot/dietpi/dietpi-software install 73 200 117 182 126 96 44 144 145 151 180 203 178 212
 
 #Add default users Samba password.
 (echo "$(echo "$ADMINSMBPW")"; echo "$(echo "$ADMINSMBPW")") | smbpasswd -a -s $ADMIN
@@ -241,43 +241,10 @@ chown -R $ADMIN:$CLOUD Data/Commands
 #Turn debian-transmission the owner of Public Downloads Folder.
 chown -R debian-transmission:$CLOUD Public/Downloads
 
-#Create Flaresolver Docker directory.
-cd /mnt/Cloud/Data/Docker/flaresolver
+#Install tools.
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $SERVERNAME $EMAIL
 
-#Run Flaresolver on Docker.
-docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart unless-stopped   ghcr.io/flaresolverr/flaresolverr:latest
-
-#Go to Immich Docker directory.
-cd /mnt/Cloud/Data/Docker/immich-app
-
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Immich/docker-compose.yml .
-
-#Change Data Base password.
-echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$DBIMMICHPW" >> .env
-
-#Run Immich on Docker.
-docker compose up -d
-
-#Go to Vscodium Docker directory.
-cd /mnt/Cloud/Data/Docker/vscodium
-
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Vscodium/docker-compose.yml .
-
-#Run Vscodium on Docker.
-docker compose up -d
-
-#Go to Gimp Docker directory.
-cd /mnt/Cloud/Data/Docker/gimp
-
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Gimp/docker-compose.yml .
-
-#Run Vscodium on Docker.
-docker compose up -d
-
-#Add Nginx, Certbot and Homer default configs.
+#Install Certbot and Homer to set server default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
 
 #Add Users.
@@ -291,9 +258,6 @@ bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh $DOMAIN $TPDOMAIN $ADMIN $ADMI
 
 #Add Devices (VPN).
 bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh $ADMIN ${DEVICES[@]}
-
-#Install Onlyoffice.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/Onlyoffice/default.sh $OFFICEPW
 
 #Delete the installation folder.
 rm -rf /mnt/Cloud/Data/Dietpi-NAS
