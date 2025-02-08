@@ -97,4 +97,3 @@ sudo apt-get install onlyoffice-documentserver -y
 sed '$ d' /etc/nginx/nginx.conf > nginx.conf
 echo -e '\n        variables_hash_max_size 2048;\n}' >> nginx.conf
 mv nginx.conf /etc/nginx
-
