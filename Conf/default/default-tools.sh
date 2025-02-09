@@ -53,7 +53,7 @@ docker compose up -d
 cd /mnt/Cloud/Data/Docker/stirling
 #Import default file.
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
-#Run Vscodium on Docker.
+#Run stirling on Docker.
 docker compose up -d
 
 #Go to Passbolt Docker directory.
