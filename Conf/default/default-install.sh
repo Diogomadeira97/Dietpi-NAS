@@ -73,6 +73,10 @@ DBIMMICHPW=$(passwd)
 echo -e "       • DBIMMICHPW: $DBIMMICHPW\n\n" >> PASSWD_$SERVERNAME.txt
 DBOFFICEPW=$(passwd)
 echo -e "       • DBOFFICEPW: $OFFICEPW\n" >> PASSWD_$SERVERNAME.txt
+DBPASSBOLTPW=$(passwd)
+echo -e "       • DBPASSBOLTPW: $DBPASSBOLTPW\n" >> PASSWD_$SERVERNAME.txt
+DOCKERMYSQLPW=$(passwd)
+echo -e "       • DOCKERMYSQLPW: $DOCKERMYSQLPW\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
 echo -e "#Default Users.\n" >> PASSWD_$SERVERNAME.txt
@@ -242,7 +246,7 @@ chown -R $ADMIN:$CLOUD Data/Commands
 chown -R debian-transmission:$CLOUD Public/Downloads
 
 #Install tools.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $EMAIL
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOCKERMYSQLPW $DOMAIN $TPDOMAIN $EMAIL
 
 #Install Certbot and Homer to set server default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
