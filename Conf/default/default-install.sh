@@ -242,7 +242,7 @@ chown -R $ADMIN:$CLOUD Data/Commands
 chown -R debian-transmission:$CLOUD Public/Downloads
 
 #Install tools.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $SERVERNAME $EMAIL
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $EMAIL
 
 #Install Certbot and Homer to set server default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL

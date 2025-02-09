@@ -63,7 +63,7 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Passbolt/docker-compose-ce.yaml .
 curl -LO https://github.com/passbolt/passbolt_docker/releases/latest/download/docker-compose-ce-SHA512SUM.txt
 #Run Vscodium on Docker.
 docker compose -f docker-compose-ce.yaml up -d
-docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $4 -f $3 -l Server -r admin" -s /bin/sh www-data
+docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $3 -f Admin -l User -r admin" -s /bin/sh www-data
 
 #Install postgresql.
 apt-get install postgresql -y
