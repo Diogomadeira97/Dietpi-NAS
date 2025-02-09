@@ -72,7 +72,7 @@ echo -e "       • DIETPIPW: $DIETPIPW\n" >> PASSWD_$SERVERNAME.txt
 DBIMMICHPW=$(passwd)
 echo -e "       • DBIMMICHPW: $DBIMMICHPW\n\n" >> PASSWD_$SERVERNAME.txt
 DBOFFICEPW=$(passwd)
-echo -e "       • DBOFFICEPW: $OFFICEPW\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • DBOFFICEPW: $DBOFFICEPW\n" >> PASSWD_$SERVERNAME.txt
 DBPASSBOLTPW=$(passwd)
 echo -e "       • DBPASSBOLTPW: $DBPASSBOLTPW\n" >> PASSWD_$SERVERNAME.txt
 DOCKERMYSQLPW=$(passwd)
