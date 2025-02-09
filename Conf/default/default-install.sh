@@ -70,13 +70,13 @@ echo -e "       • SERVERNAME: $SERVERNAME\n" >> PASSWD_$SERVERNAME.txt
 DIETPIPW=$(passwd)
 echo -e "       • DIETPIPW: $DIETPIPW\n" >> PASSWD_$SERVERNAME.txt
 DBIMMICHPW=$(passwd)
-echo -e "       • DBIMMICHPW: $DBIMMICHPW\n\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • DBIMMICHPW: $DBIMMICHPW\n" >> PASSWD_$SERVERNAME.txt
 DBOFFICEPW=$(passwd)
 echo -e "       • DBOFFICEPW: $DBOFFICEPW\n" >> PASSWD_$SERVERNAME.txt
 DBPASSBOLTPW=$(passwd)
 echo -e "       • DBPASSBOLTPW: $DBPASSBOLTPW\n" >> PASSWD_$SERVERNAME.txt
 DOCKERMYSQLPW=$(passwd)
-echo -e "       • DOCKERMYSQLPW: $DOCKERMYSQLPW\n" >> PASSWD_$SERVERNAME.txt
+echo -e "       • DOCKERMYSQLPW: $DOCKERMYSQLPW\n\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
 echo -e "#Default Users.\n" >> PASSWD_$SERVERNAME.txt
