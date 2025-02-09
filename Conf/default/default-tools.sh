@@ -65,7 +65,7 @@ echo -e '    volumes:\n      - gpg_volume:/etc/passbolt/gpg\n      - jwt_volume:
 curl -LO https://github.com/passbolt/passbolt_docker/releases/latest/download/docker-compose-ce-SHA512SUM.txt
 #Run Passbolt on Docker.
 docker compose -f docker-compose-ce.yaml up -d
-sleep 20
+sleep 30
 docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $7 -f Admin -l User -r admin" -s /bin/sh www-data
 sudo nano docker-compose-ce.yaml
 
