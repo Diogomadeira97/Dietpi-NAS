@@ -46,14 +46,14 @@ docker compose up -d
 cd /mnt/Cloud/Data/Docker/gimp
 #Import default file.
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Gimp/docker-compose.yml .
-#Run Vscodium on Docker.
+#Run Gimp on Docker.
 docker compose up -d
 
 #Go to Stirling Docker directory.
 cd /mnt/Cloud/Data/Docker/stirling
 #Import default file.
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
-#Run stirling on Docker.
+#Run Stirling on Docker.
 docker compose up -d
 
 #Go to Passbolt Docker directory.
