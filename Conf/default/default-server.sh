@@ -127,39 +127,6 @@ bash subdomain-docker.sh $1 $2 "immich" 2283 $3
 
 item "immich" "Galeria de Mídias."
 
-#Downloads section.
-section "Downloads" "fa-solid fa-download"
-
-#Transmission.
-bash subdomain.sh $1 $2 "transmission" 9091 $3
-
-item "transmission" "Gestor de Downloads."
-
-#Radarr.
-bash subdomain.sh $1 $2 "radarr" 7878 $3
-
-item "radarr" "Rastreador de Filmes."
-
-#Sonarr.
-bash subdomain.sh $1 $2 "sonarr" 8989 $3
-
-item "sonarr" "Rastreador de TV-Shows."
-
-#Readarr.
-bash subdomain.sh $1 $2 "readarr" 8787 $3
-
-item "readarr" "Rastreador de Livros."
-
-#Prowlarr.
-bash subdomain.sh $1 $2 "prowlarr" 9696 $3
-
-item "prowlarr" "Rastreador de indexadores."
-
-#Bazarr.
-bash subdomain.sh $1 $2 "bazarr" 6767 $3
-
-item "bazarr" "Rastreador de Legendas."
-
 #Tools Section.
 section "Ferramentas" "fa-solid fa-screwdriver-wrench"
 
@@ -202,6 +169,39 @@ bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
 bash subdomain-docker.sh $1 $2 "stirling" 8045 $3
 
 item "stirling" "Manipulador de PDF."
+
+#Downloads section.
+section "Downloads" "fa-solid fa-download"
+
+#Transmission.
+bash subdomain.sh $1 $2 "transmission" 9091 $3
+
+item "transmission" "Gestor de Downloads."
+
+#Radarr.
+bash subdomain.sh $1 $2 "radarr" 7878 $3
+
+item "radarr" "Rastreador de Filmes."
+
+#Sonarr.
+bash subdomain.sh $1 $2 "sonarr" 8989 $3
+
+item "sonarr" "Rastreador de TV-Shows."
+
+#Readarr.
+bash subdomain.sh $1 $2 "readarr" 8787 $3
+
+item "readarr" "Rastreador de Livros."
+
+#Prowlarr.
+bash subdomain.sh $1 $2 "prowlarr" 9696 $3
+
+item "prowlarr" "Rastreador de indexadores."
+
+#Bazarr.
+bash subdomain.sh $1 $2 "bazarr" 6767 $3
+
+item "bazarr" "Rastreador de Legendas."
 
 #Server management section.
 section "Gestão" "fa-solid fa-gear"
