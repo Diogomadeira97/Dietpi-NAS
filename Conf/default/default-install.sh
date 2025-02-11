@@ -274,6 +274,13 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Gimp/docker-compose.yml .
 #Run Gimp on Docker.
 docker compose up -d
 
+#Go to Stirling Docker directory.
+cd /mnt/Cloud/Data/Docker/stirling
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
+#Run Stirling on Docker.
+docker compose up -d
+
 #Install tools.
 #bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOCKERMYSQLPW $DOMAIN $TPDOMAIN $EMAIL
 

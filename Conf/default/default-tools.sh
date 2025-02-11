@@ -1,9 +1,6 @@
 #Install nextcloud.
 /boot/dietpi/dietpi-software install 114
 
-#Go to Cloud and create default folders.
-cd /mnt/Cloud
-
 #Change Nextcloud configs.
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set opcache.interned_strings_buffer --type=integer --value=9
@@ -62,10 +59,3 @@ apt-get install onlyoffice-documentserver -y
 sed '$ d' /etc/nginx/nginx.conf > nginx.conf
 echo -e '\n        variables_hash_max_size 2048;\n}' >> nginx.conf
 mv nginx.conf /etc/nginx
-
-#Go to Stirling Docker directory.
-cd /mnt/Cloud/Data/Docker/stirling
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
-#Run Stirling on Docker.
-docker compose up -d
