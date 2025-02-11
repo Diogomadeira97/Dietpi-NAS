@@ -2,6 +2,8 @@
 
 passwd(){ < /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
+passwd2(){ < /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-20};echo;}
+
 ARS=( "$@" )
 
 VARIABLES=()
@@ -73,9 +75,9 @@ DBIMMICHPW=$(passwd)
 echo -e "       • DBIMMICHPW: $DBIMMICHPW\n" >> PASSWD_$SERVERNAME.txt
 DBOFFICEPW=$(passwd)
 echo -e "       • DBOFFICEPW: $DBOFFICEPW\n" >> PASSWD_$SERVERNAME.txt
-DBPASSBOLTPW=$(passwd)
+DBPASSBOLTPW=$(passwd2)
 echo -e "       • DBPASSBOLTPW: $DBPASSBOLTPW\n" >> PASSWD_$SERVERNAME.txt
-DOCKERMYSQLPW=$(passwd)
+DOCKERMYSQLPW=$(passwd2)
 echo -e "       • DOCKERMYSQLPW: $DOCKERMYSQLPW\n\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
