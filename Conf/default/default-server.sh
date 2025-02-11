@@ -175,7 +175,7 @@ bash subdomain-docker.sh $1 $2 "gimp" 3030 $3
 item "gimp" "Editor de Imagens."
 
 #Passbolt.
-bash subdomain-docker.sh $1 $2 "passbolt" 8050 $3
+#bash subdomain-docker.sh $1 $2 "passbolt" 8050 $3
 
 item "passbolt" "Gerenciador de Senhas."
 
@@ -184,14 +184,14 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/nextcloud /etc/nginx/sites-available
 sudo chown root:root /etc/nginx/sites-available/nextcloud
 sudo chmod 544 /etc/nginx/sites-available/nextcloud
 cd /etc/nginx/sites-enabled
-sudo ln -s /etc/nginx/sites-available/nextcloud .
+#sudo ln -s /etc/nginx/sites-available/nextcloud .
 sudo nginx -s reload
 cd /mnt/Cloud/Data/Commands
 
 item "nextcloud" "Gerenciador de Arquivos."
 
 #Onlyoffice.
-bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
+#bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
 
 #Stirling.
 bash subdomain-docker.sh $1 $2 "stirling" 8045 $3
@@ -207,7 +207,7 @@ bash subdomain.sh $1 $2 "adguard" 8083 $3
 item "adguard" "Servidor DNS."
 
 #Home Assistant.
-bash subdomain.sh $1 $2 "home-assistant" 8123 $3
+#bash subdomain.sh $1 $2 "home-assistant" 8123 $3
 
 item "home-assistant" "Automação Residencial."
 
