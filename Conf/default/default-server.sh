@@ -186,6 +186,7 @@ sudo chmod 544 /etc/nginx/sites-available/nextcloud
 cd /etc/nginx/sites-enabled
 sudo ln -s /etc/nginx/sites-available/nextcloud .
 sudo nginx -s reload
+cd /mnt/Cloud/Data/Commands
 
 item "nextcloud" "Gerenciador de Arquivos."
 
