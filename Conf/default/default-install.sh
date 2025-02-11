@@ -138,6 +138,7 @@ groupadd $BAK
 #Add default users to default groups.
 usermod -a -G $CLOUD "$ADMIN"
 usermod -a -G $CLOUD "$GUEST"
+usermod -a -G $CLOUD www-data
 usermod -a -G  $BAK "$ADMIN"
 
 #Turn admin in SU without password.
