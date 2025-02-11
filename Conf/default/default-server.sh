@@ -80,7 +80,6 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Icons/* .
 chown root:root ./*
 chmod 644 ./*
 
-
 #Change the default site available.
 cd /etc/nginx/sites-available
 rm default
