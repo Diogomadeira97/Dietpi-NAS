@@ -11,7 +11,7 @@ sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set opcache.interne
 sudo -u www-data php8.2 /var/www/nextcloud/occ maintenance:repair --include-expensive
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set default_phone_region --value="BR"
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set datadirectory --value="/mnt/Cloud/Data/nextcloud_data"
-mv /mnt/dietpi_userdata/nextcloud_data /mnt/Cloud/Data
+sudo mv /mnt/dietpi_userdata/nextcloud_data /mnt/Cloud/Data
 cd /mnt/Cloud/Data/nextcloud_data/admin/files
 mkdir Public
 chown www-data:www-data Public
