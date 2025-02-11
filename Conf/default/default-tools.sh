@@ -1,5 +1,5 @@
 #Install Docker, Docker_Compose, Portainer, Nginx, LEMP and nextcloud.
-/boot/dietpi/dietpi-software install 134 162 185 85 79 114
+/boot/dietpi/dietpi-software install 114
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
