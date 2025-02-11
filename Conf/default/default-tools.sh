@@ -62,3 +62,10 @@ apt-get install onlyoffice-documentserver -y
 sed '$ d' /etc/nginx/nginx.conf > nginx.conf
 echo -e '\n        variables_hash_max_size 2048;\n}' >> nginx.conf
 mv nginx.conf /etc/nginx
+
+#Go to Stirling Docker directory.
+cd /mnt/Cloud/Data/Docker/stirling
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
+#Run Stirling on Docker.
+docker compose up -d
