@@ -1,5 +1,53 @@
+#Go to Flaresolver Docker directory.
+cd /mnt/Cloud/Data/Docker/flaresolver
+#Run Flaresolver on Docker.
+docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart unless-stopped   ghcr.io/flaresolverr/flaresolverr:latest
+
+#Go to Immich Docker directory.
+cd /mnt/Cloud/Data/Docker/immich-app
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Immich/docker-compose.yml .
+#Change Data Base password.
+echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$1" >> .env
+#Run Immich on Docker.
+docker compose up -d
+
+#Go to Vscodium Docker directory.
+cd /mnt/Cloud/Data/Docker/vscodium
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Vscodium/docker-compose.yml .
+#Run Vscodium on Docker.
+docker compose up -d
+
+#Go to Gimp Docker directory.
+cd /mnt/Cloud/Data/Docker/gimp
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Gimp/docker-compose.yml .
+#Run Gimp on Docker.
+docker compose up -d
+
+#Go to Stirling Docker directory.
+cd /mnt/Cloud/Data/Docker/stirling
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
+#Run Stirling on Docker.
+docker compose up -d
+
 #Install nextcloud.
 /boot/dietpi/dietpi-software install 114
+
+#Go to Passbolt Docker directory.
+#cd /mnt/Cloud/Data/Docker/passbolt
+#Create and Import default file.
+#echo -e 'services:\n  db:\n    image: mariadb:10.11\n    restart: unless-stopped\n    environment:\n      MYSQL_RANDOM_ROOT_PASSWORD: "true"\n      MYSQL_DATABASE: "passbolt"\n      MYSQL_USER: "passbolt"\n      MYSQL_PASSWORD: "'"$(echo "$4")"'"\n    volumes:\n      - database_volume:/var/lib/mysql\n' >> docker-compose-ce.yaml
+#echo -e '  passbolt:\n    image: passbolt/passbolt:latest-ce\n    restart: unless-stopped\n    depends_on:\n      - db\n    environment:\n      APP_FULL_BASE_URL: https://passbolt.'"$5$6"'/\n      DATASOURCES_DEFAULT_HOST: "db"\n      DATASOURCES_DEFAULT_USERNAME: "passbolt"\n      DATASOURCES_DEFAULT_PASSWORD: "'"$(echo "$3")"'"\n      DATASOURCES_DEFAULT_DATABASE: "passbolt"\n      PASSBOLT_SECURITY_SMTP_SETTINGS_ENDPOINTS_DISABLED: "false"' >> docker-compose-ce.yaml
+#echo -e '    volumes:\n      - gpg_volume:/etc/passbolt/gpg\n      - jwt_volume:/etc/passbolt/jwt\n    command:\n      [\n        "/usr/bin/wait-for.sh",\n        "-t",\n        "0",\n        "db:3306",\n        "--",\n        "/docker-entrypoint.sh",\n      ]\n    ports:\n      - 8050:80\n      - 443:443\n\nvolumes:\n  database_volume:\n  gpg_volume:\n  jwt_volume:' >> docker-compose-ce.yaml
+#curl -LO https://github.com/passbolt/passbolt_docker/releases/latest/download/docker-compose-ce-SHA512SUM.txt
+#Run Passbolt on Docker.
+#docker compose -f docker-compose-ce.yaml up -d
+#sleep 30
+#docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $7 -f Admin -l User -r admin" -s /bin/sh www-data
+#sudo nano docker-compose-ce.yaml
 
 #Change Nextcloud configs.
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
@@ -16,19 +64,6 @@ sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra 
 #Remove default files.
 cd /etc/nginx/sites-dietpi
 rm -rf dietpi-dav_redirect.conf dietpi-nextcloud.conf
-
-#Go to Passbolt Docker directory.
-cd /mnt/Cloud/Data/Docker/passbolt
-#Create and Import default file.
-echo -e 'services:\n  db:\n    image: mariadb:10.11\n    restart: unless-stopped\n    environment:\n      MYSQL_RANDOM_ROOT_PASSWORD: "true"\n      MYSQL_DATABASE: "passbolt"\n      MYSQL_USER: "passbolt"\n      MYSQL_PASSWORD: "'"$(echo "$4")"'"\n    volumes:\n      - database_volume:/var/lib/mysql\n' >> docker-compose-ce.yaml
-echo -e '  passbolt:\n    image: passbolt/passbolt:latest-ce\n    restart: unless-stopped\n    depends_on:\n      - db\n    environment:\n      APP_FULL_BASE_URL: https://passbolt.'"$5$6"'/\n      DATASOURCES_DEFAULT_HOST: "db"\n      DATASOURCES_DEFAULT_USERNAME: "passbolt"\n      DATASOURCES_DEFAULT_PASSWORD: "'"$(echo "$3")"'"\n      DATASOURCES_DEFAULT_DATABASE: "passbolt"\n      PASSBOLT_SECURITY_SMTP_SETTINGS_ENDPOINTS_DISABLED: "false"' >> docker-compose-ce.yaml
-echo -e '    volumes:\n      - gpg_volume:/etc/passbolt/gpg\n      - jwt_volume:/etc/passbolt/jwt\n    command:\n      [\n        "/usr/bin/wait-for.sh",\n        "-t",\n        "0",\n        "db:3306",\n        "--",\n        "/docker-entrypoint.sh",\n      ]\n    ports:\n      - 8050:80\n      - 443:443\n\nvolumes:\n  database_volume:\n  gpg_volume:\n  jwt_volume:' >> docker-compose-ce.yaml
-curl -LO https://github.com/passbolt/passbolt_docker/releases/latest/download/docker-compose-ce-SHA512SUM.txt
-#Run Passbolt on Docker.
-docker compose -f docker-compose-ce.yaml up -d
-sleep 30
-docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $7 -f Admin -l User -r admin" -s /bin/sh www-data
-sudo nano docker-compose-ce.yaml
 
 #Install postgresql.
 apt-get install postgresql -y
