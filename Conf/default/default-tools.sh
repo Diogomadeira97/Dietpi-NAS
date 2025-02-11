@@ -3,7 +3,6 @@
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
-mkdir Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt
 
 #Change Nextcloud configs.
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
@@ -20,41 +19,6 @@ sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra 
 #Remove default files.
 cd /etc/nginx/sites-dietpi
 rm -rf dietpi-dav_redirect.conf dietpi-nextcloud.conf
-
-#Go to Flaresolver Docker directory.
-cd /mnt/Cloud/Data/Docker/flaresolver
-#Run Flaresolver on Docker.
-docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart unless-stopped   ghcr.io/flaresolverr/flaresolverr:latest
-
-#Go to Immich Docker directory.
-cd /mnt/Cloud/Data/Docker/immich-app
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Immich/docker-compose.yml .
-#Change Data Base password.
-echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$1" >> .env
-#Run Immich on Docker.
-docker compose up -d
-
-#Go to Vscodium Docker directory.
-cd /mnt/Cloud/Data/Docker/vscodium
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Vscodium/docker-compose.yml .
-#Run Vscodium on Docker.
-docker compose up -d
-
-#Go to Gimp Docker directory.
-cd /mnt/Cloud/Data/Docker/gimp
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Gimp/docker-compose.yml .
-#Run Gimp on Docker.
-docker compose up -d
-
-#Go to Stirling Docker directory.
-cd /mnt/Cloud/Data/Docker/stirling
-#Import default file.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
-#Run Stirling on Docker.
-docker compose up -d
 
 #Go to Passbolt Docker directory.
 cd /mnt/Cloud/Data/Docker/passbolt
