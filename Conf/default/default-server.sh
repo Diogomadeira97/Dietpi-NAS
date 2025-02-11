@@ -195,7 +195,7 @@ cd /mnt/Cloud/Data/Commands
 item "nextcloud" "Gerenciador de Arquivos."
 
 #Onlyoffice.
-#bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
+bash subdomain.sh $1 $2 "onlyoffice" 8090 $3
 
 #Stirling.
 bash subdomain-docker.sh $1 $2 "stirling" 8045 $3
