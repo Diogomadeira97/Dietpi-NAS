@@ -299,7 +299,7 @@ Do the first login and follow the instructions.
 
 • Change the location path to /mnt/Cloud/Data/dietpi-backup.
 
-• Turn on daily backup.
+• Turn on Daily Backup and Space Check.
 
 • Change the quantity to 3.
 
