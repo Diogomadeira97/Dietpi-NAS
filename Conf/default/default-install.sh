@@ -139,6 +139,7 @@ usermod -a -G $CLOUD "$ADMIN"
 usermod -a -G $CLOUD "$GUEST"
 usermod -a -G $CLOUD www-data
 usermod -a -G  $BAK "$ADMIN"
+usermod -a -G  $BAK "$ADMIN"
 
 #Turn admin in SU without password.
 echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -227,10 +228,7 @@ chmod -R g+s Cloud
 #Set BAK_Cloud default permissions.
 chmod 750 BAK_Cloud
 chown $ADMIN:$BAK BAK_Cloud
-setfacl -d -m u::rwx BAK_Cloud
-setfacl -d -m g::r-x BAK_Cloud
-setfacl -d -m o::--- BAK_Cloud
-chmod g+s Cloud BAK_Cloud
+chmod g+s BAK_Cloud
 
 #Set Data default permissions.
 cd Cloud
