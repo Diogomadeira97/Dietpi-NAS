@@ -242,6 +242,9 @@ setfacl -R -d -m o::--- Data
 #Turn admin the owner of Folder.
 chown -R $ADMIN:$CLOUD Data/Commands
 
+#Turn dietpi the owner of Folder.
+chown -R dietpi:$CLOUD Public/Docs
+
 #Turn debian-transmission the owner of Public Downloads Folder.
 chown -R debian-transmission:$CLOUD Public/Downloads
 

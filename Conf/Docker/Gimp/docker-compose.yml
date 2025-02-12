@@ -13,7 +13,7 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
     volumes:
       - /mnt/Cloud/Data/Docker/gimp/config:/config
-      - /mnt/Cloud/Public/Docs:/mnt/Cloud/Public/Docs:ro
+      - /mnt/Cloud/Public/Docs:/mnt/Cloud/Public/Docs:/mnt/Cloud/Public/Docs:/mnt/Cloud/Public/Docs:ro
       - /mnt/Cloud/Data/nextcloud_data/admin/files/Public:/mnt/Cloud/Data/nextcloud_data/admin/files/Public:ro
     ports:
       - 3030:3000
