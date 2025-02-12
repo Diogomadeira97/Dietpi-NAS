@@ -180,7 +180,7 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/nextcloud /etc/nginx/sites-available
 sudo chown root:root /etc/nginx/sites-available/nextcloud
 sudo chmod 544 /etc/nginx/sites-available/nextcloud
 cd /etc/nginx/sites-enabled
-#sudo ln -s /etc/nginx/sites-available/nextcloud .
+sudo ln -s /etc/nginx/sites-available/nextcloud .
 sudo nginx -s reload
 cd /mnt/Cloud/Data/Commands
 
