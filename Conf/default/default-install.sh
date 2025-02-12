@@ -2,7 +2,7 @@
 
 passwd(){ < /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
-passwd2(){ < /dev/urandom tr -cd '[:alnum:]' | head -c${1:-32};echo;}
+passwd2(){ < /dev/urandom tr -cd '[:alnum:]' | head -c${1:-20};echo;}
 
 ARS=( "$@" )
 
