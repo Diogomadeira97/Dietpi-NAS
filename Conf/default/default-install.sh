@@ -137,7 +137,6 @@ groupadd $BAK
 #Add default users to default groups.
 usermod -a -G $CLOUD "$ADMIN"
 usermod -a -G $CLOUD "$GUEST"
-usermod -a -G $CLOUD www-data
 usermod -a -G  $BAK "$ADMIN"
 
 #Turn admin in SU without password.
@@ -235,6 +234,7 @@ chmod -R 750 Data
 setfacl -R -d -m u::rwx Data
 setfacl -R -d -m g::r-x Data
 setfacl -R -d -m o::--- Data
+setfacl -m user:www-data:rwx Data
 
 #Turn admin the owner of Folder.
 chown -R $ADMIN:$CLOUD Data/Commands
