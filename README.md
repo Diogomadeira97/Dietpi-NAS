@@ -327,6 +327,7 @@ Do the first login and follow the instructions.
 
 ### Services Configuration:
 
+
 #### Portainer
 
 • If you do not log in and complete the initial setup within 5 minutes the Portainer service within the container stops. This is a security measure to prevent a malicious user taking over a fresh Portainer installation. Read more [here](https://portal.portainer.io/knowledge/your-portainer-instance-has-timed-out-for-security-purposes).
@@ -337,6 +338,38 @@ Do the first login and follow the instructions.
 	sudo docker start portainer
 
 • After this, do the initial setup on web UI in less then 5 minutes.
+
+
+#### Passbolt
+
+• Create your first admin user with this command:
+
+	docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $6 -f Admin -l User -r admin" -s /bin/sh www-data
+
+• This registration command will return a single use url required to continue the web browser setup and finish the registration.
+
+• After registration, configure SMTP on Passbolt. Then edit "docker-compose-ce.yaml" and change the line "PASSBOLT_SECURITY_SMTP_SETTINGS_ENDPOINTS_DISABLED" to "true" with this command:
+
+	cd /mnt/Cloud/Data/Docker/passbolt
+	sudo nano docker-compose-ce.yaml
+	docker compose -f docker-compose-ce.yaml up -d
+
+#### Nextcloud:
+
+• Login on web UI with: 
+
+> Username: admin
+
+> Password: Global.
+
+• Change default user and password.
+
+• Add Onlyoffice on apps and do the conection with this url:
+
+> https://onlyoffice.<DOMAIN>.<TPDOMAIN>
+
+• Create the users and share the Public folder with them.
+
 
 #### AdGuard Home:
 
