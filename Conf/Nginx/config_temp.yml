@@ -50,6 +50,15 @@ links:
     icon: "fab fa-github"
     url: "https://github.com/Diogomadeira97/Dietpi-NAS"
     target: "_blank"
+  - name: "Cloudflare"
+    icon: "fa-brands fa-cloudflare"
+    url: "https://dash.cloudflare.com/login"
+    target: "_blank"
+  - name: "Zoho Mail"
+    icon: "fa-solid fa-envelope"
+    url: "https://accounts.zoho.com/"
+    target: "_blank"
+    
 # Services
 # First level array represent a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
