@@ -127,6 +127,30 @@ bash subdomain-docker.sh $1 $2 "immich" 2283 $3
 
 item "immich" "Galeria de Mídias."
 
+#Server management section.
+section "Gestão" "fa-solid fa-gear"
+
+#AdGuard Home
+bash subdomain.sh $1 $2 "adguard" 8083 $3
+
+item "adguard" "Servidor DNS."
+
+#Home Assistant.
+#bash subdomain.sh $1 $2 "home-assistant" 8123 $3
+
+item "home-assistant" "Automação Residencial."
+
+#Portainer
+bash subdomain.sh $1 $2 "home-assistant" 9002 $3
+
+item "portainer" "Gerenciador de Containers."
+
+#Dietpi-Dashboard
+echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-dashboard.svg"\n        subtitle: "Gestão de Servidor."\n        url: "http://'$1$2:5252'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
+
+#Reload Nginx Server
+nginx -s reload
+
 #Tools Section.
 section "Ferramentas" "fa-solid fa-screwdriver-wrench"
 
@@ -202,27 +226,3 @@ item "prowlarr" "Rastreador de indexadores."
 bash subdomain.sh $1 $2 "bazarr" 6767 $3
 
 item "bazarr" "Rastreador de Legendas."
-
-#Server management section.
-section "Gestão" "fa-solid fa-gear"
-
-#AdGuard Home
-bash subdomain.sh $1 $2 "adguard" 8083 $3
-
-item "adguard" "Servidor DNS."
-
-#Home Assistant.
-#bash subdomain.sh $1 $2 "home-assistant" 8123 $3
-
-item "home-assistant" "Automação Residencial."
-
-#Portainer
-bash subdomain.sh $1 $2 "home-assistant" 9002 $3
-
-item "portainer" "Gerenciador de Containers."
-
-#Dietpi-Dashboard
-echo -e '      - name: "Dietpi Dashboard"\n        logo: "assets/icons/dietpi-dashboard.svg"\n        subtitle: "Gestão de Servidor."\n        url: "http://'$1$2:5252'"\n        target: "_blank"' >> /var/www/$1/assets/config.yml
-
-#Reload Nginx Server
-nginx -s reload
