@@ -307,7 +307,7 @@ Do the first login and follow the instructions.
 
 #### Dietpi-Dashboard:
  	
-• Chose Nightly on Dietpi-Dashboard.
+• Chose Stable on Dietpi-Dashboard.
 
 • Chose no to "only backend".
 
