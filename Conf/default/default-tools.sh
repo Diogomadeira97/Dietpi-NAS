@@ -51,13 +51,13 @@ sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_win
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set opcache.interned_strings_buffer --type=integer --value=9
 sudo -u www-data php8.2 /var/www/nextcloud/occ maintenance:repair --include-expensive
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set default_phone_region --value="BR"
-sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set datadirectory --value="/mnt/Cloud/Data/nextcloud_data"
-sudo mv /mnt/dietpi_userdata/nextcloud_data /mnt/Cloud/Data
 cd /mnt/Cloud/Data/nextcloud_data/admin/files
 mkdir Public
 chown www-data:www-data Public
 chmod 755 Public
 sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra -y
+sudo mv /mnt/dietpi_userdata/nextcloud_data /mnt/Cloud/Data
+sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set datadirectory --value="/mnt/Cloud/Data/nextcloud_data"
 #Remove default files.
 cd /etc/nginx/sites-dietpi
 rm -rf dietpi-dav_redirect.conf dietpi-nextcloud.conf
