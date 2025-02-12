@@ -139,7 +139,6 @@ usermod -a -G $CLOUD "$ADMIN"
 usermod -a -G $CLOUD "$GUEST"
 usermod -a -G $CLOUD www-data
 usermod -a -G  $BAK "$ADMIN"
-usermod -a -G  $BAK "$ADMIN"
 
 #Turn admin in SU without password.
 echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
