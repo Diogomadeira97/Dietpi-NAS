@@ -39,14 +39,14 @@ docker compose up -d
 #Go to Passbolt Docker directory.
 cd /mnt/Cloud/Data/Docker/passbolt
 #Create and Import default file.
-echo -e 'services:\n  db:\n    image: mariadb:10.11\n    restart: unless-stopped\n    environment:\n      MYSQL_RANDOM_ROOT_PASSWORD: "true"\n      MYSQL_DATABASE: "passbolt"\n      MYSQL_USER: "passbolt"\n      MYSQL_PASSWORD: "'"$(echo "$4")"'"\n    volumes:\n      - database_volume:/var/lib/mysql\n' >> docker-compose-ce.yaml
-echo -e '  passbolt:\n    image: passbolt/passbolt:latest-ce\n    restart: unless-stopped\n    depends_on:\n      - db\n    environment:\n      APP_FULL_BASE_URL: https://passbolt.'"$5$6"'/\n      DATASOURCES_DEFAULT_HOST: "db"\n      DATASOURCES_DEFAULT_USERNAME: "passbolt"\n      DATASOURCES_DEFAULT_PASSWORD: "'"$(echo "$3")"'"\n      DATASOURCES_DEFAULT_DATABASE: "passbolt"\n      PASSBOLT_SECURITY_SMTP_SETTINGS_ENDPOINTS_DISABLED: "false"' >> docker-compose-ce.yaml
+echo -e 'services:\n  db:\n    image: mariadb:10.11\n    restart: unless-stopped\n    environment:\n      MYSQL_RANDOM_ROOT_PASSWORD: "true"\n      MYSQL_DATABASE: "passbolt"\n      MYSQL_USER: "passbolt"\n      MYSQL_PASSWORD: "'"$(echo "$3")"'"\n    volumes:\n      - database_volume:/var/lib/mysql\n' >> docker-compose-ce.yaml
+echo -e '  passbolt:\n    image: passbolt/passbolt:latest-ce\n    restart: unless-stopped\n    depends_on:\n      - db\n    environment:\n      APP_FULL_BASE_URL: https://passbolt.'"$4$5"'/\n      DATASOURCES_DEFAULT_HOST: "db"\n      DATASOURCES_DEFAULT_USERNAME: "passbolt"\n      DATASOURCES_DEFAULT_PASSWORD: "'"$(echo "$3")"'"\n      DATASOURCES_DEFAULT_DATABASE: "passbolt"\n      PASSBOLT_SECURITY_SMTP_SETTINGS_ENDPOINTS_DISABLED: "false"' >> docker-compose-ce.yaml
 echo -e '    volumes:\n      - gpg_volume:/etc/passbolt/gpg\n      - jwt_volume:/etc/passbolt/jwt\n    command:\n      [\n        "/usr/bin/wait-for.sh",\n        "-t",\n        "0",\n        "db:3306",\n        "--",\n        "/docker-entrypoint.sh",\n      ]\n    ports:\n      - 3050:80\n\nvolumes:\n  database_volume:\n  gpg_volume:\n  jwt_volume:' >> docker-compose-ce.yaml
 curl -LO https://github.com/passbolt/passbolt_docker/releases/latest/download/docker-compose-ce-SHA512SUM.txt
 #Run Passbolt on Docker.
 docker compose -f docker-compose-ce.yaml up -d
-sleep 30
-docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $7 -f Admin -l User -r admin" -s /bin/sh www-data
+sleep 35
+docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u $6 -f Admin -l User -r admin" -s /bin/sh www-data
 sudo nano docker-compose-ce.yaml
 
 #Change Nextcloud configs.

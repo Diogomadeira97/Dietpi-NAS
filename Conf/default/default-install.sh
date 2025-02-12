@@ -1,8 +1,6 @@
 #! /bin/bash
 
-passwd(){ < /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32};echo;}
-
-passwd2(){ < /dev/urandom tr -cd '[:alnum:]' | head -c${1:-20};echo;}
+passwd(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;}
 
 ARS=( "$@" )
 
@@ -77,8 +75,6 @@ DBOFFICEPW=$(passwd)
 echo -e "       • DBOFFICEPW: $DBOFFICEPW\n" >> PASSWD_$SERVERNAME.txt
 DBPASSBOLTPW=$(passwd2)
 echo -e "       • DBPASSBOLTPW: $DBPASSBOLTPW\n" >> PASSWD_$SERVERNAME.txt
-DOCKERMYSQLPW=$(passwd2)
-echo -e "       • DOCKERMYSQLPW: $DOCKERMYSQLPW\n\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
 echo -e "#Default Users.\n" >> PASSWD_$SERVERNAME.txt
@@ -250,7 +246,7 @@ chown -R $ADMIN:$CLOUD Data/Commands
 chown -R debian-transmission:$CLOUD Public/Downloads
 
 #Install tools.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOCKERMYSQLPW $DOMAIN $TPDOMAIN $EMAIL
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOMAIN $TPDOMAIN $EMAIL
 
 #Install Certbot and Homer to set server default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL
