@@ -73,7 +73,7 @@ DBIMMICHPW=$(passwd)
 echo -e "       • DBIMMICHPW: $DBIMMICHPW\n" >> PASSWD_$SERVERNAME.txt
 DBOFFICEPW=$(passwd)
 echo -e "       • DBOFFICEPW: $DBOFFICEPW\n" >> PASSWD_$SERVERNAME.txt
-DBPASSBOLTPW=$(passwd2)
+DBPASSBOLTPW=$(passwd)
 echo -e "       • DBPASSBOLTPW: $DBPASSBOLTPW\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Users.
