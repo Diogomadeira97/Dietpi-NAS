@@ -461,7 +461,7 @@ Do the first login and follow the instructions.
 
 • Download wireguard on your device and use the QR code to do the connection.
 
-	pivpn -qr /mnt/Cloud/Data/Keys_VPN/<DEVICE>
+	pivpn -qr /mnt/Cloud/Public/Keys_VPN/<DEVICE>
 
 • Enable VPN permissions on device.
 
