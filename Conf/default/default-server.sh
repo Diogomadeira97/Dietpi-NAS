@@ -141,7 +141,7 @@ item "adguard" "Servidor DNS."
 item "home-assistant" "Automação Residencial."
 
 #Portainer
-bash subdomain.sh $1 $2 "home-assistant" 9002 $3
+bash subdomain.sh $1 $2 "portainer" 9002 $3
 
 item "portainer" "Gerenciador de Containers."
 
