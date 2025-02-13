@@ -169,6 +169,7 @@ echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name passbolt.$1$2;\n	r
 echo -e "server{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name passbolt.$1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n" >> /etc/nginx/sites-available/passbolt
 echo -e "        location / {\n                proxy_pass http://$1$2:8050/;\n        }\n}" >> /etc/nginx/sites-available/passbolt
 cd /etc/nginx/sites-enabled
+chmod 544 passbolt
 sudo ln -s /etc/nginx/sites-available/passbolt .
 echo -e "sudo iptables -A INPUT -p tcp ! -s $3 --dport 3050 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
 sudo nginx -s reload
@@ -176,7 +177,10 @@ sudo nginx -s reload
 item "passbolt" "Gerenciador de Senhas."
 
 #Nextcloud.
-mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/nextcloud /etc/nginx/sites-available
+echo -e "server {\n        listen 80;\n        listen [::]:80;\n        server_name nextcloud.$1$2;\n\n        server_tokens off;\n\n        return 301 https://\$server_name\$request_uri;\n}\n\n" >> nextcloud
+echo -e "server {\n        listen 443 ssl http2;\n        listen [::]:443 ssl http2;\n\n        server_name nextcloud.$1$2;\n\n        root /var/www/nextcloud;\n\n        ssl_certificate     /etc/letsencrypt/live/$1$2/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;" >> nextcloud
+cat /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/nextcloud >> nextcloud
+mv nextcloud /etc/nginx/sites-available
 sudo chown root:root /etc/nginx/sites-available/nextcloud
 sudo chmod 544 /etc/nginx/sites-available/nextcloud
 cd /etc/nginx/sites-enabled
