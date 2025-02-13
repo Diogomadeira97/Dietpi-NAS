@@ -28,6 +28,9 @@ sed '$ d' /etc/nginx/nginx.conf > nginx.conf
 echo -e '\n        variables_hash_max_size 2048;\n}' >> nginx.conf
 mv nginx.conf /etc/nginx
 
+#Install nextcloud.
+/boot/dietpi/dietpi-software install 114
+
 #Change Nextcloud configs.
 sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra -y
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
@@ -79,9 +82,6 @@ cd /mnt/Cloud/Data/Docker/stirling
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
 #Run Stirling on Docker.
 docker compose up -d
-
-#Install nextcloud.
-/boot/dietpi/dietpi-software install 114
 
 #Go to Passbolt Docker directory.
 cd /mnt/Cloud/Data/Docker/passbolt
