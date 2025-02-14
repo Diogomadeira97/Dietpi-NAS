@@ -344,7 +344,8 @@ Do the first login and follow the instructions.
 
 • Create your first admin user with this command:
 
-	docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u <EMAIL> -f Admin -l User -r admin" -s /bin/sh www-data
+	cd /mnt/Cloud/Data/Docker/passbolt
+	sudo docker compose -f docker-compose-ce.yaml exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake passbolt register_user -u <EMAIL> -f Admin -l User -r admin" -s /bin/sh www-data
 
 • This registration command will return a single use url required to continue the web browser setup and finish the registration.
 
@@ -352,7 +353,7 @@ Do the first login and follow the instructions.
 
 	cd /mnt/Cloud/Data/Docker/passbolt
 	sudo nano docker-compose-ce.yaml
-	docker compose -f docker-compose-ce.yaml up -d
+	sudo docker compose -f docker-compose-ce.yaml up -d
 
 #### Nextcloud:
 
