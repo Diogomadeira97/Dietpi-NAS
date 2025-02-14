@@ -1,7 +1,4 @@
 
-        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; always"
-        add_header Referrer-Policy "no-referrer";
-
         server_tokens off;
 
         location ^~ /.well-known {
@@ -38,6 +35,9 @@
                 add_header X-Permitted-Cross-Domain-Policies "none" always;
                 add_header X-Robots-Tag "noindex, nofollow" always;
                 add_header X-XSS-Protection "1; mode=block" always;
+
+                add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; always"
+                add_header Referrer-Policy "no-referrer";
 
                 fastcgi_hide_header X-Powered-By;
 
