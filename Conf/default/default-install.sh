@@ -254,7 +254,7 @@ sudo setfacl -R -m user:bazarr:rwx Filmes
 sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
 #Turn admin the owner of Folder.
-chown -R $ADMIN:$CLOUD Data/Commands
+chown -R $ADMIN:$SERVERNAME /mnt/Cloud/Data/Commands
 
 #Turn dietpi the owner of Folder.
 chown -R dietpi:$CLOUD Public/Docs
