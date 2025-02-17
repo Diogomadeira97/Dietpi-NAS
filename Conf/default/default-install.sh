@@ -246,7 +246,6 @@ cd Midias
 mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
 sudo chmod -R 770 Midias-Anuais
 sudo setfacl -R -d -m o::--- Midias-Anuais
-
 sudo setfacl -R -m user:radarr:rwx Filmes
 sudo setfacl -R -m user:sonarr:rwx TV-Shows
 sudo setfacl -R -m user:readarr:rwx Livros
