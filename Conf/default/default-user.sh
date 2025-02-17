@@ -47,21 +47,23 @@ do
     #Set default permissions to user Docs folder.
     cd $USER
     sudo chown -R $USER:$USER Docs
-    sudo chmod -R 750 Docs
+    sudo chmod -R 700 Docs
     sudo setfacl -R -d -m u::rwx Docs
-    sudo setfacl -R -d -m g::r-x Docs
+    sudo setfacl -R -d -m g::--- Docs
     sudo setfacl -R -d -m o::--- Docs
 
     #Go to Midias, create default folders and set default permissions.
     cd Midias
     sudo mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
-    sudo chmod -R 750 Midias-Anuais
+    sudo chmod -R 700 Midias-Anuais
+    sudo chown -R $USER:$USER Midias-Anuais
     sudo setfacl -R -d -m u::rwx Midias-Anuais
-    sudo setfacl -R -d -m g::r-x Midias-Anuais
+    sudo setfacl -R -d -m g::--- Midias-Anuais
     sudo setfacl -R -d -m o::--- Midias-Anuais
     sudo chown -R radarr:$CLOUD Filmes
     sudo chown -R sonarr:$CLOUD TV-Shows
     sudo chown -R readarr:$CLOUD Livros
+    sudo chown -R debian-transmission:$CLOUD Downloads
     sudo setfacl -R -m user:bazarr:rwx Filmes
     sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
