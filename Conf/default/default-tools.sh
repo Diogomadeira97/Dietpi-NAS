@@ -32,7 +32,7 @@ mv nginx.conf /etc/nginx
 /boot/dietpi/dietpi-software install 114
 
 #Change Nextcloud configs.
-sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra -y
+sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra smbclient -y
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set opcache.interned_strings_buffer --type=integer --value=9
 sudo -u www-data php8.2 /var/www/nextcloud/occ maintenance:repair --include-expensive
