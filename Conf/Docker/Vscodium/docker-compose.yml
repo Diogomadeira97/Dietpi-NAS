@@ -16,7 +16,6 @@ services:
     volumes:
       - /mnt/Cloud/Data/Docker/vscodium/config:/config
       - /mnt/Cloud/Public/Midias
-      - /mnt/Cloud/Data/nextcloud_data/admin/files/Public/Midias
     ports:
       - 3040:3000
       - 3001:3001
