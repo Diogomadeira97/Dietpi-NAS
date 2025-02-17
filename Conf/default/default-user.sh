@@ -56,10 +56,10 @@ do
     sudo chmod -R 770 Midias-Anuais
     sudo chown -R $USER:$USER Midias-Anuais
     sudo setfacl -R -d -m o::--- Midias-Anuais
-    sudo chown -R radarr:$CLOUD Filmes
-    sudo chown -R sonarr:$CLOUD TV-Shows
-    sudo chown -R readarr:$CLOUD Livros
-    sudo chown -R debian-transmission:$CLOUD Downloads
+    sudo setfacl -R -m user:radarr:rwx Filmes
+    sudo setfacl -R -m user:sonarr:rwx TV-Shows
+    sudo setfacl -R -m user:readarr:rwx Livros
+    sudo setfacl -R -m user:debian-transmission:rwx Downloads
     sudo setfacl -R -m user:bazarr:rwx Filmes
     sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
