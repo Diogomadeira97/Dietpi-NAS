@@ -15,7 +15,7 @@ services:
       - INSTALL_PACKAGES=libfuse2|git|gdb
     volumes:
       - /mnt/Cloud/Data/Docker/vscodium/config:/config
-      - /mnt/Cloud/Public/Midias
+      - /mnt/Cloud/Public/Docs
     ports:
       - 3040:3000
       - 3001:3001
