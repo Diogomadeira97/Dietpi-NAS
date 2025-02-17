@@ -41,7 +41,7 @@ sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set datadirectory -
 sudo mv /mnt/dietpi_userdata/nextcloud_data /mnt/Cloud/Data
 cd /mnt/Cloud/Data/nextcloud_data/admin
 mkdir Public Public/Docs Public/Midias
-chown www-data:www-data Public
+chown -R www-data:www-data Public
 chmod -R 755 Public
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=0
 #Remove default files.
