@@ -116,8 +116,7 @@ echo "$ADMIN:"$(echo "$ADMINPW")"" | chpasswd
 echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 
 #Install Fail2Ban, Dietpi-Dashboard, PiVPN(Wireguard), Unbound, AdGuard_Home, Samba_server, Transmission, Sonarr, Radarr, Prowlarr, Readarr, Bazarr, Jellyfin, Kavita, Nginx, LEMP, Docker, Docker_Compose and Portainer.
-/boot/dietpi/dietpi-software install 200 117 182 126 96 44 144 145 151 180 203 178 212 85 79 134 162 185 
-apt install fail2ban
+/boot/dietpi/dietpi-software install 73 200 117 182 126 96 44 144 145 151 180 203 178 212 85 79 134 162 185 
 
 #Add default users Samba password.
 (echo "$(echo "$ADMINSMBPW")"; echo "$(echo "$ADMINSMBPW")") | smbpasswd -a -s $ADMIN
