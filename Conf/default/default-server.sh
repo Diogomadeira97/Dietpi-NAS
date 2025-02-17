@@ -170,7 +170,8 @@ echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name passbolt.$1$2;\n	r
 echo -e "server{\n	listen 443 ssl http2;\n	listen [::]:443 ssl http2;\n	server_name passbolt.$1$2;\n	ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n	ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n" >> passbolt
 echo -e "        location / {\n                proxy_pass http://$1$2:8050/;\n        }\n}" >> passbolt
 chmod 544 passbolt
-sudo ln -s /etc/nginx/sites-available/passbolt .
+cd ../sites-enabled
+sudo ln -s ../sites-available/passbolt .
 echo -e "sudo iptables -A INPUT -p tcp ! -s $3 --dport 3050 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
 sudo nginx -s reload
 
