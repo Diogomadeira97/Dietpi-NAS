@@ -58,8 +58,11 @@ cd ../../../
 mkdir /mnt/Cloud/Data
 mv Dietpi-NAS /mnt/Cloud/Data
 
-#Default variables.
+#Go to Cloud and create default folders.
+cd /mnt/Cloud
+mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users $SERVERNAME $SERVERNAME/Midias $SERVERNAME/Docs
 
+#Default variables.
 SERVERNAME=${VARIABLES[1]}
 echo -e "#Default variables.\n" >> PASSWD_$SERVERNAME.txt
 echo -e "       • SERVERNAME: $SERVERNAME\n" >> PASSWD_$SERVERNAME.txt
@@ -97,10 +100,6 @@ CLOUDFLARETOKEN=${VARIABLES[7]}
 echo -e "       • CLOUDFLARETOKEN: $CLOUDFLARETOKEN\n" >> PASSWD_$SERVERNAME.txt
 EMAIL=${VARIABLES[8]}
 echo -e "       • EMAIL: $EMAIL\n" >> PASSWD_$SERVERNAME.txt
-
-#Go to Cloud and create default folders.
-cd /mnt/Cloud
-mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users $SERVERNAME $SERVERNAME/Midias $SERVERNAME/Docs
 
 #Move passwords with right permissions to Public.
 mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public/Passwords
