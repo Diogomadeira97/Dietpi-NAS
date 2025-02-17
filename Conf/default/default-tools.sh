@@ -39,10 +39,6 @@ sudo -u www-data php8.2 /var/www/nextcloud/occ maintenance:repair --include-expe
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set default_phone_region --value="BR"
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set datadirectory --value="/mnt/Cloud/Data/nextcloud_data"
 sudo mv /mnt/dietpi_userdata/nextcloud_data /mnt/Cloud/Data
-cd /mnt/Cloud/Data/nextcloud_data/admin/files
-mkdir Public Public/Docs Public/Midias
-chown -R www-data:www-data Public
-chmod -R 755 Public
 sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=0
 #Remove default files.
 cd /etc/nginx/sites-dietpi
