@@ -37,22 +37,18 @@ do
     cd /mnt/Cloud/Users
     sudo mkdir $USER $USER/Docs $USER/Midias
 
-    #Set default permissions to user folder.
-    sudo chown -R $USER:$CLOUD $USER
-    sudo chmod -R 775 $USER
-    sudo setfacl -R -d -m u::rwx $USER
-    sudo setfacl -R -d -m g::rwx $USER
-    sudo setfacl -R -d -m o::r-x $USER
-
-    #Set default permissions to user Docs folder.
+    #Create and set default owner to user folders.
     cd $USER
+    sudo mkdir Midias/Midias-Anuais Midias/Filmes Midias/TV-Shows Midias/Downloads Midias/Livros
+    sudo chown -R $USER:$CLOUD ../$USER
+
+    #Set Docs default permissions.
     sudo chown -R $USER:$USER Docs
     sudo chmod -R 770 Docs
     sudo setfacl -R -d -m o::--- Docs
 
     #Go to Midias, create default folders and set default permissions.
     cd Midias
-    sudo mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
     sudo chmod -R 770 Midias-Anuais
     sudo chown -R $USER:$USER Midias-Anuais
     sudo setfacl -R -d -m o::--- Midias-Anuais

@@ -150,6 +150,7 @@ cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Samba
 echo -e "        guest account = $GUEST" >> smb.conf
 cat smb_temp.conf >> smb.conf
 echo -e "        valid users = $ADMIN" >> smb.conf
+echo -e "\n\n#User $SERVERNAME\n\n[$SERVERNAME]\n        comment = $SERVERNAME\n        path = /mnt/Cloud/$SERVERNAME\n        valid users = $ADMIN" >> smb.conf
 mv smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
 service samba restart
@@ -229,41 +230,41 @@ chmod 750 BAK_Cloud
 chown $ADMIN:$BAK BAK_Cloud
 chmod g+s BAK_Cloud
 
-#Set Data default permissions.
+#Set Public default permissions.
 cd Cloud
+sudo setfacl -R -m user:dietpi:rwx Public/Docs
+sudo setfacl -R -m user:dietpi:rwx Public/Midias
+sudo setfacl -R -m user:debian-transmission:rwx Public/Downloads
+
+#Set Data default permissions.
+chown -R $ADMIN:$SERVERNAME Data
 chmod -R 750 Data
 setfacl -R -d -m g::r-x Data
 setfacl -R -d -m o::--- Data
 setfacl -m user:www-data:rwx Data
 
-#Set Server default permissions.
-chown -R admin-acaci:$SERVERNAME $SERVERNAME
+#Create and set default owner to user folders.
 cd $SERVERNAME
-sudo chmod -R 770 Docs
-sudo setfacl -R -d -m o::--- Docs
-chown -R admin-acaci:$SERVERNAME Midias
+mkdir Midias/Midias-Anuais Midias/Filmes Midias/TV-Shows Midias/Downloads Midias/Livros
+chown -R $ADMIN:$SERVERNAME ../$SERVERNAME
+
+#Set Docs default permissions.
+chmod -R 770 Docs
+setfacl -R -d -m o::--- Docs
+
+#Go to Midias, create default folders and set default permissions.
 cd Midias
-mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
 sudo chmod -R 770 Midias-Anuais
-sudo setfacl -R -d -m o::--- Midias-Anuais
-sudo setfacl -R -m user:radarr:rwx Filmes
-sudo setfacl -R -m user:sonarr:rwx TV-Shows
-sudo setfacl -R -m user:readarr:rwx Livros
-sudo setfacl -R -m user:debian-transmission:rwx Downloads
-sudo setfacl -R -m user:bazarr:rwx Filmes
-sudo setfacl -R -m user:bazarr:rwx TV-Shows
-
-#Turn admin the owner of Folder.
-chown -R $ADMIN:$SERVERNAME /mnt/Cloud/Data/Commands
-
-#Turn dietpi the owner of Folder.
-chown -R dietpi:$CLOUD Public/Docs
-
-#Turn debian-transmission the owner of Public Downloads Folder.
-chown -R debian-transmission:$CLOUD Public/Downloads
+setfacl -R -d -m o::--- Midias-Anuais
+setfacl -R -m user:radarr:rwx Filmes
+setfacl -R -m user:sonarr:rwx TV-Shows
+setfacl -R -m user:readarr:rwx Livros
+setfacl -R -m user:debian-transmission:rwx Downloads
+setfacl -R -m user:bazarr:rwx Filmes
+setfacl -R -m user:bazarr:rwx TV-Shows
 
 #Install tools.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOMAIN $TPDOMAIN $EMAIL
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOMAIN $TPDOMAIN $SERVERNAME $ADMIN
 
 #Install Certbot and Homer to set server default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL

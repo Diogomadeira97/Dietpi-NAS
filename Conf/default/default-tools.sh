@@ -55,8 +55,15 @@ cd /mnt/Cloud/Data/Docker/immich-app
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Immich/docker-compose.yml .
 #Change Data Base password.
 echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$1" >> .env
+#Add user folders to immich.
+cd /mnt/Cloud/Data/Docker/immich-app
+echo -e "      - /mnt/Cloud/Users/$6/Midias/Midias-Anuais:/mnt/Cloud/Users/$6/Midias/Midias-Anuais:ro\n" >> docker-compose.yml
 #Run Immich on Docker.
 docker compose up -d
+#Create a crontab to sync Immich with user folder.
+echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich_files/library/$7/*  /mnt/Cloud/$6/Midias/Midias-Anuais/immich\n\nchown -R $7:$6 /mnt/Cloud/$6/Midias/Midias-Anuais/immich" >> immich_cron_$6.sh
+mv immich_cron_$6.sh /etc/cron.daily
+chmod 750 /etc/cron.daily/immich_cron_$6.sh
 
 #Go to Vscodium Docker directory.
 cd /mnt/Cloud/Data/Docker/vscodium
