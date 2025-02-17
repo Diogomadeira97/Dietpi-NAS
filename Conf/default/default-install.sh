@@ -103,8 +103,8 @@ cd /mnt/Cloud
 mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users $SERVERNAME $SERVERNAME/Midias $SERVERNAME/Docs
 
 #Move passwords with right permissions to Public.
-sudo chmod 777 PASSWD_$SERVERNAME.txt
 mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public/Passwords
+sudo chmod -R 777 /mnt/Cloud/Public/Passwords
 
 #Define Umask.
 umask 0022
@@ -138,7 +138,7 @@ groupadd $SERVERNAME
 usermod -a -G $CLOUD "$ADMIN"
 usermod -a -G $CLOUD "$GUEST"
 usermod -a -G $SERVERNAME "$ADMIN"
-usermod -a -G  $BAK "$ADMIN"
+usermod -a -G $BAK "$ADMIN"
 
 #Turn admin in SU without password.
 echo -e "$ADMIN ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
