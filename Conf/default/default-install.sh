@@ -58,10 +58,6 @@ cd ../../../
 mkdir /mnt/Cloud/Data
 mv Dietpi-NAS /mnt/Cloud/Data
 
-#Go to Cloud and create default folders.
-cd /mnt/Cloud
-mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users
-
 #Default variables.
 
 SERVERNAME=${VARIABLES[1]}
@@ -102,6 +98,10 @@ echo -e "       • CLOUDFLARETOKEN: $CLOUDFLARETOKEN\n" >> PASSWD_$SERVERNAME.t
 EMAIL=${VARIABLES[8]}
 echo -e "       • EMAIL: $EMAIL\n" >> PASSWD_$SERVERNAME.txt
 
+#Go to Cloud and create default folders.
+cd /mnt/Cloud
+mkdir Data/Commands Data/Docker Data/Docker/flaresolver Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users $SERVERNAME $SERVERNAME/Midias $SERVERNAME/Docs
+
 #Move passwords with right permissions to Public.
 sudo chmod 777 PASSWD_$SERVERNAME.txt
 mv PASSWD_$SERVERNAME.txt /mnt/Cloud/Public/Passwords
@@ -132,10 +132,12 @@ BAK="$(echo $SERVERNAME'_BAK' )"
 #Add default groups.
 groupadd $CLOUD
 groupadd $BAK
+groupadd $SERVERNAME
 
 #Add default users to default groups.
 usermod -a -G $CLOUD "$ADMIN"
 usermod -a -G $CLOUD "$GUEST"
+usermod -a -G $SERVERNAME "$ADMIN"
 usermod -a -G  $BAK "$ADMIN"
 
 #Turn admin in SU without password.
@@ -230,10 +232,27 @@ chmod g+s BAK_Cloud
 #Set Data default permissions.
 cd Cloud
 chmod -R 750 Data
-setfacl -R -d -m u::rwx Data
 setfacl -R -d -m g::r-x Data
 setfacl -R -d -m o::--- Data
 setfacl -m user:www-data:rwx Data
+
+#Set Server default permissions.
+chown -R admin-acaci:$SERVERNAME $SERVERNAME
+cd $SERVERNAME
+sudo chmod -R 770 Docs
+sudo setfacl -R -d -m o::--- Docs
+chown -R admin-acaci:$SERVERNAME Midias
+cd Midias
+mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
+sudo chmod -R 770 Midias-Anuais
+sudo setfacl -R -d -m o::--- Midias-Anuais
+
+sudo setfacl -R -m user:radarr:rwx Filmes
+sudo setfacl -R -m user:sonarr:rwx TV-Shows
+sudo setfacl -R -m user:readarr:rwx Livros
+sudo setfacl -R -m user:debian-transmission:rwx Downloads
+sudo setfacl -R -m user:bazarr:rwx Filmes
+sudo setfacl -R -m user:bazarr:rwx TV-Shows
 
 #Turn admin the owner of Folder.
 chown -R $ADMIN:$CLOUD Data/Commands
