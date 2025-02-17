@@ -47,18 +47,14 @@ do
     #Set default permissions to user Docs folder.
     cd $USER
     sudo chown -R $USER:$USER Docs
-    sudo chmod -R 700 Docs
-    sudo setfacl -R -d -m u::rwx Docs
-    sudo setfacl -R -d -m g::--- Docs
+    sudo chmod -R 770 Docs
     sudo setfacl -R -d -m o::--- Docs
 
     #Go to Midias, create default folders and set default permissions.
     cd Midias
     sudo mkdir Midias-Anuais Filmes TV-Shows Downloads Livros
-    sudo chmod -R 700 Midias-Anuais
+    sudo chmod -R 770 Midias-Anuais
     sudo chown -R $USER:$USER Midias-Anuais
-    sudo setfacl -R -d -m u::rwx Midias-Anuais
-    sudo setfacl -R -d -m g::--- Midias-Anuais
     sudo setfacl -R -d -m o::--- Midias-Anuais
     sudo chown -R radarr:$CLOUD Filmes
     sudo chown -R sonarr:$CLOUD TV-Shows
