@@ -231,9 +231,9 @@ chmod g+s BAK_Cloud
 
 #Set Public default permissions.
 cd Cloud
-setfacl -R -d -m user:dietpi:rwx Public/Docs
-setfacl -R -d -m user:dietpi:rwx Public/Midias
-setfacl -R -d -m user:debian-transmission:rwx Public/Downloads
+setfacl -R -m user:dietpi:rwx Public/Docs
+setfacl -R -m user:dietpi:rwx Public/Midias
+setfacl -R -m user:debian-transmission:rwx Public/Downloads
 
 #Set Data default permissions.
 chown -R $ADMIN:$SERVERNAME Data
@@ -254,13 +254,13 @@ setfacl -R -d -m o::--- Docs
 #Go to Midias, create default folders and set default permissions.
 cd Midias
 sudo chmod -R 770 Midias-Anuais
-setfacl -R -d -m o::--- Midias-Anuais
-setfacl -R -d -m user:radarr:rwx Filmes
-setfacl -R -d -m user:sonarr:rwx TV-Shows
-setfacl -R -d -m user:readarr:rwx Livros
-setfacl -R -d -m user:debian-transmission:rwx Downloads
-setfacl -R -d -m user:bazarr:rwx Filmes
-setfacl -R -d -m user:bazarr:rwx TV-Shows
+setfacl -R -m o::--- Midias-Anuais
+setfacl -R -m user:radarr:rwx Filmes
+setfacl -R -m user:sonarr:rwx TV-Shows
+setfacl -R -m user:readarr:rwx Livros
+setfacl -R -m user:debian-transmission:rwx Downloads
+setfacl -R -m user:bazarr:rwx Filmes
+setfacl -R -m user:bazarr:rwx TV-Shows
 
 #Install tools.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOMAIN $TPDOMAIN $SERVERNAME $ADMIN
