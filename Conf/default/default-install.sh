@@ -198,8 +198,15 @@ echo -e "#! /bin/bash" >> iptables_custom.sh
 #Use /mnt/Cloud/Data/iptables_custom.sh to add iptables.
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
 
-#Create crontab to custom iptables.
+#Create reboot.sh.
+echo -e "#! /bin/bash" >> reboot.sh
+
+#Use /mnt/Cloud/Data/reboot.sh to add custom reboot.
+mv reboot.sh /mnt/Cloud/Data/Commands
+
+#Create crontab to custom iptables and reboot.
 echo -e "@reboot sleep 10 && /mnt/Cloud/Data/Commands/iptables_custom.sh" >> crontab
+echo -e "@reboot sleep 20 && /mnt/Cloud/Data/Commands/reboot.sh" >> crontab
 crontab crontab
 rm crontab
 
