@@ -172,7 +172,7 @@ echo -e "        location / {\n                proxy_pass http://$1$2:8050/;\n  
 chmod 544 passbolt
 cd ../sites-enabled
 sudo ln -s ../sites-available/passbolt .
-echo -e "sudo iptables -A INPUT -p tcp ! -s $3 --dport 3050 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
+echo -e "sudo iptables -A INPUT -p tcp ! -s $3 --dport 8050 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
 sudo nginx -s reload
 
 item "passbolt" "Gerenciador de Senhas."
