@@ -231,9 +231,9 @@ chmod g+s BAK_Cloud
 
 #Set Public default permissions.
 cd Cloud
-sudo setfacl -R -m user:dietpi:rwx Public/Docs
-sudo setfacl -R -m user:dietpi:rwx Public/Midias
-sudo setfacl -R -m user:debian-transmission:rwx Public/Downloads
+setfacl -R -m user:dietpi:rwx Public/Docs
+setfacl -R -m user:dietpi:rwx Public/Midias
+setfacl -R -m user:debian-transmission:rwx Public/Downloads
 
 #Set Data default permissions.
 chown -R $ADMIN:$SERVERNAME Data
