@@ -136,7 +136,15 @@ bash subdomain.sh $1 $2 "adguard" 8083 $3
 item "adguard" "Servidor DNS."
 
 #Home Assistant.
-#bash subdomain.sh $1 $2 "home-assistant" 8123 $3
+echo -e "server{\n        listen 80;\n        listen [::]:80;\n        server_name home-assistant.$1$2;\n        return 301 https://\$host\$request_uri;\n}\n\n" >> home-assistant
+echo -e "server{\n        listen 443 ssl http2;\n        listen [::]:443 ssl http2;\n        server_name home-assistant.$1$2;\n        ssl_certificate /etc/letsencrypt/live/$1$2/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/$1$2/privkey.pem;\n        set \$url $3:8123;\n\n" >> home-assistant
+echo -e '        location / {\n                proxy_pass http://$url;\n                proxy_set_header Host $host;\n                proxy_set_header X-Real-IP $remote_addr;\n        }\n}' >> home-assistant
+sudo chown root:root /etc/nginx/sites-available/home-assistant
+sudo chmod 544 /etc/nginx/sites-available/home-assistant
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/home-assistant .
+echo -e "sudo iptables -A INPUT -p tcp ! -s $3 --dport 8123 -j DROP" >> /mnt/Cloud/Data/Commands/iptables_custom.sh
+sudo nginx -s reload
 
 item "home-assistant" "Automação Residencial."
 
