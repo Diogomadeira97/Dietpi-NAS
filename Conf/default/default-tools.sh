@@ -57,7 +57,7 @@ mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Immich/docker-compose.yml .
 echo -e "UPLOAD_LOCATION=/mnt/Cloud/Data/Docker/immich-app/immich-files\nDB_DATA_LOCATION=/mnt/Cloud/Data/Docker/immich-app/postgres\nIMMICH_VERSION=release\nDB_USERNAME=postgres\nDB_DATABASE_NAME=immich\nDB_PASSWORD=$1" >> .env
 #Add user folders to immich.
 cd /mnt/Cloud/Data/Docker/immich-app
-echo -e "      - /mnt/Cloud/Users/$6/Midias/Midias-Anuais:/mnt/Cloud/Users/$6/Midias/Midias-Anuais:ro\n" >> docker-compose.yml
+echo -e "      - /mnt/Cloud/$6/Midias/Midias-Anuais:/mnt/Cloud/$6/Midias/Midias-Anuais" >> docker-compose.yml
 #Run Immich on Docker.
 docker compose up -d
 #Create a crontab to sync Immich with user folder.
