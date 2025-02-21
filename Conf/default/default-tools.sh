@@ -85,7 +85,7 @@ cd /mnt/Cloud/Data/Docker/stirling
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Stirling/docker-compose.yml .
 #Run Stirling on Docker.
 docker compose up -d
-echo -e 'cd /mnt/Cloud/Data/Docker/stirling\nsudo docker compose up -d'
+echo -e 'cd /mnt/Cloud/Data/Docker/stirling\nsudo docker compose up -d' >> /mnt/Cloud/Data/Commands/reboot.sh
 
 #Go to Passbolt Docker directory.
 cd /mnt/Cloud/Data/Docker/passbolt
