@@ -5,7 +5,7 @@ services:
     ports:
       - '8045:8080'
     volumes:
-      - ./StirlingPDF/trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - ./StirlingPDF/trainingData:/usr/share/tessdata
       - ./StirlingPDF/extraConfigs:/configs
       - ./StirlingPDF/customFiles:/customFiles/
       - ./StirlingPDF/logs:/logs/
