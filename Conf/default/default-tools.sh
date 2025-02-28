@@ -28,7 +28,7 @@ sed '$ d' /etc/nginx/nginx.conf > nginx.conf
 echo -e '\n        variables_hash_max_size 2048;\n}' >> nginx.conf
 mv nginx.conf /etc/nginx
 
-#Install nextcloud.
+#Install Samba Client and Nextcloud.
 /boot/dietpi/dietpi-software install 1 114
 
 #Change Nextcloud configs.
