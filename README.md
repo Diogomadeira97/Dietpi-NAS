@@ -470,7 +470,7 @@ Do the first login and follow the instructions.
 
 • Export SSH Key with Dietpi-Dashboard or Samba.
 
-• Download Termux and do this commands:
+• Download Termux and do this commands to add SSH Keys:
 
 	pkg install openssh -y
 
@@ -480,16 +480,15 @@ Do the first login and follow the instructions.
 
 	nano <DEVICE> (Put the private key here.)
 
-	ssh-add ~/.ssh/<DEVICE>
+	ssh-add ~/.ssh/<SERVER>(<USER>)
 
 	nano config
 
-		Host <SERVER IP>
-		AddKeysToAgent yes
-		IdentityFile ~/.ssh/<DEVICE>"
+		Host <SERVER>_<USER>
+			Host <DOMAIN><TPDOMAIN>
+			USER <uSER>
+			IdentityFile ~/.ssh/<SERVER>(<USER>)
 
-	cd ../../usr/etc	
+• To login use this command:
 
-	nano bash.bashrc
-
-		ssh <ADMIN>@<SERVER IP>
+	ssh <SERVER>_<USER>
