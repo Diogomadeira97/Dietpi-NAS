@@ -472,7 +472,7 @@ Do the first login and follow the instructions.
 
 • Download Termux and do this commands:
 
-	pkg install openssh
+	pkg install openssh -y
 
 	eval $(ssh-agent -s)
 
