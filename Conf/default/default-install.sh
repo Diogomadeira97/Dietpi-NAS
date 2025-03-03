@@ -41,8 +41,6 @@ do
 
 done
 
-ethtool --set-eee eth0 eee off
-
 #dietpi-config
 /boot/dietpi/dietpi-config
 
