@@ -73,7 +73,7 @@ do
     sudo docker compose up -d
 
     #Create a crontab to sync Immich with user folder.
-    sudo echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich-files/library/$USER/*  /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich\n\nchown -R $USER:$USER /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich" >> immich_cron_$USER.sh
+    sudo echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich-files/library/$USER/*  /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich\n\nchown -R $USER:$USER /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich\n\nchmod -R 770 /mnt/Cloud/Users/$USER/Midias/Midias-Anuais/immich" >> immich_cron_$USER.sh
     sudo mv immich_cron_$USER.sh /etc/cron.daily
     sudo chmod 750 /etc/cron.daily/immich_cron_$USER.sh
 
