@@ -150,7 +150,7 @@ cd /mnt/Cloud/Data/Dietpi-NAS/Conf/Samba
 echo -e "        guest account = $GUEST" >> smb.conf
 cat smb_temp.conf >> smb.conf
 echo -e "        valid users = $ADMIN" >> smb.conf
-echo -e "\n\n#User $SERVERNAME\n\n[$SERVERNAME]\n        comment = $SERVERNAME\n        path = /mnt/Cloud/$SERVERNAME\n        valid users = $ADMIN" >> smb.conf
+echo -e "\n\n#User $SERVERNAME\n\n[$SERVERNAME]\n        comment = $SERVERNAME\n        path = /mnt/Cloud/$SERVERNAME\n        valid users = @$SERVERNAME" >> smb.conf
 mv smb.conf /etc/samba/smb.conf
 chmod 644 /etc/samba/smb.conf
 service samba restart
@@ -199,6 +199,12 @@ echo -e "#! /bin/bash" >> iptables_custom.sh
 #Use /mnt/Cloud/Data/iptables_custom.sh to add iptables.
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
 
+#Create immich_uploads.sh.sh.
+echo -e "#! /bin/bash\n7z a /mnt/Cloud/Users/\$1/Midias/immich-uploads.7z /mnt/Cloud/Data/Docker/immich-app/immich-files/library/\$1" >> immich_uploads.sh
+
+#Use 'sudo bash /mnt/Cloud/Data/immich_uploads.sh (USER)' to create a backup of uploads.
+mv immich_uploads.sh /mnt/Cloud/Data/Commands
+
 #Create reboot.sh.
 echo -e "#! /bin/bash" >> reboot.sh
 
@@ -213,6 +219,9 @@ rm crontab
 
 #Install Access Control List.
 apt install acl sshpass -y
+
+#Install 7Zip
+apt-get install p7zip-full
 
 #This code is to fix the reboot error message.
 systemctl unmask systemd-logind
