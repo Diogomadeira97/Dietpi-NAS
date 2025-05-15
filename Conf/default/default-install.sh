@@ -184,40 +184,40 @@ mv default-keys-ssh.sh /mnt/Cloud/Data/Commands
 #Use 'sudo bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh' to add some vpn keys.
 mv default-keys-vpn.sh /mnt/Cloud/Data/Commands
 
-#Use 'sudo bash /mnt/Cloud/Data/subdomain.sh' to add some subdomain.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/subdomain.sh' to add some subdomain.
 mv subdomain.sh /mnt/Cloud/Data/Commands
 
-#Use 'sudo bash /mnt/Cloud/Data/subdomain.sh' to add some subdomain.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/subdomain.sh' to add some subdomain.
 mv subdomain-docker.sh /mnt/Cloud/Data/Commands
 
-#Use 'sudo bash /mnt/Cloud/Data/subpath.sh' to add some subpath.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/subpath.sh' to add some subpath.
 mv subpath.sh /mnt/Cloud/Data/Commands
 
-#Use 'sudo bash /mnt/Cloud/Data/update_server.sh' to add some subpath.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/update_server.sh' to add some subpath.
 mv update_server.sh /mnt/Cloud/Data/Commands
 
 #Create iptables_custom.sh.
 echo -e "#! /bin/bash" >> iptables_custom.sh
 
-#Use 'sudo bash /mnt/Cloud/Data/iptables_custom.sh' to add iptables.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/iptables_custom.sh' to add iptables.
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
 
 #Create immich_uploads.sh.sh.
 echo -e "#! /bin/bash\n7z a /mnt/Cloud/Users/\$1/Midias/immich-uploads.7z /mnt/Cloud/Data/Docker/immich-app/immich-files/library/\$1" >> immich_uploads.sh
 
-#Use 'sudo bash /mnt/Cloud/Data/immich_uploads.sh (USER)' to create a backup of uploads.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/immich_uploads.sh (USER)' to create a backup of uploads.
 mv immich_uploads.sh /mnt/Cloud/Data/Commands
 
 #Create export_backups.sh
 echo -e "#! /bin/bash\n7z a /mnt/Cloud/Public/dietpi-backup.7z /mnt/Cloud/Data/dietpi-backup" >> export_backups.sh
 
-#Use 'sudo bash /mnt/Cloud/Data/export_backups.sh' to export dietpi backups.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/export_backups.sh' to export dietpi backups.
 mv export_backups.sh /mnt/Cloud/Data/Commands
 
 #Create reboot.sh.
 echo -e "#! /bin/bash" >> reboot.sh
 
-#Use 'sudo nano /mnt/Cloud/Data/reboot.sh' to add custom reboot.
+#Use 'sudo nano /mnt/Cloud/Data/Commands/reboot.sh' to add custom reboot.
 mv reboot.sh /mnt/Cloud/Data/Commands
 
 #Create crontab to custom iptables and reboot.
