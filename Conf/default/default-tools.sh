@@ -44,8 +44,6 @@ sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_win
 cd /etc/nginx/sites-dietpi
 rm -rf dietpi-dav_redirect.conf dietpi-nextcloud.conf
 
-#Go to Flaresolver Docker directory.
-cd /mnt/Cloud/Data/Docker/flaresolver
 #Run Flaresolver on Docker.
 docker run -d --name=flaresolverr   -p 8191:8191   -e LOG_LEVEL=info   --restart unless-stopped   ghcr.io/flaresolverr/flaresolverr:latest
 
