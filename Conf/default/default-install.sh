@@ -203,13 +203,13 @@ echo -e "#! /bin/bash" >> iptables_custom.sh
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
 
 #Create immich_uploads.sh.sh.
-echo -e "#! /bin/bash\n7z a /mnt/Cloud/Users/\$1/Midias/immich-uploads.7z /mnt/Cloud/Data/Docker/immich-app/immich-files/library/\$1" >> immich_uploads.sh
+echo -e "#! /bin/bash\nzip -r /mnt/Cloud/Users/\$1/Midias/immich-uploads.zip /mnt/Cloud/Data/Docker/immich-app/immich-files/library/\$1" >> immich_uploads.sh
 
 #Use 'sudo bash /mnt/Cloud/Data/Commands/immich_uploads.sh (USER)' to create a backup of uploads.
 mv immich_uploads.sh /mnt/Cloud/Data/Commands
 
 #Create export_backups.sh
-echo -e "#! /bin/bash\n7z a /mnt/Cloud/Public/dietpi-backup.7z /mnt/Cloud/Data/dietpi-backup" >> export_backups.sh
+echo -e "#! /bin/bash\nzip -r /mnt/Cloud/Public/dietpi-backup.zip /mnt/Cloud/Data/dietpi-backup" >> export_backups.sh
 
 #Use 'sudo bash /mnt/Cloud/Data/Commands/export_backups.sh' to export dietpi backups.
 mv export_backups.sh /mnt/Cloud/Data/Commands
@@ -229,8 +229,8 @@ rm crontab
 #Install Access Control List.
 apt install acl sshpass -y
 
-#Install 7Zip
-apt-get install p7zip-full
+#Install zip
+apt-get install zip
 
 #This code is to fix the reboot error message.
 systemctl unmask systemd-logind
