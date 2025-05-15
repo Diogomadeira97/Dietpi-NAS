@@ -1,3 +1,5 @@
+#! /bin/bash
+
 #Update and upgrade pkgs
 sudo apt-get update -y
 sudo apt-get upgrade -y
