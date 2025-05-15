@@ -205,6 +205,12 @@ echo -e "#! /bin/bash\n7z a /mnt/Cloud/Users/\$1/Midias/immich-uploads.7z /mnt/C
 #Use 'sudo bash /mnt/Cloud/Data/immich_uploads.sh (USER)' to create a backup of uploads.
 mv immich_uploads.sh /mnt/Cloud/Data/Commands
 
+#Create export_backups.sh
+echo -e "#! /bin/bash\n7z a /mnt/Cloud/Public/dietpi-backup.7z /mnt/Cloud/Data/dietpi-backup" >> export_backups.sh
+
+#Use 'sudo bash /mnt/Cloud/Data/export_backups.sh' to export dietpi backups.
+mv export_backups.sh /mnt/Cloud/Data/Commands
+
 #Create reboot.sh.
 echo -e "#! /bin/bash" >> reboot.sh
 
