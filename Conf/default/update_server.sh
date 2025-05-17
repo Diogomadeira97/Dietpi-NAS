@@ -8,7 +8,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 #Update Dietpi
-sudo dietpi-update
+sudo /boot/dietpi/dietpi-update
 
 #Update Esphome
 cd /mnt/Cloud/Data/Docker/esphome
