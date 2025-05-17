@@ -209,7 +209,7 @@ echo -e "#! /bin/bash\nzip -r /mnt/Cloud/Users/\$1/Midias/immich-uploads.zip /mn
 mv immich_uploads.sh /mnt/Cloud/Data/Commands
 
 #Create export_backups.sh
-echo -e "#! /bin/bash\nzip -r /mnt/Cloud/Public/dietpi-backup.zip /mnt/Cloud/Data/dietpi-backup" >> export_backups.sh
+echo -e "#! /bin/bash\nzip -r /mnt/Cloud/Public/dietpi-backup.zip /mnt/Cloud/Data/dietpi-backup/data" >> export_backup.sh
 
 #Use 'sudo bash /mnt/Cloud/Data/Commands/export_backups.sh' to export dietpi backups.
 mv export_backups.sh /mnt/Cloud/Data/Commands
