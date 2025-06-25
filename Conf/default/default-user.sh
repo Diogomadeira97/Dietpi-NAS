@@ -32,6 +32,7 @@ do
 
     #Put user in the default group.
     sudo usermod -a -G $CLOUD "$USER"
+    sudo usermod -a -G $1 "$USER"
 
     #Go to Users folder and create default folders to the user.
     cd /mnt/Cloud/Users
