@@ -202,7 +202,7 @@ echo -e "#! /bin/bash" >> iptables_custom.sh
 #Use 'sudo bash /mnt/Cloud/Data/Commands/iptables_custom.sh' to add iptables.
 mv iptables_custom.sh /mnt/Cloud/Data/Commands
 
-#Create immich_uploads.sh.sh.
+#Create immich_uploads.sh.
 echo -e "#! /bin/bash\nsudo 7z a /mnt/Cloud/Users/\$1/Midias/Midias-Anuais/immich-uploads.7z /mnt/Cloud/Data/Docker/immich-app/immich-files/library/\$1" >> immich_uploads.sh
 
 #Use 'sudo bash /mnt/Cloud/Data/Commands/immich_uploads.sh (USER)' to create a backup of uploads.
@@ -273,7 +273,7 @@ setfacl -R -d -m o::--- Docs
 
 #Go to Midias, create default folders and set default permissions.
 cd Midias
-sudo chmod -R 770 Midias-Anuais
+chmod -R 770 Midias-Anuais
 setfacl -R -m o::--- Midias-Anuais
 setfacl -R -m user:radarr:rwx Filmes
 setfacl -R -m user:sonarr:rwx TV-Shows
