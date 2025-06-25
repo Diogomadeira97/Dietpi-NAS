@@ -15,7 +15,6 @@ echo -e "server{\n	listen 80;\n	listen [::]:80;\n	server_name $1$2;\n	return 301
 
 #Edit index.html of Domain.
 echo -e '\n    <title>'"$5"'</title>' >> index.html
-cat index_temp.html >> index.html
 
 #Create manifest.json to Domain.
 echo -e '{"name":"'"$1"'","short_name":"'"$1"'","start_url":"../","display":"standalone","background_color":"#ffffff","lang":"en","scope":"../","description":"'"$1"'","theme_color":"#3367D6","icons":[{"src":"./icons/logo.svg","type":"image/svg"}]}' >> manifest.json
@@ -64,6 +63,7 @@ rm -rf homer
 #Go to Domain folder and set the default files.
 cd $1
 rm logo.png
+cat -n index.html | sed -n '10,$p' >> /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/index.html
 mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Nginx/index.html .
 
 #Go to assets folder and set the default files.
