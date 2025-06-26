@@ -12,8 +12,6 @@ https://gist.githubusercontent.com/anudeepND/adac7982307fec6ee23605e281a57f1a/ra
 
 https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt
 
-https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt
-
 https://adguardteam.github.io/HostlistsRegistry/assets/filter_59.txt
 
 https://adguardteam.github.io/HostlistsRegistry/assets/filter_33.txt
