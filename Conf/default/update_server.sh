@@ -27,8 +27,8 @@ sudo docker compose up -d
 
 #Update Passbolt
 cd /mnt/Cloud/Data/Docker/passbolt
-docker compose -f docker-compose-ce.yaml pull
-docker compose -f docker-compose-ce.yaml up -d
+sudo docker compose -f docker-compose-ce.yaml pull
+sudo docker compose -f docker-compose-ce.yaml up -d
 
 #Update Stirling
 cd /mnt/Cloud/Data/Docker/stirling
