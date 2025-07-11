@@ -485,7 +485,7 @@ Do the first login and follow the instructions.
 	nano config
 
 		Host <SERVER>_<USER>
-			Host <DOMAIN><TPDOMAIN>
+			HostName <DOMAIN><TPDOMAIN>
 			USER <uSER>
 			IdentityFile ~/.ssh/<SERVER>(<USER>)
 
