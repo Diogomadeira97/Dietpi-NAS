@@ -85,13 +85,13 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 • [default-keys-ssh.sh](Conf/default/default-keys-ssh.sh).
 
-> Create SSH Private keys to multiple devices.
+> Create SSH Private keys to multiple devices (Login on root).
 
 	bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
 
 • [default-keys-vpn.sh](Conf/default/default-keys-vpn.sh).
 
-> Create SSH Private keys to multiple devices (Login on root).
+> Create SSH Private keys to multiple devices.
 
 	bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh <DOMAIN> <DEVICE1> ... <DEVICEx>
 
