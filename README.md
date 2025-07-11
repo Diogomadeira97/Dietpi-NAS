@@ -91,9 +91,9 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 • [default-keys-vpn.sh](Conf/default/default-keys-vpn.sh).
 
-> Create SSH Private keys to multiple devices.
+> Create VPN Private keys to multiple devices.
 
-	bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh <DOMAIN> <DEVICE1> ... <DEVICEx>
+	bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh <ADMIN> <DEVICE1> ... <DEVICEx>
 
 • [subdomain.sh](Conf/default/subdomain.sh).
 
