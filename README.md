@@ -478,13 +478,13 @@ Do the first login and follow the instructions.
 
 	cd .ssh
 
-	nano <DEVICE> (Put the private key here.)
+	nano <SERVER>(<USER>) (Put the private key here.)
 
 	ssh-add ~/.ssh/<SERVER>(<USER>)
 
 	nano config
 
-		Host <SERVER>_<USER>
+		Host <SERVER>(<USER>)
 			HostName <DOMAIN><TPDOMAIN>
 			USER <uSER>
 			IdentityFile ~/.ssh/<SERVER>(<USER>)
