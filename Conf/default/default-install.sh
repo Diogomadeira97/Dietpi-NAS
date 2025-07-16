@@ -60,7 +60,7 @@ mv Dietpi-NAS /mnt/Cloud/Data
 
 #Go to Cloud and create default folders.
 cd /mnt/Cloud
-mkdir Data/Commands Data/Docker Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users
+mkdir Data/Commands Data/Docker Data/Docker/immich-app Data/Docker/vscodium Data/Docker/gimp Data/Docker/stirling Data/Docker/passbolt Data/Docker/esphome Public Public/Downloads Public/Docs Public/Midias Public/Passwords Users
 
 #Default variables.
 SERVERNAME=${VARIABLES[1]}
@@ -88,6 +88,8 @@ GUESTPW=$(passwd)
 echo -e "       • $GUEST: $GUESTPW\n" >> PASSWD_$SERVERNAME.txt
 GUESTSMBPW=$(passwd)
 echo -e "       • $GUEST(smb): $GUESTSMBPW\n\n" >> PASSWD_$SERVERNAME.txt
+ADMINESPHOME=$(passwd)
+echo -e "       • admin-esphome: $ADMINESPHOME\n\n" >> PASSWD_$SERVERNAME.txt
 
 #Default Server.
 echo -e "#Default Server.\n" >> PASSWD_$SERVERNAME.txt
@@ -283,7 +285,7 @@ setfacl -R -m user:bazarr:rwx Filmes
 setfacl -R -m user:bazarr:rwx TV-Shows
 
 #Install tools.
-bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOMAIN $TPDOMAIN $SERVERNAME $ADMIN
+bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-tools.sh $DBIMMICHPW $DBOFFICEPW $DBPASSBOLTPW $DOMAIN $TPDOMAIN $SERVERNAME $ADMIN $ADMINESPHOME
 
 #Install Certbot and Homer to set server default configs.
 bash /mnt/Cloud/Data/Dietpi-NAS/Conf/default/default-server.sh $DOMAIN $TPDOMAIN $IP $CLOUDFLARETOKEN $SERVERNAME $EMAIL

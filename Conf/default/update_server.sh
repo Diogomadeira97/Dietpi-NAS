@@ -40,6 +40,11 @@ cd /mnt/Cloud/Data/Docker/vscodium
 sudo docker compose pull
 sudo docker compose up -d
 
+#Update Esphome
+cd /mnt/Cloud/Data/Docker/esphome
+sudo docker compose pull
+sudo docker compose up -d
+
 #Update Flaresolverr
 sudo stop flaresolverr
 sudo rm flaresolverr

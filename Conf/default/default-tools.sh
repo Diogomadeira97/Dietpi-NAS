@@ -94,3 +94,11 @@ echo -e '    volumes:\n      - gpg_volume:/etc/passbolt/gpg\n      - jwt_volume:
 curl -LO https://github.com/passbolt/passbolt_docker/releases/latest/download/docker-compose-ce-SHA512SUM.txt
 #Run Passbolt on Docker.
 docker compose -f docker-compose-ce.yaml up -d
+
+#Go to Esphome Docker directory.
+cd /mnt/Cloud/Data/Docker/esphome
+#Import default file.
+mv /mnt/Cloud/Data/Dietpi-NAS/Conf/Docker/Esphome/docker-compose.yml .
+echo -e '      - PASSWORD='"$(echo "$8")"'' >> docker-compose.yml
+#Run Esphome on Docker.
+docker compose up -d

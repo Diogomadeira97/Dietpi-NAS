@@ -150,6 +150,11 @@ cd /mnt/Cloud/Data/Commands
 
 item "home-assistant" "Automação Residencial."
 
+#Esphome.
+bash subdomain-docker.sh $1 $2 "esphome" 6052 $3
+
+item "esphome" "Gerenciador de sensores."
+
 #Portainer
 bash subdomain.sh $1 $2 "portainer" 9002 $3
 
