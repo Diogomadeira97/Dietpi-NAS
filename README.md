@@ -85,15 +85,15 @@ Last but not least, the installation was thought out to be practical, so that pe
 
 • [default-keys-ssh.sh](Conf/default/default-keys-ssh.sh).
 
-> Create SSH Private keys to multiple devices.
+> Create SSH Private keys to multiple devices (Login on root).
 
-	bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh <DOMAIN> <TPDOMAIN> <ADMIN> <ADMINPW> <DEVICE1> ... <DEVICEx>
+	bash /mnt/Cloud/Data/Commands/default-keys-ssh.sh <DOMAIN> <TPDOMAIN> <USER> <USERPW> <DEVICE1> ... <DEVICEx>
 
 • [default-keys-vpn.sh](Conf/default/default-keys-vpn.sh).
 
-> Create SSH Private keys to multiple devices.
+> Create VPN Private keys to multiple devices.
 
-	bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh <DOMAIN> <DEVICE1> ... <DEVICEx>
+	bash /mnt/Cloud/Data/Commands/default-keys-vpn.sh <ADMIN> <DEVICE1> ... <DEVICEx>
 
 • [subdomain.sh](Conf/default/subdomain.sh).
 
@@ -478,15 +478,15 @@ Do the first login and follow the instructions.
 
 	cd .ssh
 
-	nano <DEVICE> (Put the private key here.)
+	nano <SERVER>(<USER>) (Put the private key here.)
 
 	ssh-add ~/.ssh/<SERVER>(<USER>)
 
 	nano config
 
 		Host <SERVER>_<USER>
-			Host <DOMAIN><TPDOMAIN>
-			USER <uSER>
+			HostName <DOMAIN><TPDOMAIN>
+			USER <USER>
 			IdentityFile ~/.ssh/<SERVER>(<USER>)
 
 • To login use this command:
