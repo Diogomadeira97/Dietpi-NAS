@@ -275,7 +275,7 @@ setfacl -R -d -m o::--- Docs
 
 #Go to Midias, create default folders and set default permissions.
 cd Midias
-chmod -R 770 Midias-Anuais
+chmod -R -d 770 Midias-Anuais
 setfacl -R -m o::--- Midias-Anuais
 setfacl -R -m user:radarr:rwx Filmes
 setfacl -R -m user:sonarr:rwx TV-Shows
