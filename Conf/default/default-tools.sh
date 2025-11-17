@@ -58,10 +58,6 @@ cd /mnt/Cloud/Data/Docker/immich-app
 echo -e "      - /mnt/Cloud/$6/Midias/Midias-Anuais:/mnt/Cloud/$6/Midias/Midias-Anuais" >> docker-compose.yml
 #Run Immich on Docker.
 docker compose up -d
-#Create a crontab to sync Immich with user folder.
-echo -e "#! /bin/bash\n\nmv /mnt/Cloud/Data/Docker/immich-app/immich_files/library/$7/*  /mnt/Cloud/$6/Midias/Midias-Anuais/immich\n\nchown -R $7:$6 /mnt/Cloud/$6/Midias/Midias-Anuais/immich" >> immich_cron_$6.sh
-mv immich_cron_$6.sh /etc/cron.daily
-chmod 750 /etc/cron.daily/immich_cron_$6.sh
 
 #Go to Vscodium Docker directory.
 cd /mnt/Cloud/Data/Docker/vscodium
