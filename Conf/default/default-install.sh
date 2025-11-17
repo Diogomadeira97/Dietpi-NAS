@@ -195,8 +195,11 @@ mv subdomain-docker.sh /mnt/Cloud/Data/Commands
 #Use 'sudo bash /mnt/Cloud/Data/Commands/subpath.sh' to add some subpath.
 mv subpath.sh /mnt/Cloud/Data/Commands
 
-#Use 'sudo bash /mnt/Cloud/Data/Commands/update_server.sh' to add some subpath.
+#Use 'sudo bash /mnt/Cloud/Data/Commands/update_server.sh' to update server (without docker).
 mv update_server.sh /mnt/Cloud/Data/Commands
+
+#Use 'sudo bash /mnt/Cloud/Data/Commands/update_server.sh' to update server (only docker).
+mv update_server_docker.sh /mnt/Cloud/Data/Commands
 
 #Create iptables_custom.sh.
 echo -e "#! /bin/bash" >> iptables_custom.sh
