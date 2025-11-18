@@ -91,6 +91,18 @@ curl -LO https://github.com/passbolt/passbolt_docker/releases/latest/download/do
 #Run Passbolt on Docker.
 docker compose -f docker-compose-ce.yaml up -d
 
+#Passbolt security configs.
+chmod 770 /mnt/dietpi_userdata/docker-data/volumes/passbolt_jwt_volume/_data
+cd /mnt/Cloud/Data/Docker/passbolt
+docker compose -f docker-compose-ce.yaml exec -ti passbolt su -s /bin/bash -c "source /etc/environment && /usr/share/php/passbolt/bin/cake passbolt create_jwt_keys" www-data
+chown -R root:www-data /mnt/dietpi_userdata/docker-data/volumes/passbolt_jwt_volume/_data
+chmod 750 /mnt/dietpi_userdata/docker-data/volumes/passbolt_jwt_volume/_data
+chmod 640 /mnt/dietpi_userdata/docker-data/volumes/passbolt_jwt_volume/_data/jwt.pem
+chmod 640 /mnt/dietpi_userdata/docker-data/volumes/passbolt_jwt_volume/_data/jwt.key
+
+#Passbolt Healthcheck
+sudo docker compose -f docker-compose-ce.yaml exec -ti passbolt su -s /bin/bash -c "source /etc/environment && /usr/share/php/passbolt/bin/cake passbolt healthcheck --jwt" www-data
+
 #Go to Esphome Docker directory.
 cd /mnt/Cloud/Data/Docker/esphome
 #Import default file.
