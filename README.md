@@ -242,8 +242,6 @@ Do the first login and follow the instructions.
 
 • Change Dropbear to OpenSSH.
 
-• Select Python3 (number 130) to be install.
-
 • Select 0: Opt OUT and purge uploaded data mark no.
 
 • Install.
