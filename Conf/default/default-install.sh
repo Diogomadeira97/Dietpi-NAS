@@ -229,7 +229,7 @@ rm crontab
 apt install acl sshpass -y
 
 #Install zip
-apt-get install p7zip-full
+apt-get install p7zip-full -y
 
 #This code is to fix the reboot error message.
 systemctl unmask systemd-logind
