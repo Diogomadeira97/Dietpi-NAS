@@ -37,4 +37,4 @@ chown -R jellyfin:$1_Cloud Data/Jellyfin
 chown -R debian-transmission:$1_Cloud Public/Downloads
 
 #Restart Samba_server.
-service samba restart
+systemctl restart smbd nmbd
