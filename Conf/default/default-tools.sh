@@ -33,13 +33,13 @@ mv nginx.conf /etc/nginx
 
 #Change Nextcloud configs.
 sudo apt-get install php-bcmath php-gmp php-imagick libmagickcore-6.q16-6-extra -y
-sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
-sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set opcache.interned_strings_buffer --type=integer --value=9
-sudo -u www-data php8.2 /var/www/nextcloud/occ maintenance:repair --include-expensive
-sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set default_phone_region --value="BR"
-sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set datadirectory --value="/mnt/Cloud/Data/nextcloud_data"
+sudo -u www-data php8.4 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=1
+sudo -u www-data php8.4 /var/www/nextcloud/occ config:system:set opcache.interned_strings_buffer --type=integer --value=9
+sudo -u www-data php8.4 /var/www/nextcloud/occ maintenance:repair --include-expensive
+sudo -u www-data php8.4 /var/www/nextcloud/occ config:system:set default_phone_region --value="BR"
+sudo -u www-data php8.4 /var/www/nextcloud/occ config:system:set datadirectory --value="/mnt/Cloud/Data/nextcloud_data"
 sudo mv /mnt/dietpi_userdata/nextcloud_data /mnt/Cloud/Data
-sudo -u www-data php8.2 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=0
+sudo -u www-data php8.4 /var/www/nextcloud/occ config:system:set maintenance_window_start --type=integer --value=0
 #Remove default files.
 cd /etc/nginx/sites-dietpi
 rm -rf dietpi-dav_redirect.conf dietpi-nextcloud.conf
