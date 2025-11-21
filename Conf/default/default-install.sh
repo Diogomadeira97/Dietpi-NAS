@@ -117,9 +117,6 @@ adduser --quiet --disabled-password --shell /bin/bash --home /home/"$GUEST" --ge
 echo "$ADMIN:"$(echo "$ADMINPW")"" | chpasswd
 echo "$GUEST:"$(echo "$GUESTPW")"" | chpasswd
 
-#Install Python 3.
-/boot/dietpi/dietpi-software install 130
-
 #Install Fail2Ban, Dietpi-Dashboard, PiVPN(Wireguard), Unbound, AdGuard_Home, Samba_server, Transmission, Sonarr, Radarr, Prowlarr, Bazarr, Readarr, Jellyfin, Kavita, Nginx, LEMP, Docker, Docker_Compose, Portainer and Home-Assistant.
 /boot/dietpi/dietpi-software install 73 200 117 182 126 96 44 144 145 151 180 203 178 212 85 79 134 162 185 157
 
